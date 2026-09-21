@@ -586,28 +586,67 @@ function Anleitung({ config, nodes, edges, astCount, star1Count, star2Count, onC
   // Artifact-Vorschau bewusst nur als sekundäre Option, falls es doch geht.
   const handleDirectPrint = () => { try { window.print(); } catch (e) { /* siehe Download-Button oben */ } };
 
-  // Echter Ein-Klick-PDF-Download ohne Druckdialog — rendert das Anleitung-Blatt
-  // clientseitig (html2canvas) in ein mehrseitiges PDF (jsPDF). Browser können
-  // sonst kein PDF direkt aus JS heraus speichern; der Druckdialog-Weg (oben)
-  // bleibt als höherwertige Alternative bestehen (Vektortext statt Rastergrafik).
+  // Echter Ein-Klick-PDF-Download ohne Druckdialog. Zwei Techniken kombiniert,
+  // damit weder mitten im Inhalt geschnitten wird noch die 1:1-Maßhaltigkeit
+  // verloren geht (beides trat mit einer reinen Ganzseiten-Rasterung auf):
+  // - Teil 1–4 (Text/Diagramme, nicht maßstabskritisch): jeder Abschnitt wird
+  //   EINZELN gerastert (html2canvas) und als eigenes Bild platziert — ein
+  //   Seitenumbruch passiert nur ZWISCHEN Abschnitten, nie innerhalb eines
+  //   Diagramms/einer Tabelle.
+  // - Lochmuster-Seite (muss exakt 1:1 in mm stimmen, sonst passen die Löcher
+  //   beim Anstechen nicht): wird als echtes Vektor-SVG in die PDF übernommen
+  //   (svg2pdf), nicht gerastert/reskaliert — die physische Größe bleibt exakt
+  //   erhalten, identisch zur bereits vorhandenen "Tatsächliche Größe"-Druckseite.
   const [pdfExporting, setPdfExporting] = useState(false);
   const handleDirectPdfDownload = async () => {
     const sheetEl = document.querySelector(".anleitung-root .sheet");
     if (!sheetEl || pdfExporting) return;
     setPdfExporting(true);
-    const { default: html2pdf } = await import("html2pdf.js");
-    html2pdf()
-      .set({
-        margin: 10,
-        filename: "stickkarten-anleitung.pdf",
-        image: { type: "jpeg", quality: 0.97 },
-        html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-        pagebreak: { mode: ["css", "legacy"] },
-      })
-      .from(sheetEl)
-      .save()
-      .finally(() => setPdfExporting(false));
+    try {
+      const [{ jsPDF }, { default: html2canvas }, { svg2pdf }] = await Promise.all([
+        import("jspdf"),
+        import("html2canvas"),
+        import("svg2pdf.js"),
+      ]);
+      const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+      const pageW = doc.internal.pageSize.getWidth();
+      const pageH = doc.internal.pageSize.getHeight();
+      const margin = 12;
+      const contentW = pageW - margin * 2;
+      let y = margin;
+
+      const blocks = [sheetEl.querySelector(".pdf-header"), ...sheetEl.querySelectorAll(".teil:not(.lochmuster-teil)")].filter(Boolean);
+      for (const el of blocks) {
+        const canvas = await html2canvas(el, { scale: 2, backgroundColor: "#ffffff", useCORS: true });
+        const imgW = contentW;
+        const imgH = (canvas.height / canvas.width) * imgW;
+        if (y > margin && y + imgH > pageH - margin) {
+          doc.addPage();
+          y = margin;
+        }
+        doc.addImage(canvas.toDataURL("image/jpeg", 0.95), "JPEG", margin, y, imgW, imgH);
+        y += imgH + 6;
+      }
+
+      const svgEl = sheetEl.querySelector(".lochmuster-svg");
+      if (svgEl) {
+        doc.addPage("a4", pageFit.orientation === "quer" ? "landscape" : "portrait");
+        const pW = doc.internal.pageSize.getWidth();
+        const pH = doc.internal.pageSize.getHeight();
+        const drawW = flat.w * pageFit.scale;
+        const drawH = flat.h * pageFit.scale;
+        await svg2pdf(svgEl, doc, { x: (pW - drawW) / 2, y: (pH - drawH) / 2, width: drawW, height: drawH });
+        doc.setFontSize(8);
+        doc.setTextColor(107, 101, 88);
+        // "≈" fehlt in der WinAnsi-Kodierung der jsPDF-Standardschrift und würde
+        // sonst als kaputtes Glyph erscheinen.
+        doc.text(kennwerte.replace(/≈/g, "ca. "), margin, pH - 6, { maxWidth: pW - margin * 2 });
+      }
+
+      doc.save("stickkarten-anleitung.pdf");
+    } finally {
+      setPdfExporting(false);
+    }
   };
 
   const astEdges = astschicht ? edges.slice(0, astCount) : [];
@@ -723,12 +762,14 @@ function Anleitung({ config, nodes, edges, astCount, star1Count, star2Count, onC
         </div>
       </div>
       <div className="sheet">
-        <h1>Stickkarten-Anleitung</h1>
-        <p className="subtitle">Arbeitsanweisung auf Basis der aktuellen Einstellungen ({FORMATE[Object.keys(FORMATE).find((k) => FORMATE[k].w === format.w && FORMATE[k].h === format.h) || "custom"]?.label || `${format.w} × ${format.h} mm`}, Falz {falzposition}, Zoom {(zoom * 100).toFixed(0)} %).</p>
-        <div className="legend">
-          <span><span className="swatch" style={{ background: ANLEITUNG_FARBEN.vs }} />VS — sichtbarer Stich, Vorderseite (gerader Pfeil)</span>
-          <span><span className="swatch" style={{ background: ANLEITUNG_FARBEN.rs }} />RS — verdeckter Sprung, Rückseite (gebogener Pfeil)</span>
-          <span>Auf jeden Stich folgt unmittelbar ein Sprung — nur der letzte Schritt einer Schicht nicht.</span>
+        <div className="pdf-header">
+          <h1>Stickkarten-Anleitung</h1>
+          <p className="subtitle">Arbeitsanweisung auf Basis der aktuellen Einstellungen ({FORMATE[Object.keys(FORMATE).find((k) => FORMATE[k].w === format.w && FORMATE[k].h === format.h) || "custom"]?.label || `${format.w} × ${format.h} mm`}, Falz {falzposition}, Zoom {(zoom * 100).toFixed(0)} %).</p>
+          <div className="legend">
+            <span><span className="swatch" style={{ background: ANLEITUNG_FARBEN.vs }} />VS — sichtbarer Stich, Vorderseite (gerader Pfeil)</span>
+            <span><span className="swatch" style={{ background: ANLEITUNG_FARBEN.rs }} />RS — verdeckter Sprung, Rückseite (gebogener Pfeil)</span>
+            <span>Auf jeden Stich folgt unmittelbar ein Sprung — nur der letzte Schritt einer Schicht nicht.</span>
+          </div>
         </div>
 
         {/* TEIL 1 */}
@@ -954,12 +995,6 @@ const anleitungCss = `
   .sheet footer{ margin-top:36px; padding-top:14px; border-top:1px dashed #c9c0ac; font-size:11.5px; color:#6b6558; font-family:system-ui,sans-serif; line-height:1.6; }
   .lochmuster-wrap{ overflow-x:auto; padding:4px 0 8px; }
   .lochmuster-svg{ display:block; margin:0 auto; }
-
-  /* Seitenumbruch vor der Lochmuster-Seite — bewusst NICHT nur in @media print,
-     damit auch der html2pdf-Export (Direkt-PDF-Button, rendert außerhalb eines
-     echten Druckvorgangs) den Umbruch über seinen CSS-Pagebreak-Modus erkennt.
-     Auf dem Bildschirm wirkungslos, da nur beim Paginieren relevant. */
-  .lochmuster-teil{ page-break-before: always; }
 
   @page{ size:A4; margin:14mm; }
   /* Eigenes Seitenprofil fürs Lochmuster: knapperer Rand und ggf. Querformat,
