@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
-import { Play, Pause, RotateCcw, Download, AlertTriangle, Settings, X, Printer } from "lucide-react";
+import { Play, Pause, RotateCcw, Download, AlertTriangle, Settings, X, Printer, FileDown } from "lucide-react";
 
 /* ---------------------------------------------------------------------- */
 /* Feste Randbedingungen                                                  */
@@ -586,6 +586,30 @@ function Anleitung({ config, nodes, edges, astCount, star1Count, star2Count, onC
   // Artifact-Vorschau bewusst nur als sekundäre Option, falls es doch geht.
   const handleDirectPrint = () => { try { window.print(); } catch (e) { /* siehe Download-Button oben */ } };
 
+  // Echter Ein-Klick-PDF-Download ohne Druckdialog — rendert das Anleitung-Blatt
+  // clientseitig (html2canvas) in ein mehrseitiges PDF (jsPDF). Browser können
+  // sonst kein PDF direkt aus JS heraus speichern; der Druckdialog-Weg (oben)
+  // bleibt als höherwertige Alternative bestehen (Vektortext statt Rastergrafik).
+  const [pdfExporting, setPdfExporting] = useState(false);
+  const handleDirectPdfDownload = async () => {
+    const sheetEl = document.querySelector(".anleitung-root .sheet");
+    if (!sheetEl || pdfExporting) return;
+    setPdfExporting(true);
+    const { default: html2pdf } = await import("html2pdf.js");
+    html2pdf()
+      .set({
+        margin: 10,
+        filename: "stickkarten-anleitung.pdf",
+        image: { type: "jpeg", quality: 0.97 },
+        html2canvas: { scale: 2, useCORS: true, backgroundColor: "#ffffff" },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        pagebreak: { mode: ["css", "legacy"] },
+      })
+      .from(sheetEl)
+      .save()
+      .finally(() => setPdfExporting(false));
+  };
+
   const astEdges = astschicht ? edges.slice(0, astCount) : [];
   const star1Edges = sternschicht ? edges.slice(astCount, astCount + star1Count) : [];
   const star2Edges = sternschicht2 ? edges.slice(astCount + star1Count, astCount + star1Count + star2Count) : [];
@@ -684,7 +708,10 @@ function Anleitung({ config, nodes, edges, astCount, star1Count, star2Count, onC
       <div className="anleitung-toolbar no-print">
         <span>Druckbare Arbeitsanweisung</span>
         <div>
-          <button className="btn" onClick={handleDownloadHtml} title="Lädt die Anleitung als eigenständige HTML-Datei herunter — darin (außerhalb dieser Vorschau) funktionieren Drucken und „Als PDF speichern“ normal">
+          <button className="btn" onClick={handleDirectPdfDownload} disabled={pdfExporting} title="Erzeugt direkt eine PDF-Datei und lädt sie herunter — ohne Druckdialog-Umweg">
+            <FileDown size={14} style={{ marginRight: 6 }} /> {pdfExporting ? "PDF wird erstellt …" : "PDF herunterladen"}
+          </button>
+          <button className="btn btn-secondary" onClick={handleDownloadHtml} title="Lädt die Anleitung als eigenständige HTML-Datei herunter — darin (außerhalb dieser Vorschau) funktionieren Drucken und „Als PDF speichern“ normal">
             <Download size={14} style={{ marginRight: 6 }} /> Anleitung herunterladen
           </button>
           <button className="btn btn-secondary" onClick={handleDirectPrint} title="Direkter Druckversuch — funktioniert nur außerhalb einer eingebetteten Vorschau/Sandbox; hier ggf. ohne Wirkung, dann bitte den Download-Button nutzen">
@@ -927,6 +954,12 @@ const anleitungCss = `
   .sheet footer{ margin-top:36px; padding-top:14px; border-top:1px dashed #c9c0ac; font-size:11.5px; color:#6b6558; font-family:system-ui,sans-serif; line-height:1.6; }
   .lochmuster-wrap{ overflow-x:auto; padding:4px 0 8px; }
   .lochmuster-svg{ display:block; margin:0 auto; }
+
+  /* Seitenumbruch vor der Lochmuster-Seite — bewusst NICHT nur in @media print,
+     damit auch der html2pdf-Export (Direkt-PDF-Button, rendert außerhalb eines
+     echten Druckvorgangs) den Umbruch über seinen CSS-Pagebreak-Modus erkennt.
+     Auf dem Bildschirm wirkungslos, da nur beim Paginieren relevant. */
+  .lochmuster-teil{ page-break-before: always; }
 
   @page{ size:A4; margin:14mm; }
   /* Eigenes Seitenprofil fürs Lochmuster: knapperer Rand und ggf. Querformat,
