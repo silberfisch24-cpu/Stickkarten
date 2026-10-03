@@ -8,6 +8,9 @@ on:
     paths: ["ios/**", ".github/workflows/ios.yml", "src/StickkartenGeneratorV4.jsx"]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 concurrency:
   group: ios-${{ github.ref }}
   cancel-in-progress: true
@@ -34,6 +37,17 @@ jobs:
           name: stickkarten-pdfs
           path: ios/pdf-out
           if-no-files-found: ignore
+      - name: PNG-Vorschauen auf Branch ios-ci-previews (zur Sichtprüfung)
+        if: always() && github.event_name == 'push'
+        continue-on-error: true
+        run: |
+          brew install poppler >/dev/null 2>&1
+          mkdir -p /tmp/prev && cd ios/pdf-out
+          for f in *.pdf; do pdftoppm -png -r 50 "$f" "/tmp/prev/${f%.pdf}"; done
+          cd /tmp/prev && git init -q && git checkout -q -b ios-ci-previews
+          git config user.name "ci" && git config user.email "ci@example.invalid"
+          git add -A && git commit -qm "previews for ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ios-ci-previews
 
   app:
     name: App (XcodeGen + xcodebuild)
