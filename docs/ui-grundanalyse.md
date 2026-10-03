@@ -1,283 +1,341 @@
-# Stickkarten (native iOS-App unter `/ios`) — UI-Grundanalyse
+# Stickkarten (native iOS-App) — UI-Grundanalyse für eine Neugestaltung
 
-Status: Entwurf zur gemeinsamen Diskussion · **keine Design-Entscheidungen**, nur Bestandsaufnahme und Anforderungen.
+Status: Entwurf zur gemeinsamen Diskussion · **keine Design-Entscheidungen**.
 Nächster Schritt (separat): gemeinsames UI-Konzept → danach Design.
 
-Bezugsgröße ist ausschließlich die SwiftUI-App unter `ios/` (Branch `claude/friendly-bell-9n9w83`, Stand `48c0296`).
-Die Web-App (`src/StickkartenGeneratorV4.jsx`) ist nur fachliche Referenz und **nicht** Gegenstand dieser Analyse.
-(Eine frühere Fassung dieses Dokuments bezog sich fälschlich auf die Web-App; sie ist hiermit ersetzt.)
+## 0. Grundlage und Abgrenzung
 
-## 0. Ausgangslage
+- Die App wird unter `ios/` als **SwiftUI-App für iPhone und iPad** entwickelt (iOS ≥ 16 laut `project.yml`).
+- Die **bestehende Oberfläche wird bewusst ignoriert** — sie ist weder Vorbild noch Kritikgegenstand. Das UI wird von Grund auf neu entworfen.
+- **Der Code dient nur als Informationsquelle** für: was die App kann, welche Eingaben es gibt (mit Wertebereichen und Abhängigkeiten), welche Ergebnisse berechnet werden, welche physikalischen Randbedingungen gelten. Quellen: `ios/StickCore` (Fachlogik, PDF) und die Web-Referenz `src/StickkartenGeneratorV4.jsx`.
+- Annahmen (bitte korrigieren):
+  - A1. Nutzerin/Nutzer stickt von Hand (Karton, Nadel, Faden) und benutzt iPhone/iPad als Entwurfs-, Vorlagen- und Nachschlagewerkzeug.
+  - A2. Alles läuft lokal, ohne Konto und Server.
+  - A3. Sprache zunächst Deutsch.
+  - A4. Entwickelt wird **ohne Mac** (Build/Tests nur über GitHub Actions); das beeinflusst, wie wir Layouts überprüfen (siehe E5).
 
-### 0.1 Was die App heute ist
+---
 
-- Native SwiftUI-App, **iOS ≥ 16.0**, iPhone und iPad (`TARGETED_DEVICE_FAMILY 1,2`), alle Orientierungen (iPhone ohne Kopfüber), eine Szene (`project.yml`).
-- Fachlogik als Swift-Package `StickCore` (Graph, Stichfolge, Abstandsprüfung, Fadenlänge, Anleitungs-Diagramme) plus `StickPDF` (Vektor-PDF: Lochmuster 1:1, mehrseitige Anleitung). Per Golden-Tests gegen die Web-App abgesichert — **die Logik steht, offen ist die Oberfläche.**
-- Zustand: ein einziger Stand (`StickSettings` + `AppearanceSettings`) als JSON in `UserDefaults`, Neuberechnung bei jeder Änderung (`AppModel`).
-- Entwicklung **ohne Mac**: Build und Tests nur über GitHub Actions (`macos-latest`); es gibt keine UI-Tests und keine Simulator-Screenshots.
+## A. Funktionaler Kern (aus dem Code abgeleitet)
 
-### 0.2 Aufbau der Oberfläche heute
+### A.1 Was die App leistet
 
-| Bestandteil | Datei | Verhalten |
+Aus Parametern entsteht ein **Lochmuster** für eine gestickte Karte (Kreispunkte, optional „Astschicht“ = Baum/Flocke, optional eine oder zwei „Sternschichten“ = Sehnenmuster). Daraus werden berechnet:
+
+1. die **Kartenansicht** (Löcher, Stiche, Rückseiten-Sprünge),
+2. die **Stichfolge** (jeder Stich auf der Vorderseite „VS“, danach ein verdeckter Sprung auf der Rückseite „RS“),
+3. eine **Machbarkeitsprüfung** (Mindestabstand der Löcher, Stichlimit, gültige Kombination),
+4. **Kennzahlen** (Punkte, Stiche, Fadenlänge +15 %),
+5. **Druckvorlagen als PDF**: Lochmuster 1:1 zum Anstechen und eine mehrseitige Anleitung (Ebenenübersicht, Schrittdiagramme, Tabellen, Fadenlängen).
+
+### A.2 Eingaben
+
+| Gruppe | Eingabe | Wertebereich / Auswahl | Abhängigkeit |
+|---|---|---|---|
+| Karte | Format | A6 hoch 105×148 mm · A6 quer 148×105 mm · eigenes Format (Breite/Höhe mm) | Zuschnitt = doppelte Fläche bei Falz |
+| Karte | Falzposition | links · oben · keine | Falzseite braucht größeren Rand (Falz ≥ 18 mm, sonst ≥ 14 mm) |
+| Karte | Zoom (Musterradius) | 0–100 % zwischen Mindest- und Maximalradius | Mindestradius hängt von Kreispunkten/Ebenen ab; passt nichts → Format ungültig |
+| Grundform | Kreispunkte n | 3–16 | bestimmt Strahlen-Auswahl und Schrittweiten |
+| Astschicht | aktiv | an/aus | |
+| Astschicht | Ebenen | 1–6 | |
+| Astschicht | Seitenäste | an/aus | Seitenäste erst ab Ebene 2 |
+| Astschicht | Astwinkel / Astlänge / Wachstum nach außen | 3–55° / 20–200 % / 0–150 % | nur mit Seitenästen |
+| Astschicht | Fraktal-Tiefe / -Skalierung | 0–2 / 30–80 % | Skalierung nur bei Tiefe > 0 |
+| Sternschicht 1 | aktiv | an/aus | |
+| Sternschicht 1 | Sternebene | 1…Ebenen (Ebenen = äußerer Ring) | nur mit Astschicht |
+| Sternschicht 1 | Sternstrahlen | Teiler von n („alle“, „jeder 2.“ …) | |
+| Sternschicht 1 | Schrittweite k | 1…kMax | kMax hängt von Strahlen und Astschicht ab; bei kMax = 1 gibt es keine Auswahl |
+| Sternschicht 1 | Seitenäste auf Sternlevel weglassen | keine · nur Sternlevel · Sternlevel und darunter | nur anbietbar, wenn dort Seitenäste existieren |
+| Sternschicht 2 | aktiv + alle Felder wie Schicht 1 | | nur mit Schicht 1; zusätzlich **Rotationsversatz** 0…(Teiler−1) |
+| Darstellung | Kartonfarbe, Fadenfarbe | 4 Kartonfarben, 4 Fadenfarben | rein visuell |
+| Darstellung | Restmuster-Vorschau, Rückseiten-Sprünge | an/aus | rein visuell |
+
+Insgesamt **rund 25 Eingaben**, mit zahlreichen **bedingten** und **gegenseitig begrenzten** Werten.
+
+### A.3 Ausgaben und Zustände
+
+- Kartenmodell: bis zu einigen Hundert Punkte; Stichlimit-Richtmaß **300 Stiche** (≈ bis 600 Schritte inkl. Sprüngen).
+- Ampel je Loch: **ok · knapp (< 150 % Mindestabstand) · zu gering (< Mindestabstand)**.
+- **Zustand „kritisch“**: Es dürfen keine Stiche gezeigt und kein PDF erzeugt werden, solange Löcher zu eng liegen — Abhilfe: Zoom, Kreispunkte oder Ebenen verringern.
+- Weitere Hinweise: keine Schicht aktiv · ungültiges Format · mehr als 300 Stiche.
+- Kennzahlen: Punkte, Stiche, Fadenlänge gesamt und je Schicht.
+- PDFs: Lochmuster 1:1 (A4 hoch oder quer, 1 mm = 72/25,4 pt, Falzlinie, Rahmen, 50-mm-Kontrollbalken; Verkleinerungswarnung, wenn Zuschnitt > A4) und Anleitung (mehrere A4-Seiten, letzte Seite = Lochmuster).
+
+### A.4 Physikalische Randbedingungen, die das UI betreffen
+
+| Größe | Wert | Folge fürs UI |
 |---|---|---|
-| Container | `ContentView.swift:10-41` | `NavigationStack`; Toolbar rechts: *Drucken & Teilen*, *Einstellungen* |
-| **Breite Größenklasse** (`hSize == .regular`) | `ContentView.swift:13-19` | `HStack`: `ControlsView` **fest 400 pt** · Divider · `PreviewPane` |
-| **Kompakte Größenklasse** | `ContentView.swift:20-27` | `TabView` mit zwei Tabs: *Vorschau* · *Muster* |
-| Vorschau | `PreviewPane.swift`, `PreviewCanvas.swift` | `ScrollView`: Karte (max. 560 pt hoch) → Wiedergabeleiste → Warnungen → Statistik → Legende |
-| Muster (Regler) | `Controls.swift` | `Form` mit Sektionen Grundform, Astschicht, Sternschicht 1, Sternschicht 2, „Alle Regler zurücksetzen“ |
-| Einstellungen | `SettingsView.swift` (Sheet) | Sektion *Karte* (Format, Eigenes Format, Falz, **Zoom**) und *Darstellung* (Kartonfarbe, Fadenfarbe, zwei Schalter) |
-| Drucken & Teilen | `ExportView.swift` (Sheet) | Segment *Lochmuster 1:1 / Anleitung*, `PDFView`-Vorschau, *Teilen* (`ShareLink`), *AirPrint* |
+| Lochdurchmesser | ≈ 0,92 mm | auf dem Display bei 105 mm ↔ 358 pt ≈ **3 pt** — ohne Zoom kaum erkennbar |
+| Mindestabstand | ≈ 3,2 mm | ≈ 11 pt auf dem iPhone — Warnmarkierungen müssen größer dargestellt werden als maßstäblich |
+| Kartenverhältnis | A6 hoch ≈ 1 : 1,41 · A6 quer ≈ 1,41 : 1 · eigenes Format beliebig | Layout darf kein festes Kartenformat voraussetzen |
+| Druck 1:1 | nur über PDF/Drucker; Bildschirm kann nicht maßstäblich anzeigen | der Bildschirm darf kein „Echtmaß“ versprechen |
+| Zuschnitt mit Falz | 210 × 148 mm (A6) → A4 quer | Papierorientierung ist Teil der Druckinformation |
 
-Es gibt **keine** eigene Anleitung auf dem Bildschirm (nur PDF), **keine** Hilfe/Erklärungen, **keine** mehrere Entwürfe, **keine** Vorlagen.
+### A.5 Was Nutzerinnen/Nutzer mit der App tun wollen (Aufgaben)
+
+| # | Aufgabe | Dauer / Situation |
+|---|---|---|
+| T1 | Ein Muster **entwerfen** und sofort beurteilen | iterativ, viele schnelle Änderungen |
+| T2 | **Machbarkeit** prüfen und Probleme beheben | punktuell, nach T1 |
+| T3 | Die Stichfolge **verstehen oder mitsticken** | längere Sitzung, Gerät neben dem Karton |
+| T4 | Das **Lochmuster ausdrucken** und zum Anstechen nutzen | selten, aber präzise |
+| T5 | Die **Anleitung** lesen/drucken | beim Vorbereiten |
+| T6 | **Wiederfinden** früherer Muster, Varianten ablegen | wiederkehrend |
+| T7 | **Lernen**, was die Begriffe und Parameter bewirken | Einstieg, Nachschlagen |
+
+Die Screens in Abschnitt 3 leiten sich aus diesen Aufgaben ab, nicht aus der bisherigen Oberfläche.
 
 ---
 
 ## 1. Was braucht eine App allgemein?
 
-| # | Bereich | Inhalt | Stand in der iOS-App | Relevanz |
-|---|---|---|---|---|
-| 1.1 | **Informationsarchitektur / Navigation** | Wo bin ich, wie komme ich zurück; Haupt- vs. Nebenfunktionen | Tabs (iPhone) bzw. Zwei-Spalten (iPad); `NavigationStack` ohne Push-Ziele; Zoom steckt in den Einstellungen | hoch |
-| 1.2 | **Onboarding / Hilfe** | Begriffe (Kreispunkt, Ebene, Sternschicht, Schrittweite, VS/RS, Mindestabstand), Erststart | nicht vorhanden | hoch |
-| 1.3 | **Kern-Workflow** | Entwerfen → Prüfen → Sticken → Drucken | nur lose Abfolge, kein Sticken-Modus | hoch |
-| 1.4 | **Eingabe** | Regler, Auswahl, Zahlenfelder, Schalter; Abhängigkeiten | vorhanden (`Form`), 15+ Steuerelemente | hoch |
-| 1.5 | **Rückmeldung / Fehler / Leerzustände** | Warnungen, Erklärung, Abhilfe | Warnbox in der Vorschau; Abhilfe verweist auf Bedienelemente an anderer Stelle | hoch |
-| 1.6 | **Persistenz** | Letzter Stand, mehrere Entwürfe, Vorlagen | nur *ein* Stand (`UserDefaults`) | hoch |
-| 1.7 | **Export / Teilen / Drucken** | PDF, Teilen-Menü, AirPrint, Dateien | vorhanden (`ShareLink`, `UIPrintInteractionController`) | hoch |
-| 1.8 | **App-Einstellungen** | Darstellung, Standardwerte, Info | vermischt mit Karteneinstellungen | mittel |
-| 1.9 | **Barrierefreiheit** | VoiceOver, Dynamic Type, Kontrast, nicht nur Farbe, „Bewegung reduzieren“ | Systemsteuerelemente ja; Canvas, Legende, Punktfarben nein | hoch |
-| 1.10 | **Performance** | Live-Neuberechnung beim Ziehen, PDF-Erzeugung | Berechnung und PDF laufen im Hauptthread (siehe 5.3, 5.7) | mittel |
-| 1.11 | **Plattform-Pflichten für die Verteilung** | App-Symbol ✓, Startbildschirm (leer `UILaunchScreen`), Privacy-Manifest (UserDefaults ist „Required-Reason-API“), Datenschutz-URL, Impressum/Händlerstatus, Altersfreigabe | teilweise (Icon, Export-Compliance) | je nach Verteilweg (E1) |
-| 1.12 | **Lokalisierung** | Strings, Zahlenformat | Deutsch hartkodiert | später |
-| 1.13 | **Fehlertoleranz** | Rückgängig, Zurücksetzen, Eingabevalidierung | Zurücksetzen ohne Rückfrage; kein Undo; keine Validierung der mm-Felder | mittel |
-| 1.14 | **Test- und Prüfbarkeit der UI** | Layout je Gerät verifizieren | **fehlt** — ohne Mac nur Build-Test (siehe 5.9) | hoch |
+| # | Bereich | Inhalt | Relevanz für diese App |
+|---|---|---|---|
+| 1.1 | **Informationsarchitektur / Navigation** | klare Hauptbereiche, Rückweg, Zustand beim Wiederkommen | hoch — mehrere Aufgaben (T1–T7) |
+| 1.2 | **Kern-Workflow** | Entwerfen → Prüfen → Sticken/Drucken als nachvollziehbare Abfolge | hoch |
+| 1.3 | **Eingabe komplexer, abhängiger Parameter** | Gruppierung, Reihenfolge, Bedingungen, Zusammenfassungen | hoch (≈ 25 Eingaben) |
+| 1.4 | **Rückmeldung, Warnungen, Leerzustände** | Ursache + Abhilfe + direkter Weg dorthin | hoch (Zustand „kritisch“ blockiert Wesentliches) |
+| 1.5 | **Onboarding / Hilfe / Glossar** | Begriffe (Kreispunkt, Ebene, Sternschicht, Schrittweite, VS/RS, Mindestabstand) | hoch |
+| 1.6 | **Persistenz** | letzter Stand, mehrere Entwürfe, Vorlagen, Sicherung | hoch |
+| 1.7 | **Ausgabe: Teilen, Drucken, Dateien** | PDF-Vorschau, Teilen-Menü, AirPrint, Dateien-App | hoch |
+| 1.8 | **App-Einstellungen** | Darstellung, Standardwerte, Info, Zurücksetzen | mittel |
+| 1.9 | **Barrierefreiheit** | VoiceOver (auch für grafische Inhalte), Dynamic Type, Kontrast, nicht nur Farbe, Bewegung reduzieren | hoch |
+| 1.10 | **Performance und Reaktionszeit** | Live-Neuberechnung beim Ziehen, PDF-Erzeugung, Animation | mittel — messen |
+| 1.11 | **Fehlertoleranz** | Rückgängig, Zurücksetzen mit Rückfrage, Eingabevalidierung | mittel |
+| 1.12 | **Verteilung / Pflichtangaben** | App-Symbol, Startbild, Privacy-Manifest (UserDefaults), Datenschutz, Impressum je nach Weg | je nach E1 |
+| 1.13 | **Lokalisierung** | Strings trennen, Zahlenformat | später |
+| 1.14 | **Testbarkeit der UI** | Layout-Prüfung je Gerät ohne Mac | hoch (E5) |
 
 ---
 
-## 2. Allgemeine Regeln für iPhone und iPad (SwiftUI, iOS ≥ 16)
+## 2. Allgemeine Regeln für iPhone und iPad
 
-### 2.1 Plattformregeln
+### 2.1 Plattformregeln (SwiftUI, iOS ≥ 16)
 
-| Thema | Regel | Konsequenz für uns |
+| Thema | Regel | Konsequenz |
 |---|---|---|
-| **Touch-Ziele** | mind. 44 × 44 pt, Abstand ≥ 8 pt | Wiedergabe-Icons sind 28 × 28 pt Symbole in `.bordered`-Buttons (`PreviewPane.swift:28,33`) → Trefferfläche real prüfen |
-| **Größenklassen statt Gerätetyp** | Layout nach `horizontalSizeClass`/`verticalSizeClass` bzw. tatsächlicher Breite | iPad ist **nicht** immer „regular“ (Split View/Slide Over/Stage Manager); großes iPhone quer kann „regular“ sein |
-| **Safe Areas** | System berücksichtigt sie, solange nichts per `ignoresSafeArea` überschrieben wird | Querformat: seitliche Aussparung, unten Home-Indikator → Inhalt am Rand beachten |
-| **Dynamic Type** | Text über Text-Styles (`.footnote`, `.headline`) skaliert automatisch | gilt für `Form` und Statistik; **nicht** für Canvas-Inhalte; bei größter Schrift brechen 3-Spalten-Reihen (Statistik) |
-| **Navigation** | iPhone: Hierarchie/Tabs/Sheets; iPad: `NavigationSplitView`/Sidebar | iOS 16 bietet `NavigationSplitView`, `presentationDetents` (Sheets mit Höhenstufen), `ViewThatFits`, `Grid` |
-| **Sheets** | Unter iOS 16 mit Detents (`.medium/.large`) und Drag-Indikator | passend für „Regler über der Karte“ |
-| **Tastatur** | `decimalPad` hat **keine** Return/Fertig-Taste | Eigenes-Format-Felder brauchen eine Tastatur-Toolbar |
-| **Darstellung** | System-Hell/Dunkel; System-Farben | App folgt dem System (Systemfarben); Kartenfarbe bleibt fest → Kontrast zum Hintergrund prüfen |
-| **Bewegung** | `accessibilityReduceMotion` beachten | Auto-Wiedergabe der Stichfolge optional/ruhig |
-| **Haptik / Rückmeldung** | `UIImpactFeedbackGenerator` (iOS 16); `.sensoryFeedback` erst iOS 17 | Einrasten bei ganzzahligen Reglern möglich |
-| **Hardware-Tastatur / Pointer (iPad)** | `keyboardShortcut`, Hover-Effekte | Leertaste = Play, Pfeile = Schritt |
-| **Multitasking** | Ohne `UIRequiresFullScreen` ist die App in Split View/Stage Manager nutzbar (aktuell der Fall) | Fensterbreite zwischen ~320 und Vollbild; Layout muss darauf reagieren |
-| **Display-Sperre** | `UIApplication.shared.isIdleTimerDisabled` | für den Mitstick-Modus |
-| **Drucken/Teilen** | `ShareLink`, `UIPrintInteractionController` (auf iPad Ankerposition/Popover beachten), `fileExporter` | vorhanden; iPad-Verhalten des Druckdialogs ungetestet |
-| **Läuft auch auf Mac/Vision** | Bei `TARGETED_DEVICE_FAMILY 1,2` läuft die App ohne Zutun auf Apple-Silicon-Macs („iPad-App auf Mac“) | Fenster frei skalierbar, Maus statt Touch — mitdenken, nicht priorisieren |
+| Touch-Ziele | mind. 44 × 44 pt, ≥ 8 pt Abstand | gilt für alle Tasten, besonders im Mitstick-Modus |
+| Größenklassen | nach `horizontalSizeClass`/`verticalSizeClass` und realer Breite entscheiden, nicht nach „iPhone/iPad“ | iPad kann so schmal wie ein iPhone sein; großes iPhone quer kann „regular“ sein |
+| Safe Areas | System respektiert sie; Hintergründe dürfen darunter laufen, Bedienelemente nicht | Dynamic Island, Home-Indikator, Querformat-Aussparungen |
+| Dynamic Type | Text-Styles verwenden; Layouts müssen mit sehr großer Schrift umbrechen | feste Spaltenzahlen vermeiden |
+| Navigation | iPhone: Tabs, Hierarchie, Sheets; iPad: `NavigationSplitView`/Sidebar | passend zu Aufgabenbereichen |
+| Sheets | `presentationDetents` (iOS 16): klein/mittel/groß, Drag-Indikator | geeignet für „Regler über der Karte“ |
+| Eingabe | `decimalPad` hat keine Return-Taste; Tastatur verdeckt untere Hälfte | Tastaturleiste, Scroll-in-View |
+| Darstellung | System-Hell/Dunkel, System-Farben, SF Symbols | Kartenfarbe bleibt Inhalt, nicht Theme |
+| Bewegung/Haptik | Reduzierte Bewegung beachten; `UIImpactFeedbackGenerator` (iOS 16), `sensoryFeedback` erst iOS 17 | Animation ruhig und abschaltbar |
+| Gesten | Systemgesten (Rand-Wischen zurück, Home-Wischen) nicht blockieren; Zoom/Pan der Karte nicht mit Seiten-Scroll kollidieren lassen | Gestenkonzept pro Screen festlegen |
+| Hardware-Tastatur / Trackpad (iPad) | `keyboardShortcut`, Hover | Wiedergabe-Steuerung per Tastatur |
+| Multitasking | Split View/Slide Over/Stage Manager: Fensterbreite ~320 pt bis Vollbild, frei veränderbar | Layout muss kontinuierlich reagieren |
+| Display-Sperre | `isIdleTimerDisabled` | Mitstick-Modus |
+| Drucken/Teilen | `ShareLink`, `UIPrintInteractionController` (iPad: Ankerpunkt), Dateien-App | PDF-Ausgabe ist Kernfunktion |
+| Läuft auch auf Mac/Vision | bei iPhone+iPad-Ziel ohne Zutun | tolerieren, nicht priorisieren (E10) |
+| Orientierung | iPad alle; iPhone hoch + quer | Querformat nicht vergessen |
 
-### 2.2 Größenklassen-Matrix (Näherung)
+### 2.2 Größenklassen und Gerätebreiten (Näherung, pt)
 
-| Situation | Breite × Höhe (Klasse) |
-|---|---|
-| iPhone SE/mini/Standard hoch | compact × regular (375–393 pt breit) |
-| iPhone Pro Max hoch | compact × regular (430–440 pt) |
-| iPhone quer (Standard) | compact × compact (Höhe ~340–390 pt) |
-| iPhone Plus/Max quer | **regular** × compact |
-| iPad Vollbild hoch/quer | regular × regular (744–1032 bzw. 1133–1376 pt breit) |
-| iPad Split View 1/3, Slide Over | compact × regular (~320–400 pt breit) |
-| iPad Split View 1/2, 2/3, Stage Manager | je nach Breite compact oder regular |
+| Situation | Klasse (breit × hoch) | Maße |
+|---|---|---|
+| iPhone SE/mini hoch | compact × regular | 375 × 667–812 |
+| iPhone Standard hoch | compact × regular | 390–393 × 844–852 |
+| iPhone Pro Max hoch | compact × regular | 430–440 × 932–956 |
+| iPhone quer | compact × compact (Plus/Max: regular × compact) | Höhe nur ~340–440 |
+| iPad mini hoch / quer | regular × regular | 744 × 1133 / 1133 × 744 |
+| iPad 11″/Air hoch / quer | regular × regular | 820–834 × 1180–1194 / umgekehrt |
+| iPad Pro 13″ hoch / quer | regular × regular | 1032 × 1376 / 1376 × 1032 |
+| iPad Split View 1/3, Slide Over | compact × regular | ~320–400 breit |
+| iPad Split View 1/2, 2/3, Stage Manager | compact oder regular | ~507–820 breit |
 
-Aus der Tabelle folgt: Mit nur **einer** Weiche (`hSize == .regular`) wie heute lassen sich weder „großes iPhone quer“ noch „iPad im Zwei-Drittel-Fenster“ sinnvoll bedienen.
+Folge: Für das Konzept sollten **mindestens drei Breitenstufen** (schmal ≲ 600 · mittel · weit ≳ 900) **und die Höhe** (iPhone quer) berücksichtigt werden.
 
 ---
 
-## 3. Welche Screens braucht die App?
+## 3. Welche Screens werden benötigt?
 
-| # | Screen | Zweck | In der iOS-App heute | Priorität |
-|---|---|---|---|---|
-| S1 | **Editor / Vorschau** | Karte ansehen, Stichfolge abspielen, Kennzahlen | `PreviewPane` (Tab bzw. rechte Spalte) | Muss |
-| S2 | **Muster (Parameter)** — Unterbereiche: S2a Grundform · S2b Astschicht · S2c Sternschicht 1 · S2d Sternschicht 2 | Muster gestalten | `ControlsView` (eine lange `Form`) | Muss |
-| S3 | **Karte & Format** | Format, Falz, **Zoom/Musterradius**, Randmaße | im Einstellungs-Sheet versteckt | Muss (umziehen) |
-| S4 | **Darstellung** | Kartonfarbe, Fadenfarbe, Restmuster, Sprünge | im Einstellungs-Sheet | Muss |
-| S5 | **Prüfung / Hinweise** | Probleme verstehen und beheben | Warnbox am Ende der Vorschau | Muss |
-| S6 | **Sticken (Mitstick-Modus)** | Stich für Stich nachvollziehen | Wiedergabeleiste in S1 | Muss (Konzept offen, E2) |
-| S7 | **Anleitung (Bildschirm)** | Arbeitsanweisung lesen | nur PDF in S9 | Soll |
-| S8 | **Lochmuster 1:1** | Druckvorlage zum Anstechen | PDF in S9 | Muss |
-| S9 | **Drucken & Teilen** | PDF wählen, ansehen, teilen, drucken | `ExportView` (Sheet) | Muss |
-| S10 | **App-Einstellungen / Info** | Standardwerte, Version, Datenschutz | Mix mit S3/S4 | Soll |
-| S11 | **Meine Entwürfe** | speichern/laden/duplizieren | nicht vorhanden | Soll (E3) |
-| S12 | **Vorlagen / Start** | Beispiele als Einstieg | nicht vorhanden | Soll (E4) |
-| S13 | **Hilfe / Glossar / Erststart** | Begriffe erklären | nicht vorhanden | Soll |
+Abgeleitet aus den Aufgaben T1–T7 (A.5) und den Funktionen (A.1–A.3).
+
+| # | Screen | Aufgabe | Priorität |
+|---|---|---|---|
+| S1 | **Muster / Editor** — Karte + Parameter | T1 | Muss |
+| S2 | **Parametergruppen** (Unterbereiche von S1): Karte & Format · Grundform · Astschicht · Sternschicht 1 · Sternschicht 2 · Darstellung | T1 | Muss |
+| S3 | **Prüfung** (Machbarkeit, Warnungen, Abhilfe) | T2 | Muss |
+| S4 | **Sticken** (Stichfolge nachvollziehen/mitsticken) | T3 | Muss (Umfang: E2) |
+| S5 | **Lochmuster** (Druckvorlage 1:1 mit Druckhinweisen) | T4 | Muss |
+| S6 | **Anleitung** (Arbeitsanweisung) | T5 | Muss (Bildschirm oder nur PDF: E7) |
+| S7 | **Ausgabe** (PDF wählen, ansehen, teilen, drucken) | T4, T5 | Muss |
+| S8 | **Meine Entwürfe** | T6 | Soll (E3) |
+| S9 | **Vorlagen / Start** | T6, T7 | Soll (E4) |
+| S10 | **Hilfe / Glossar / Erststart** | T7 | Soll |
+| S11 | **App-Einstellungen / Info** | – | Soll |
+
+Wie diese Screens zu Navigation und Bereichen zusammengefasst werden, ist Teil des Konzepts, nicht der Analyse.
 
 ---
 
 ## 4. Funktionen je Screen
 
-### S1 Editor / Vorschau
-- Kartenvorschau (Format, Falz, Nutzfläche, Löcher nach Abstand eingefärbt, Stiche, Sprünge, aktives Segment)
-- Wiedergabe: Play/Pause, Zurück zum Anfang, Positionsregler (bis ~600 Segmente), Zähler „n / max“
-- Kennzahlen: Punkte, Stiche, Fadenlänge (+15 %)
-- Warnungen, Legende
-- Zugang zu S2–S6, S9; **fehlend:** Zoom/Verschieben der Karte, Rückgängig
+### S1 Muster / Editor
+- Karte anzeigen (Format, Falz, Nutzfläche, Löcher mit Ampel, Stiche)
+- Sofortige Rückmeldung auf jede Änderung (T1 lebt von Iteration)
+- Zugriff auf alle Parametergruppen (S2); Zusammenfassung des aktuellen Musters
+- Kennzahlen (Punkte, Stiche, Fadenlänge) und Prüfstatus (Ampel) dauerhaft erreichbar
+- Rückgängig/Wiederholen, Zurücksetzen mit Rückfrage
+- Karte zoomen/verschieben, um Löcher und enge Stellen zu beurteilen
+- Einstieg zu S3, S4, S5–S7
 
-### S2 Muster
-| Bereich | Steuerelemente | Abhängigkeiten |
-|---|---|---|
-| Grundform | Kreispunkte 3–16 | bestimmt Strahlen-Auswahl, k-Grenzen, Mindestradius |
-| Astschicht | aktiv, Seitenäste, Ebenen 1–6, Astwinkel 3–55°, Astlänge 20–200 %, Wachstum 0–150 %, Fraktal-Tiefe 0–2, Fraktal-Skalierung 30–80 % | Seitenäste ab Ebene 2; Fraktal nur mit Seitenästen |
-| Sternschicht 1 | aktiv, Sternebene (nur mit Astschicht), Strahlen (Teiler von n), Schrittweite, „Seitenäste bei diesem Sternlevel“, Schalter „zweite Schicht“ | Schrittweite-Maximum hängt von Strahlen/Astschicht ab; Ausblendung nur wenn wirksam |
-| Sternschicht 2 | wie 1, plus Rotationsversatz | nur wenn Schicht 1 aktiv |
-| Fußbereich | „Alle Regler zurücksetzen“ | zerstörend, ohne Rückfrage |
+### S2 Parametergruppen
+- Alle Eingaben aus A.2, gruppiert; bedingte Eingaben nur zeigen, wenn wirksam — mit Hinweis, *warum* andere fehlen
+- Aktueller Wert gut lesbar; Feineinstellung (±1); Standardwert je Gruppe
+- Sichtbare Rückmeldung, wenn ein Wert wegen anderer Werte begrenzt oder angepasst wird (z. B. Schrittweite, Sternebene)
+- Kurzerklärung je Begriff (Zugang zu S10)
+- Format-Eingabe mit Validierung (positive mm-Werte, sinnvolle Grenzen) und Tastaturhilfe
 
-Anforderungen an alle Bereiche: Wert gut sichtbar, Feineinstellung, erklärende Hinweise, Rückmeldung bei automatischer Korrektur (z. B. wenn k gekürzt wird).
+### S3 Prüfung
+- Alle Probleme mit Schwere (blockierend / knapp / Hinweis), Ursache und **konkreter Abhilfe mit direktem Sprung zum zuständigen Parameter**
+- Betroffene Löcher in der Karte markieren (nicht nur farblich), dorthin zoomen
+- Erklärung des Mindestabstands und des Stichlimits
+- Zustand „kritisch“: klar erklären, warum Stiche/Wiedergabe/Ausgabe fehlen
 
-### S3 Karte & Format · S4 Darstellung
-- Format (A6 hoch/quer, Eigenes Format mit Breite/Höhe in mm), Falzposition (links/oben/keine), **Zoom**, Hinweiszeile mit Radius/Faden/Rand/Mindestabstand
-- Kartonfarbe, Fadenfarbe, „Restmuster als Vorschau“, „Rückseiten-Sprünge anzeigen“
+### S4 Sticken
+- Aktueller Schritt groß: Nummer, VS-Anweisung („von → nach“), anschließender RS-Sprung
+- Schritt vor/zurück, Sprung zu Ast/Schicht, Fortschritt „n / gesamt“, Position merken
+- Automatische Wiedergabe mit einstellbarem Tempo (Betrachten) und manueller Modus (Mitsticken)
+- Karte mit hervorgehobenem aktuellem Segment, automatischer Ausschnitt/Zoom
+- Display bleibt an; Fadenlänge und Fadenwechsel je Schicht
 
-### S5 Prüfung
-- Alle Warnungen mit Schwere (blockierend / knapp / Hinweis) und **direkter Abhilfe** (Sprung zum zuständigen Regler)
-- Markierung der betroffenen Löcher in der Karte; Erklärung des Mindestabstands
+### S5 Lochmuster
+- Maßstabsgetreuer Plan (Zuschnitt, Falzlinie, Rahmen, Löcher, Kontrollbalken)
+- Papierformat/-ausrichtung ablesbar, Warnung bei Zuschnitt > A4 (Verkleinerung ⇒ nicht zum Anstechen)
+- Hinweise: 100 % / „Tatsächliche Größe“, Kontrollbalken nachmessen
+- Ausgabe starten (S7)
 
-### S6 Sticken
-- Aktueller Schritt groß: Nummer, VS-Anweisung („E2 → E3“), anschließender RS-Sprung (Beschriftungen liefert `StickCore` bereits für die Anleitung)
-- Schritt vor/zurück, Sprung zu Ast/Schicht, Fortschritt, Tempo für Auto-Wiedergabe (heute fest 45 ms — zum Mitsticken zu schnell)
-- Display bleibt an, Position wird gemerkt, Fadenlänge je Schicht
+### S6 Anleitung
+- Ebenenübersicht, Flocke (Arm 1 von n als Schrittdiagramm + Tabelle), Sterne, Fadenlängen, Legende VS/RS
+- Gliederung/Sprungmarken; auf dem Bildschirm lesbar (falls E7 = ja)
+- Ausgabe starten (S7)
 
-### S7 Anleitung (Bildschirm) · S8 Lochmuster · S9 Drucken & Teilen
-- S7: Teile (Ebenen, Flocke, Sterne), Schritttabellen, Fadenlängen in lesbarer Bildschirmform
-- S8: 1:1-Plan mit Falzlinie, Löchern, 50-mm-Kontrollbalken, Hinweis „A4, 100 %“, Verkleinerungswarnung bei Zuschnitt > A4
-- S9: PDF-Auswahl, Vorschau, Teilen, AirPrint, Statusanzeige beim Erzeugen, Sperre bei kritischem Abstand mit Erklärung
+### S7 Ausgabe
+- PDF wählen (Lochmuster, Anleitung), Vorschau, Teilen, AirPrint, in Dateien sichern
+- Status beim Erzeugen; Fehlermeldung; Sperre bei kritischem Zustand **mit Erklärung**
+- Druckhinweise gut sichtbar
 
-### S10–S13
-- S10: Info/Version, Datenschutz, Zurücksetzen, Standardwerte
-- S11: Liste mit Vorschaubild, Name, Datum; neu/duplizieren/umbenennen/löschen
-- S12: Beispielmuster mit Vorschau, „Als Entwurf übernehmen“
-- S13: Glossar, kurze Einführung, Erklärtexte zu Mindestabstand, Schrittweite, Sternebene
+### S8 Meine Entwürfe · S9 Vorlagen · S10 Hilfe · S11 Einstellungen
+- S8: Liste mit Vorschaubild, Name, Datum; neu, duplizieren, umbenennen, löschen; Import/Export als Datei
+- S9: Beispielmuster mit Vorschau; „Als Entwurf übernehmen“
+- S10: Erststart-Einführung (kurz), Glossar, Erklärung Mindestabstand/Schrittweite/Sternebene; Kontexthilfe aus S2
+- S11: Standardwerte, Darstellung (Hell/Dunkel/System), Zurücksetzen, Version, Datenschutz, Impressum
 
 ---
 
 ## 5. Zu erwartende Layout-Probleme je Screen — iPhone vs. iPad
 
-Quellenangaben beziehen sich auf den aktuellen Code. „Zu prüfen“ = aus dem Code abgeleitet, aber nicht auf einem Gerät/Simulator bestätigt (siehe 5.9).
+Die Probleme ergeben sich aus den **Inhalten** (Kartenverhältnisse, Lochgröße, Parameterzahl, A4-Dokumente) und aus den Gerätegrößen — nicht aus einer bestehenden Oberfläche.
+Kürzel: **iPh-H** iPhone hoch · **iPh-Q** iPhone quer · **iPad-H** iPad hoch · **iPad-Q** iPad quer · **iPad-S** iPad im Teilfenster.
 
-### 5.1 Container / Navigation (`ContentView`)
-
-| Problem | iPhone | iPad |
-|---|---|---|
-| **Vorschau und Regler sind getrennte Tabs** (`:21-26`) | **Kernproblem:** Beim Ändern eines Reglers ist die Karte nicht sichtbar; der Effekt muss durch Tab-Wechsel kontrolliert werden. Direkte Rückkopplung (Live-Ansicht) fehlt | – |
-| **Fester 400-pt-Regler-Streifen** (`:16`) | **Quer, Plus/Max (regular):** Regler 400 pt, Vorschau bleibt bei ~430 pt Breite und ~340 pt Höhe → Karte winzig | **Hoch (744/820/834 pt):** Vorschau nur ~340–430 pt breit; **Split View 2/3 (~680 pt):** Vorschau ~280 pt; Regler dauerhaft belegen > 50 % |
-| **Eine einzige Weiche** (`hSize == .regular`) | iPhone quer (Standard, compact) fällt auf Tabs zurück, obwohl dort Platz für nebeneinander wäre (aber wenig Höhe) | iPad im schmalen Fenster springt abrupt auf Tabs (Zustand der Tabs/Scrollposition geht verloren, zu prüfen) |
-| **Toolbar** (`:32-36`) | zwei Icons rechts, Titel „Stickkarten“ ohne Funktion | gleiche Toolbar; für iPad wäre Titel/Aktionsgruppe mit mehr Platz möglich |
-| **`NavigationStack` ohne Push-Ziele** | – | Master-Detail (`NavigationSplitView`) wäre das Standardmuster |
-| **Exportknopf deaktiviert bei kritischem Abstand ohne Erklärung** (`:34`) | Nutzer sieht ein graues Symbol, erfährt nicht warum | gleich |
-
-### 5.2 S1 Vorschau (`PreviewPane`, `PreviewCanvas`)
+### S1 Muster / Editor
 
 | Problem | iPhone | iPad |
 |---|---|---|
-| **Alles in einer `ScrollView`** (`:9-22`): Karte, Wiedergabe, Warnungen, Statistik, Legende | A6 hoch bei ~358 pt Breite ist ~505 pt hoch (`maxHeight 560`); auf ~700 nutzbaren pt bleibt kaum Platz → **Wiedergabeleiste, Warnungen, Statistik liegen unterhalb des sichtbaren Bereichs**; zum Bedienen der Wiedergabe muss man die Karte aus dem Bild scrollen | **Hoch:** passt; **quer (1133×~744):** Karte 560 pt + Leiste + Statistik + Legende > sichtbare Höhe → auch dort Scrollen nötig |
-| **Querformat-Karte (A6 quer)** | Karte nur ~255 pt hoch → Rest der Fläche leer, genau hier hätte ein Sheet Platz | gleiche Logik, weniger kritisch |
-| **iPhone quer (Höhe ~340 pt):** | Karte (hoch) ≤ ~300 pt hoch; Löcher ≈ 2–3 pt; Wiedergabeleiste unterhalb nicht erreichbar ohne Scrollen | – |
-| **Wiedergabeleiste, 4 Elemente in einer Zeile** (`:26-44`) | 2 Buttons (28-pt-Symbole), Zähler (min. 62 pt), Regler bekommt ~170 pt für bis zu ~600 Positionen → ≈ 0,3 pt je Schritt; **Feinwahl per Finger unmöglich**, keine ±1-Tasten | genug Breite, Regler-Feinheit bleibt Problem |
-| **Kein Zoom/Verschieben der Karte** | Löcher Ø 0,92 mm ≈ 3 pt, Mindestabstand 3,2 mm ≈ 11 pt (bei 105 mm ↔ 358 pt); der +0,25-mm-Aufmaß der Warnpunkte ist kaum sichtbar → Problemstellen nicht beurteilbar | größere Karte, Problem bleibt vorhanden |
-| **Legende als verketteter `Text` mit Symbolen** (`:81-102`) | wird zum 3–4-zeiligen `.caption`-Absatz; Farbe als Hauptmerkmal; VoiceOver liest „━ ┅ ➤ ●“ | eine bis zwei Zeilen |
-| **Statistik 3 Spalten** (`:63-69`) | bei großer Dynamic-Type-Stufe bricht „Fadenlänge (+15 %)“ um bzw. wird gekürzt | passt |
-| **Warnbox unter der Karte** (`:47-61`) | Kritische Warnung (Stiche verschwinden!) steht außerhalb des Blickfelds → Karte wirkt „leer/kaputt“ | gleich, aber meist sichtbar |
-| **Canvas ohne Accessibility** | Karte für VoiceOver unsichtbar; Zustand (knapp/zu gering) nur über Farbe | gleich |
-| **Karten-/Hintergrundfarbe** | Systemhintergrund (hell/dunkel) + feste Kartonfarbe: Elfenbein auf hellem Grund, Tanne auf dunklem Grund → Rahmen/Kontrast prüfen | gleich |
+| **Karte und ≈ 25 Eingaben konkurrieren um Platz.** Eine A6-Hochkarte ist bei 358 pt Breite ≈ 505 pt hoch; nutzbar sind ≈ 700 pt Höhe | **iPh-H:** Karte und Regler können nicht gleichzeitig groß sein; es braucht ein Modell, in dem die Karte bei jeder Reglerbewegung sichtbar bleibt (z. B. verkleinerbare/umschaltbare Vorschau, Sheet mit Höhenstufen) | **iPad-H:** Aufteilung oben/unten oder Seitenspalte; **iPad-Q:** Seitenspalte; beides erfordert flexible, nicht feste Spaltenbreiten |
+| **Kartenverhältnis variabel** (hoch, quer, eigenes Format, extrem schmal/breit) | A6 quer ist nur ≈ 255 pt hoch → viel freier Platz; extremes eigenes Format braucht Begrenzung | die Karte muss in jeder Fensterform sinnvoll „passen“ |
+| **iPhone quer:** nutzbare Höhe ≈ 340 pt | **iPh-Q:** Hochkarte ≤ ~300 pt hoch → Löcher ≈ 2–3 pt; Regler kaum parallel unterzubringen → Querformat braucht eigenes Konzept (Vollbild-Karte + Seitenleiste oder Regler per Sheet) | – |
+| **Löcher sind winzig** (Ø ≈ 3 pt; Mindestabstand ≈ 11 pt) | Zoom/Pan nötig; Warnmarkierungen müssen unabhängig vom Maßstab gut sichtbar sein; Zoomgeste darf nicht mit Scrollen/Sheet-Ziehen kollidieren | etwas größer, Prinzip gleich |
+| **Kennzahlen + Prüfstatus müssen sichtbar bleiben**, ohne die Karte zu verdrängen | kompakte Statusleiste statt eigener Fläche | kann großzügiger ausfallen |
+| **Safe Areas / Dynamic Island / Home-Indikator** | Bedienelemente am unteren Rand dürfen nicht mit dem Home-Indikator oder Sheet-Griff kollidieren | Stage-Manager-Fensterrand, Querformat-Aussparungen |
+| **Hell/Dunkel + feste Kartonfarbe** (Elfenbein bis Mitternachtsblau) | Karte muss sich vom Systemhintergrund in beiden Modi abheben (Rahmen/Schatten/Untergrund) | gleich |
 
-### 5.3 S2 Muster (`ControlsView`)
+### S2 Parametergruppen
 
 | Problem | iPhone | iPad |
 |---|---|---|
-| **Lange einspaltige `Form`** (:45-117), bis zu 17 Steuerelemente pro Schicht | viel Scrollen; keine Orientierung („wo bin ich“), kein Einklappen der Sektionen | 400-pt-Streifen: dieselbe lange Liste, bei kleiner Höhe noch mehr Scrollen |
-| **Regler zeigen Wert nur im kleinen Label** (`footnote`, `.secondary`, `Controls.swift:13`) | Daumen verdeckt Regler; Wert klein/blass → Feineinstellung (z. B. Astwinkel 3–55°, Schrittweite) ungenau | gleich |
-| **Ganzzahlige Auswahl als Regler** (Kreispunkte 3–16, Ebenen 1–6, Fraktal 0–2) | Stepper/Segmente wären treffsicherer | gleich |
-| **Bedingte Felder** (erscheinen/verschwinden) | Zeilen springen, Scrollposition rutscht; es fehlt der Hinweis *warum* etwas nicht da ist | gleich |
-| **Stilles Anpassen** (`r.k1Eff`, `effTeiler`, `sternEbeneEff`): Wert ändert sich, wenn n/Ebenen verkleinert werden | keine Rückmeldung | gleich |
-| **Abhängigkeitskette** (n → Strahlen → k → Ausblendung) | Reihenfolge der Bedienung unklar | Master-Detail würde Gruppen übersichtlicher machen |
-| **Rückkopplung zur Karte fehlt** (siehe 5.1) | gravierend | nur im breiten Layout gelöst |
-| **Neuberechnung im Hauptthread** (`AppModel.settings.didSet` → `StickModel.compute`, plus JSON-Speichern bei **jedem** Reglerschritt) | bei n = 16, 6 Ebenen, Fraktal 2 evtl. spürbar ruckelnd, besonders auf älteren iPhones (**zu messen**) | schneller, Prinzip gleich |
-| **„Alle Regler zurücksetzen“** (`:114-116`) | rot, ohne Bestätigung/Undo; liegt am Ende der langen Liste | gleich |
-| **Menü-Picker** (Strahlen: „8 Strahlen (alle)“, Ausblendung: lange Texte) | Zeilentext wird gekürzt oder umbrochen | breiter, unkritisch |
+| **Viele Eingaben mit Abhängigkeiten** | Gruppierung, Reihenfolge und „Zusammenfassung statt Detail“ nötig; sonst langes Scrollen ohne Orientierung | Gruppenliste links, Detail rechts möglich |
+| **Bedingte Eingaben** erscheinen/verschwinden | Layout darf nicht springen; Platzhalter oder Hinweis, warum etwas fehlt | gleich |
+| **Gegenseitige Begrenzungen** (n → Strahlen → k → Ausblendung) | Änderung eines Werts kann einen anderen verändern — das muss sichtbar werden | gleich |
+| **Wertwahl per Finger:** Daumen verdeckt Regler; Bereiche wie 3–55° oder 0–150 % sind fein | große Wertanzeige, Feinschritte, für kleine Ganzzahlbereiche (3–16, 1–6, 0–2) Alternativen zu Reglern | Zeiger/Pencil präziser; trotzdem ±-Bedienung vorsehen |
+| **Lange Optionstexte** („Sternlevel und darunter weglassen“, „8 Strahlen (jeder 1.)“) | schmale Breite → Umbruch/Kürzung; Beschriftung und Auswahl auf eigene Zeilen | passt eher |
+| **Tastatur bei Formateingabe** | verdeckt Felder, `decimalPad` ohne Return | Hardware-Tastatur: Tab-Reihenfolge |
+| **Live-Neuberechnung beim Ziehen** | auf älteren iPhones bei großen Mustern evtl. spürbar (messen); Eingabe darf nicht ruckeln | Reserve größer |
+| **Erklärtexte** zu fachlichen Begriffen | Platz knapp → ausklappbar/verlinkt statt dauerhaft | dauerhaft möglich |
 
-### 5.4 S3/S4 Einstellungen (`SettingsView`)
+### S3 Prüfung
 
 | Problem | iPhone | iPad |
 |---|---|---|
-| **Zoom (verändert das Muster!) liegt im Sheet** (`:23`) | Sheet verdeckt die Karte; Zoom ist die einzige Abhilfe bei „zu geringem Abstand“ und steht in einem anderen Screen als die Warnung („…bis der Zoom verkleinert wird“) | Formular-Sheet ist mittig, Karte dahinter teilweise sichtbar, aber nicht interaktiv |
-| **Mischung** Karte (musterrelevant) und Darstellung (nur Anzeige) | Sheet-Titel „Einstellungen“ suggeriert „selten benutzt“ | gleich |
-| **mm-Felder mit `decimalPad`** (`:47-56`) | **kein Fertig/Return** → Tastatur lässt sich nicht schließen; keine Wertebereichs-Prüfung (0, negativ, riesig) | Hardware-Tastatur ok; Prüfung fehlt |
-| **Hinweis-Text als einzelner Absatz** (`:24`) | langer `caption`-Block mit 6 Fakten | gleich |
-| **Sheet-Größe** | `.large` voll; keine Detents | Standard-Formsheet |
+| **Zustand „kritisch“ entzieht Stiche, Wiedergabe und Ausgabe** | die Erklärung muss dort stehen, wo der Nutzer das Fehlen bemerkt (Karte, gesperrte Taste), nicht nur in einer Liste | gleich; mehr Platz für Erklärung neben der Karte |
+| **Abhilfe liegt bei anderen Parametern** (Zoom, n, Ebenen) | Sprung/Direktbedienung nötig, ohne die Karte zu verlassen | Seitenspalte erlaubt gleichzeitige Sicht |
+| **Mehrere Warnungen gleichzeitig** | Priorisierung (blockierend zuerst), Platz begrenzt | Liste möglich |
+| **Farbe allein reicht nicht** (orange/rot, kleine Punkte) | zusätzlich Form/Text/Zahl; VoiceOver-Beschreibung | gleich |
+| **Problemstellen sind winzig** | automatisches Zoomen auf die Stelle | gleich |
 
-### 5.5 S5 Prüfung
-
-| Problem | iPhone | iPad |
-|---|---|---|
-| **Warnungen stehen am Seitenende der Vorschau** | siehe 5.2 | – |
-| **Nicht handlungsfähig:** Text nennt die Abhilfe, bietet aber keinen Sprung zum Regler | Wechsel Tab/Sheet nötig | Regler-Spalte links sichtbar, Zoom aber weiter im Sheet |
-| **Schwere nur über Farbe + Icon in einer Zeile** | Farbsehschwäche, kleine Punkte | gleich |
-| **Kritischer Zustand blendet Stiche aus und sperrt Wiedergabe/Export** | Nutzer sieht deaktivierte Bedienelemente ohne Begründung am Element selbst | gleich |
-
-### 5.6 S6 Sticken (heute: Wiedergabeleiste)
+### S4 Sticken
 
 | Problem | iPhone | iPad |
 |---|---|---|
-| **Nur grafisch, keine Textanweisung** (VS/RS-Beschriftungen wie in der Anleitung fehlen) | Beim Mitsticken ist ein kleines Pfeilsymbol auf einer 3-pt-Lochkarte nicht ablesbar | wie iPhone; mehr Fläche für Textspalte neben der Karte |
-| **Nur Slider + Play, kein „Nächster Stich“** | Bedienung mit einer Hand/mit Faden in der Hand unpraktisch; Trefferflächen klein, nicht im Daumenbereich | iPad im Ständer: große Tasten links/rechts, Pfeiltasten/Leertaste |
-| **Auto-Wiedergabe fix 45 ms** (`AppModel:62`) | zum Betrachten ok, zum Mitsticken unbrauchbar | gleich |
-| **Display-Sperre/Idle Timer nicht gesetzt** | Bildschirm dunkelt während des Stickens ab | gleich |
-| **Fortschritt wird bei jeder Mustereinstellung auf „fertig“ gesetzt** (`didSet`: `currentStep = maxStep`) | Position geht beim Zurückkommen aus Einstellungen verloren | gleich |
-| **Rotation** | Hoch ↔ quer ändert Layout; Position muss erhalten bleiben | frei drehbar |
+| **Gerät liegt neben dem Karton, Hände belegt** | große Tasten (≥ 56 pt) im Daumenbereich, wenig Ablenkung | iPad im Ständer: Tasten links/rechts, Hardware-Tasten; große Schrift aus Distanz |
+| **Bis ~600 Schritte** | Schieberegler als Hauptsteuerung ungeeignet (≈ 0,3 pt je Schritt); Feinwahl per Tasten, grobe Sprünge per Ast/Schicht | gleich |
+| **Anweisung muss lesbar sein, die Karte ist es oft nicht** | Textanweisung als eigenes Element, Karte mit Auto-Zoom auf aktuelle Stelle | Textspalte neben Karte |
+| **Bildschirm dunkelt ab / dreht** | Idle-Timer deaktivieren; Rotation darf Position nicht verlieren | iPad-S: Fensterwechsel |
+| **Karte + Anweisung + Tasten + Fortschritt gleichzeitig** | **iPh-H** ist sehr eng; **iPh-Q** noch enger (≈ 340 pt Höhe) | **iPad-Q** komfortabel |
+| **Animationsgeschwindigkeit** | schnelle Auto-Wiedergabe zum Betrachten ≠ Tempo zum Sticken | gleich; „Bewegung reduzieren“ beachten |
 
-### 5.7 S7–S9 Anleitung, Lochmuster, Drucken & Teilen (`ExportView`)
-
-| Problem | iPhone | iPad |
-|---|---|---|
-| **A4-PDF auf Bildschirmbreite** (`PDFView.autoScales`) | A4-Hochformat auf ~358 pt → Fließtext ≈ 4–5 pt, Beschriftungen in den Diagrammen nicht lesbar; Anleitung ist ein **Druckdokument**, keine Bildschirmanleitung | A4 auf ~700–800 pt: lesbar; Diagramme klein |
-| **Lochmuster A6+Falz = A4-Querformat** | Querseite im Hochformat-Sheet: ~358 × 253 pt, nur mit Zoom nutzbar | passt gut |
-| **Segmentwahl + Vorschau + Hinweis + drei Toolbar-Aktionen** | Hinweistext (nur beim Lochmuster) unten, Toolbar mit „Schließen · Teilen · AirPrint“ eng; wichtigste Druckhinweise (A4, 100 %) werden leicht übersehen | genug Platz |
-| **PDF-Erzeugung im Hauptthread** (`generate()` per `.task`, `Task.yield` dazwischen) | Anleitung mit vielen Diagrammen kann den Fortschrittsindikator einfrieren (**zu messen**); Sheet ist bis dahin leer | gleich |
-| **`updateUIView` setzt `document` bei jedem Update neu** (`:18-20`) | Zoom und Scrollposition können bei Zustandswechsel (Segmentumschaltung, Rotation) zurückspringen (**zu prüfen**) | gleich |
-| **AirPrint: `present(animated:)`** (`:116-126`) | funktioniert als Seitendialog | auf dem iPad Ankerposition/Popover nicht gesetzt (**zu prüfen**) |
-| **Druckskalierung** | Dialog bietet „Seite anpassen“; Kontrollbalken ist die einzige Absicherung und erscheint nur im PDF, nicht als Hilfe in der App | gleich |
-| **Sperre bei kritischem Abstand** | Export-Symbol grau ohne Hinweis | gleich |
-| **Kein 1:1 am Display** | Das Lochmuster darf auf dem Bildschirm nicht als maßstäblich verstanden werden | gleich |
-
-### 5.8 S10–S13 (neue Screens)
+### S5 Lochmuster
 
 | Problem | iPhone | iPad |
 |---|---|---|
-| Entwurfsliste mit Vorschaubildern | `List` einspaltig, Swipe-Aktionen | Raster oder Sidebar in `NavigationSplitView` |
-| Vorlagen-Auswahl | Karussell/Liste, Vorschau pro Eintrag rendern (Canvas/Bild) | Raster 3–4 Spalten |
-| Hilfe/Glossar | Detailseiten, kurze Texte; Verlinkung aus Reglern („?“) | Sidebar + Text |
-| Persistenz-Migration | `StickSettings` besitzt tolerante Decodierung (neue Felder ok); Mehr-Entwurf-Modell braucht eigenes Schema + Migration vom heutigen Einzelstand | gleich |
+| **Bildschirm ≠ 1:1** | darf keinen Maßstab versprechen; Hinweis „nur gedruckt maßgetreu“ | gleich |
+| **A6 + Falz = 210 × 148 mm ⇒ A4 quer** | Querseite im Hochformat-Screen: ~358 × 253 pt, Zoom nötig | passt gut (besonders iPad-Q) |
+| **Zuschnitt > A4 (eigenes Format)** | Verkleinerungswarnung gut sichtbar; ggf. Kachel-Druck (E8) | gleich |
+| **Druckskalierung durch den Systemdialog** | Hinweis „100 % / Tatsächliche Größe“ muss vor dem Druck gelesen werden; Kontrollbalken erklären | gleich; AirPrint-Dialog mit Ankerpunkt |
 
-### 5.9 Querschnittsthemen
+### S6 Anleitung
 
-| # | Thema | Befund |
+| Problem | iPhone | iPad |
 |---|---|---|
-| Q1 | **Layout-Verifikation ohne Mac** | CI baut nur; es gibt keinen Weg, Layouts je Gerät zu sehen. Bis jetzt entstehen PNG-Vorschauen nur für PDFs (Branch `ios-ci-previews`), nicht für die App-Oberfläche. Ohne Screenshot-Matrix (z. B. iPhone SE/16/Pro Max, iPad mini/Pro, hoch/quer, Dynamic Type groß, Hell/Dunkel) bleiben alle Layoutaussagen Vermutungen. |
-| Q2 | **Weichen im Layout** | genau eine (`hSize`); keine Reaktion auf Höhe, Fenstergröße, Dynamic Type |
-| Q3 | **Schriftgrößen** | meist System-Textstile (gut), aber `caption`/`caption2`/`footnote` für wichtige Inhalte (Wert der Regler, Statistik-Label, Legende, Warnungen) |
-| Q4 | **Barrierefreiheit** | Canvas ohne Label/Beschreibung; Farbe als Zustandsträger; Wiedergabe-Icons nur mit automatischen (englischen) Symbolnamen statt deutscher Beschriftung (zu prüfen) |
-| Q5 | **Zustandserhalt** | Eine Konfiguration; Tab, Scrollposition, Wiedergabeposition werden nicht gespeichert |
-| Q6 | **Fehlende Erklärungen** | Fachbegriffe (Sternebene, Schrittweite, Rotationsversatz, Ausblendung) ohne Hilfetext |
-| Q7 | **Fraktal-Funktion** | in der iOS-App bedienbar, in der Web-App nicht — Funktionsumfang ist dort bereits größer als in der Referenz |
-| Q8 | **Performance** | `compute` + JSON-Speichern pro Reglerschritt synchron; Canvas wird bei jedem Wiedergabeschritt komplett neu gezeichnet (Pfade über alle Segmente) |
+| **Inhalt ist für A4 gedacht** (Diagramme mit vielen Beschriftungen, Tabellen mit 3 Spalten) | Schrittdiagramme auf ~358 pt Breite nicht lesbar → Zoom/Scrollen, Hochkant→Quer, oder eigene Bildschirmfassung (E7) | A4-Breite fast erreicht; Diagramme noch klein, Zoom sinnvoll |
+| **Lange, gegliederte Dokumente** | Navigation (Teile) nötig | Inhaltsverzeichnis als Seitenleiste |
+| **Tabellen** | Spaltenbreite/Umbruch bei Kürzeln (z. B. „E2L.1a → E2L“) | gleich bzw. luftig |
+| **Zwei Darstellungen (Bildschirm vs. Druck)** | Bildschirm- und Druckfassung nicht zwingend identisch | gleich |
+
+### S7 Ausgabe
+
+| Problem | iPhone | iPad |
+|---|---|---|
+| **PDF-Vorschau (A4) im kleinen Fenster** | A4-Hoch ≈ 358 pt breit → Detail nur mit Zoom; Querseiten (Lochmuster) noch kleiner | gut lesbar |
+| **Aktionen Teilen / Drucken / Sichern + Hinweise** | Platz für Hinweise und Aktionen teilen; wichtigste Druckhinweise dürfen nicht untergehen | Popover-Verhalten für Teilen/Drucken beachten |
+| **Erzeugungsdauer** | Fortschrittsanzeige; Bedienung darf nicht einfrieren (messen) | gleich |
+| **Zustand „kritisch“** | Sperre mit Begründung und Weg zur Abhilfe | gleich |
+
+### S8–S11 (neue Screens)
+
+| Problem | iPhone | iPad |
+|---|---|---|
+| Listen mit Vorschaubildern (Entwürfe, Vorlagen) | einspaltig, Wischaktionen, Vorschaubilder effizient erzeugen | Raster oder Sidebar |
+| Hilfe/Glossar | kurze Detailseiten, Kontextlinks aus Parametern | Sidebar + Text |
+| Erststart | wenige, überspringbare Schritte | gleiche Inhalte, mehr Raum |
+| Einstellungen | kurze Liste | Detailbereich |
+| Datenmodell | Wechsel von Einzelstand zu mehreren Entwürfen braucht Schema + Migration (heutige Speicherung ist tolerant gegenüber neuen Feldern) | gleich |
+
+### Querschnitt (alle Screens)
+
+| # | Thema | Erwartung |
+|---|---|---|
+| Q1 | **Breitenabhängigkeit** | Alle Screens müssen von ~320 pt bis > 1300 pt kontinuierlich funktionieren |
+| Q2 | **Höhe als Engpass** | iPhone quer (~340 pt) und iPad mit Tastatur |
+| Q3 | **Dynamic Type** | größte Schriftstufen dürfen keine Bedienelemente abschneiden |
+| Q4 | **Barrierefreiheit der Grafik** | Karte, Diagramme und Lochmarkierungen brauchen sprachliche Entsprechungen |
+| Q5 | **Zustandserhalt** | Auswahl, Scroll-/Zoomposition und Sticken-Fortschritt bei Rotation, Fensterwechsel, App-Neustart |
+| Q6 | **Hell/Dunkel** | Karten- und Diagrammdarstellung in beiden Modi prüfen |
+| Q7 | **Verifikation ohne Mac** | Ohne Screenshot-Matrix (Geräte × Ausrichtung × Schriftgröße × Hell/Dunkel) bleiben Layoutaussagen Vermutungen |
 
 ---
 
 ## 6. Prioritäten aus der Analyse
 
-1. **Vorschau und Regler müssen gleichzeitig sichtbar sein** (iPhone: Vorschau oben + Sheet mit Detents oder Umschalter *Entwerfen / Ansehen*; iPad: Split-View-Layout mit flexibler Spaltenbreite statt fester 400 pt).
-2. **Mehrere Layout-Weichen** statt `hSize` allein: Breite, Höhe, Fenstergröße und Dynamic Type.
-3. **Zoom/Format/Abhilfe bei Warnungen** gehören in die Nähe der Karte und der Warnung, nicht in ein Sheet.
-4. **Sticken** braucht eine eigene Oberfläche (große Tasten, Textanweisung, Display bleibt an).
-5. **Anleitung als Bildschirmdokument** getrennt vom Druck-PDF denken; PDF bleibt Druck-/Teilen-Ergebnis.
-6. **Layout-Screenshots in der CI** einführen, bevor das Design festgelegt wird (E5).
+1. **Karte und Parameter in direkter Rückkopplung** — das ist der zentrale Layoutkonflikt auf dem iPhone und bestimmt die Grundstruktur.
+2. **Breiten- und höhenabhängiges Layout** statt Gerätetyp-Entscheidung; iPhone quer und iPad-Teilfenster sind Sonderfälle mit eigenem Konzept.
+3. **Prüfen und Beheben aus einem Guss** (Warnung → Ursache → Parameter), weil der Zustand „kritisch“ das Ergebnis blockiert.
+4. **Sticken als eigener, ruhiger Modus** (falls E2 = ja).
+5. **Druck-Ergebnisse (Lochmuster, Anleitung) klar von Bildschirmdarstellung trennen**; Bildschirm ist nie 1:1.
+6. **Einarbeitung** (Begriffe, Vorlagen) mitdenken, nicht nachträglich anhängen.
 
 ---
 
@@ -285,24 +343,24 @@ Quellenangaben beziehen sich auf den aktuellen Code. „Zu prüfen“ = aus dem 
 
 | # | Frage | Auswirkung |
 |---|---|---|
-| E1 | **Verteilung:** nur eigenes Gerät (Sideloading/TestFlight) oder App Store? | Datenschutz-/Impressumspflichten, Privacy-Manifest, Review-Anforderungen |
-| E2 | **Ist Mitsticken am Gerät ein Kernszenario?** | eigener Sticken-Modus (S6) vs. Wiedergabeleiste |
-| E3 | **Mehrere Entwürfe speichern** oder nur letzter Stand? | S11, Datenmodell, Migration |
-| E4 | **Vorlagen/Beispiele** und Erststart-Einführung? | S12/S13 |
-| E5 | **Wie prüfen wir Layouts ohne Mac?** (CI-Screenshots per Simulator/`ImageRenderer`) | Grundlage für jede Design-Entscheidung |
-| E6 | **Experten- vs. Einfachmodus** für Parameter (Grundlagen zuerst, Details ausklappbar)? | Struktur von S2 |
-| E7 | **Anleitung auf dem Bildschirm** lesbar oder nur als PDF? | S7 ja/nein |
-| E8 | **Zuschnitt > A4:** mehrseitiger Kachel-Druck gewünscht? | S8-Funktion |
-| E9 | **Mindest-iOS 16** beibehalten? (iOS 17 bringt `@Observable`, `sensoryFeedback`, bessere Sheets/Scroll-APIs) | verfügbare Bausteine |
-| E10 | **Mac/„iPad-App auf Mac“** nur tolerieren oder mitgestalten? | Fenstergrößen, Pointer |
-| E11 | **Hell/Dunkel:** Systemfolge beibehalten (Web war fest dunkel)? | Farbkonzept, Kartenrahmen |
-| E12 | **Sprache:** nur Deutsch oder vorbereitet für mehrere? | String-Struktur |
+| E1 | Verteilung: nur eigenes Gerät (Sideloading/TestFlight) oder App Store? | Datenschutz/Impressum, Privacy-Manifest, Review |
+| E2 | Ist Mitsticken am Gerät ein Kernszenario? | S4 als eigener Modus vs. einfache Wiedergabe |
+| E3 | Mehrere Entwürfe speichern oder nur letzter Stand? | S8, Datenmodell, Migration |
+| E4 | Vorlagen/Beispiele und Erststart-Einführung? | S9/S10 |
+| E5 | Wie prüfen wir Layouts ohne Mac (Simulator-Screenshots in der CI)? | Grundlage jeder Design-Entscheidung |
+| E6 | Einfach/Experte: alle Parameter sichtbar oder gestuft? | Struktur von S2 |
+| E7 | Anleitung auch als Bildschirmfassung oder nur als PDF? | S6-Umfang |
+| E8 | Kachel-/Mehrseitendruck bei Zuschnitt > A4? | S5/S7 |
+| E9 | Mindest-iOS 16 beibehalten oder iOS 17 (u. a. `@Observable`, `sensoryFeedback`)? | verfügbare Bausteine |
+| E10 | Mac/„iPad-App auf Mac“ nur tolerieren oder mitgestalten? | Fensterverhalten, Pointer |
+| E11 | Hell/Dunkel: Systemfolge, fest oder wählbar? | Farbkonzept |
+| E12 | Nur Deutsch oder mehrsprachig vorbereitet? | String-Struktur |
 
 ---
 
 ## 8. Vorgehen danach
 
-1. Analyse gemeinsam durchgehen; Entscheidungen E1–E12 klären (zuerst E2, E3, E5).
-2. Gemeinsames Konzept: Navigationsmodell, Screen-Karte, Layout-Regeln je Größenklasse, Komponentenliste.
-3. Design (separater Schritt): visuelle Sprache und Prototyp je Gerät.
+1. Analyse gemeinsam durchgehen; Annahmen A1–A4 und Entscheidungen E1–E12 klären (zuerst E2, E3, E5).
+2. **Gemeinsames Konzept:** Navigationsmodell, Screen-Karte, Layout-Regeln je Breiten-/Höhenstufe, Komponentenliste.
+3. **Design** (separater Schritt): visuelle Sprache, Komponenten, Prototyp je Gerät.
 4. Umsetzung in `ios/App` mit Screenshot-Matrix in der CI.
