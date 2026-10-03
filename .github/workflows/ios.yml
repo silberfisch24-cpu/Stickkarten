@@ -34,3 +34,41 @@ jobs:
           name: stickkarten-pdfs
           path: ios/pdf-out
           if-no-files-found: ignore
+
+  app:
+    name: App (XcodeGen + xcodebuild)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: XcodeGen
+        run: brew install xcodegen
+      - name: Xcode-Projekt erzeugen
+        working-directory: ios
+        run: xcodegen generate
+      - name: Build für iOS-Simulator
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Stickkarten.xcodeproj -scheme Stickkarten \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/sim \
+            CODE_SIGNING_ALLOWED=NO | tail -n 120
+      - name: Unsigniertes IPA für Geräte bauen (zum Selbst-Signieren, siehe ios/README.md)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Stickkarten.xcodeproj -scheme Stickkarten \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/device \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | tail -n 60
+          mkdir -p build/ipa/Payload
+          cp -R build/device/Build/Products/Release-iphoneos/Stickkarten.app build/ipa/Payload/ 2>/dev/null \
+            || cp -R build/device/Build/Products/Debug-iphoneos/Stickkarten.app build/ipa/Payload/
+          (cd build/ipa && zip -qry Stickkarten-unsigned.ipa Payload)
+      - name: IPA als Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickkarten-unsigned-ipa
+          path: ios/build/ipa/Stickkarten-unsigned.ipa

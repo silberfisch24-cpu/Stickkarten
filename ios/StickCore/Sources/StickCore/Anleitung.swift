@@ -104,6 +104,11 @@ public struct DiagramLimits {
     public var armMaxW: Double
     public var armMaxH: Double
     public var sternMax: Double
+    public init(armMaxW: Double, armMaxH: Double, sternMax: Double) {
+        self.armMaxW = armMaxW
+        self.armMaxH = armMaxH
+        self.sternMax = sternMax
+    }
     /// Web-App: 856 × 900 (Arm) und 420 × 420 (Stern).
     public static let web = DiagramLimits(armMaxW: 856, armMaxH: 900, sternMax: 420)
 }
