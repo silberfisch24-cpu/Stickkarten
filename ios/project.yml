@@ -1,0 +1,54 @@
+name: Stickkarten
+options:
+  bundleIdPrefix: de.stickkarten
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+  developmentLanguage: de
+packages:
+  StickCore:
+    path: StickCore
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # Zum Signieren hier die eigene Team-ID eintragen (siehe ios/README.md), z. B. ABCDE12345
+    DEVELOPMENT_TEAM: ""
+targets:
+  Stickkarten:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    dependencies:
+      - package: StickCore
+        product: StickCore
+      - package: StickCore
+        product: StickPDF
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Stickkarten
+        CFBundleDevelopmentRegion: de
+        UILaunchScreen: {}
+        ITSAppUsesNonExemptEncryption: false
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.stickkarten.app
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_PREVIEWS: NO

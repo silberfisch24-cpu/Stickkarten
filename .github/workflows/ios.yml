@@ -1,0 +1,92 @@
+name: iOS
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["ios/**", ".github/workflows/ios.yml", "src/StickkartenGeneratorV4.jsx"]
+  pull_request:
+    paths: ["ios/**", ".github/workflows/ios.yml", "src/StickkartenGeneratorV4.jsx"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: StickCore (Tests + PDFs)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: swift test (Golden-Vergleich gegen die Web-App, PDF-Maße)
+        working-directory: ios/StickCore
+        env:
+          STICK_PDF_OUT: ${{ github.workspace }}/ios/pdf-out
+        run: swift test
+      - name: PDFs als Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickkarten-pdfs
+          path: ios/pdf-out
+          if-no-files-found: ignore
+      - name: PNG-Vorschauen auf Branch ios-ci-previews (zur Sichtprüfung)
+        if: always() && github.event_name == 'push'
+        continue-on-error: true
+        run: |
+          brew install poppler >/dev/null 2>&1
+          mkdir -p /tmp/prev && cd ios/pdf-out
+          for f in *.pdf; do pdftoppm -png -r 50 "$f" "/tmp/prev/${f%.pdf}"; done
+          cd /tmp/prev && git init -q && git checkout -q -b ios-ci-previews
+          git config user.name "ci" && git config user.email "ci@example.invalid"
+          git add -A && git commit -qm "previews for ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ios-ci-previews
+
+  app:
+    name: App (XcodeGen + xcodebuild)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: XcodeGen
+        run: brew install xcodegen
+      - name: Xcode-Projekt erzeugen
+        working-directory: ios
+        run: xcodegen generate
+      - name: Build für iOS-Simulator
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Stickkarten.xcodeproj -scheme Stickkarten \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath build/sim \
+            CODE_SIGNING_ALLOWED=NO > build-sim.log 2>&1 \
+            || { grep -E "error:" -B1 -A6 build-sim.log | head -200; exit 1; }
+          tail -n 5 build-sim.log
+      - name: Unsigniertes IPA für Geräte bauen (zum Selbst-Signieren, siehe ios/README.md)
+        working-directory: ios
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project Stickkarten.xcodeproj -scheme Stickkarten \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build/device \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" > build-device.log 2>&1 \
+            || { grep -E "error:" -B1 -A6 build-device.log | head -200; exit 1; }
+          tail -n 5 build-device.log
+          mkdir -p build/ipa/Payload
+          cp -R build/device/Build/Products/Release-iphoneos/Stickkarten.app build/ipa/Payload/ 2>/dev/null \
+            || cp -R build/device/Build/Products/Debug-iphoneos/Stickkarten.app build/ipa/Payload/
+          (cd build/ipa && zip -qry Stickkarten-unsigned.ipa Payload)
+      - name: IPA als Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickkarten-unsigned-ipa
+          path: ios/build/ipa/Stickkarten-unsigned.ipa
