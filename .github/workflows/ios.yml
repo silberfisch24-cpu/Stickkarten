@@ -1,0 +1,36 @@
+name: iOS
+
+on:
+  push:
+    branches: ["claude/**"]
+    paths: ["ios/**", ".github/workflows/ios.yml", "src/StickkartenGeneratorV4.jsx"]
+  pull_request:
+    paths: ["ios/**", ".github/workflows/ios.yml", "src/StickkartenGeneratorV4.jsx"]
+  workflow_dispatch:
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: StickCore (Tests + PDFs)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: swift test (Golden-Vergleich gegen die Web-App, PDF-Maße)
+        working-directory: ios/StickCore
+        env:
+          STICK_PDF_OUT: ${{ github.workspace }}/ios/pdf-out
+        run: swift test 2>&1 | tail -n 200
+      - name: PDFs als Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickkarten-pdfs
+          path: ios/pdf-out
+          if-no-files-found: ignore
