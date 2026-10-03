@@ -145,6 +145,7 @@ public func buildAnleitung(_ r: StickResult, limits: DiagramLimits = .web) -> An
         p.maxH = limits.armMaxH
         p.margin = 42
         p.holeR = 5
+        p.holeOutlined = true
         p.bendFactor = 0.3; p.bendMin = 16; p.bendMax = 30; p.bendStep = 2
         let diagram = buildStepDiagram(p)
         let faden = fadenCmFor(astEdges.isEmpty ? [] : buildStitchSequence(astEdges), graph: g)

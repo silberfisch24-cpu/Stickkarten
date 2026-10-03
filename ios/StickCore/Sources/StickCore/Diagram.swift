@@ -27,6 +27,8 @@ public struct StepDiagram {
     public var holeR: Double
     public var labelSize: Double
     public var badgeFontSize: Double
+    /// Lochpunkte als Ring (Arm-Diagramm) statt gefüllt (Stern-Diagramme)
+    public var holeOutlined: Bool
 }
 
 public struct DiagramParams {
@@ -43,6 +45,7 @@ public struct DiagramParams {
     public var margin: Double = 0
     public var holeR: Double = 5
     public var labelSize: Double? = nil
+    public var holeOutlined = false
     public var bendFactor: Double = 0.3
     public var bendMin: Double = 16
     public var bendMax: Double = 30
@@ -280,6 +283,6 @@ public func buildStepDiagram(_ p: DiagramParams) -> StepDiagram {
 
     return StepDiagram(
         width: fit.width, height: fit.height, elements: elements,
-        holeR: p.holeR, labelSize: p.labelSize ?? 10.5, badgeFontSize: 10.5
+        holeR: p.holeR, labelSize: p.labelSize ?? 10.5, badgeFontSize: 10.5, holeOutlined: p.holeOutlined
     )
 }

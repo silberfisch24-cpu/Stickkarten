@@ -26,7 +26,7 @@ jobs:
         working-directory: ios/StickCore
         env:
           STICK_PDF_OUT: ${{ github.workspace }}/ios/pdf-out
-        run: swift test 2>&1 | tail -n 200
+        run: swift test
       - name: PDFs als Artifact
         if: always()
         uses: actions/upload-artifact@v4
