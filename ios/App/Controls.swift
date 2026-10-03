@@ -156,13 +156,16 @@ struct ControlsView: View {
                 if exakt { Text("Nur auf Sternlevel weglassen").tag(AstAusblendung.exakt) }
                 if le { Text("Sternlevel und darunter weglassen").tag(AstAusblendung.kleinerGleich) }
             }
-            let hinweis: String
-            switch valid.wrappedValue {
-            case .exakt: hinweis = "Betrifft Ebene \(level)."
-            case .kleinerGleich: hinweis = "Betrifft Ebene 2–\(cap)."
-            case .keine: hinweis = "Keine Ebene betroffen."
-            }
+            let hinweis = ausblendungHinweis(valid.wrappedValue, level: level, cap: cap)
             Text(hinweis).font(.caption).foregroundStyle(.secondary)
+        }
+    }
+
+    private func ausblendungHinweis(_ v: AstAusblendung, level: Int, cap: Int) -> String {
+        switch v {
+        case .exakt: return "Betrifft Ebene \(level)."
+        case .kleinerGleich: return "Betrifft Ebene 2–\(cap)."
+        case .keine: return "Keine Ebene betroffen."
         }
     }
 }
