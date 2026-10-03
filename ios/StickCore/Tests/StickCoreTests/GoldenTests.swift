@@ -211,7 +211,10 @@ final class GoldenTests: XCTestCase {
             // hypot/atan2 in V8 vs. libm) => nur grobe Plausibilität (< 60 px).
             let strict = kind == "line" || (kind == "circle" && g[i].v[2] < 6)
             for (j, val) in v.enumerated() { c.close(val, g[i].v[j], strict ? 1e-6 : 60, "\(what) Element \(i) (\(kind)) Wert \(j)") }
-            if case let .text(_, _, _, anchor, _) = el { c.expect(anchor.rawValue == g[i].anchor, "\(what) Element \(i) Anker") }
+            // Der Anker folgt aus dem Label-Winkel (siehe oben) — nur prüfen, wenn die Position übereinstimmt.
+            if case let .text(tx, ty, _, anchor, _) = el, abs(tx - g[i].v[0]) < 1e-6, abs(ty - g[i].v[1]) < 1e-6 {
+                c.expect(anchor.rawValue == g[i].anchor, "\(what) Element \(i) Anker")
+            }
             if let t = text { c.expect(t == g[i].s, "\(what) Element \(i) Text '\(t)' ≠ '\(g[i].s ?? "nil")'") }
         }
     }

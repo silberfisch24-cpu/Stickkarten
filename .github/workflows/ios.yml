@@ -53,7 +53,9 @@ jobs:
             -project Stickkarten.xcodeproj -scheme Stickkarten \
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath build/sim \
-            CODE_SIGNING_ALLOWED=NO | tail -n 120
+            CODE_SIGNING_ALLOWED=NO > build-sim.log 2>&1 \
+            || { grep -E "error:" -B1 -A6 build-sim.log | head -200; exit 1; }
+          tail -n 5 build-sim.log
       - name: Unsigniertes IPA für Geräte bauen (zum Selbst-Signieren, siehe ios/README.md)
         working-directory: ios
         run: |
@@ -62,7 +64,9 @@ jobs:
             -project Stickkarten.xcodeproj -scheme Stickkarten \
             -destination 'generic/platform=iOS' \
             -derivedDataPath build/device \
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | tail -n 60
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" > build-device.log 2>&1 \
+            || { grep -E "error:" -B1 -A6 build-device.log | head -200; exit 1; }
+          tail -n 5 build-device.log
           mkdir -p build/ipa/Payload
           cp -R build/device/Build/Products/Release-iphoneos/Stickkarten.app build/ipa/Payload/ 2>/dev/null \
             || cp -R build/device/Build/Products/Debug-iphoneos/Stickkarten.app build/ipa/Payload/
