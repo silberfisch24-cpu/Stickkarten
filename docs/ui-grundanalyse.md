@@ -5,7 +5,7 @@ Nächster Schritt (separat): gemeinsames UI-Konzept → danach Design.
 
 ## 0. Grundlage und Abgrenzung
 
-- Die App wird unter `ios/` als **SwiftUI-App für iPhone und iPad** entwickelt (iOS ≥ 16 laut `project.yml`).
+- Die App wird unter `ios/` als **SwiftUI-App für iPhone und iPad** entwickelt (Projektstand iOS ≥ 16; **festgelegt: iOS 17**, siehe Abschnitt 7).
 - Die **bestehende Oberfläche wird bewusst ignoriert** — sie ist weder Vorbild noch Kritikgegenstand. Das UI wird von Grund auf neu entworfen.
 - **Der Code dient nur als Informationsquelle** für: was die App kann, welche Eingaben es gibt (mit Wertebereichen und Abhängigkeiten), welche Ergebnisse berechnet werden, welche physikalischen Randbedingungen gelten. Quellen: `ios/StickCore` (Fachlogik, PDF) und die Web-Referenz `src/StickkartenGeneratorV4.jsx`.
 - Annahmen (bitte korrigieren):
@@ -339,28 +339,72 @@ Kürzel: **iPh-H** iPhone hoch · **iPh-Q** iPhone quer · **iPad-H** iPad hoch 
 
 ---
 
-## 7. Offene Entscheidungen für das gemeinsame Konzept
+## 7. Festgelegte Entscheidungen (Stand der Klärungsrunde) und ihre Folgen
 
-| # | Frage | Auswirkung |
-|---|---|---|
-| E1 | Verteilung: nur eigenes Gerät (Sideloading/TestFlight) oder App Store? | Datenschutz/Impressum, Privacy-Manifest, Review |
-| E2 | Ist Mitsticken am Gerät ein Kernszenario? | S4 als eigener Modus vs. einfache Wiedergabe |
-| E3 | Mehrere Entwürfe speichern oder nur letzter Stand? | S8, Datenmodell, Migration |
-| E4 | Vorlagen/Beispiele und Erststart-Einführung? | S9/S10 |
-| E5 | Wie prüfen wir Layouts ohne Mac (Simulator-Screenshots in der CI)? | Grundlage jeder Design-Entscheidung |
-| E6 | Einfach/Experte: alle Parameter sichtbar oder gestuft? | Struktur von S2 |
-| E7 | Anleitung auch als Bildschirmfassung oder nur als PDF? | S6-Umfang |
-| E8 | Kachel-/Mehrseitendruck bei Zuschnitt > A4? | S5/S7 |
-| E9 | Mindest-iOS 16 beibehalten oder iOS 17 (u. a. `@Observable`, `sensoryFeedback`)? | verfügbare Bausteine |
-| E10 | Mac/„iPad-App auf Mac“ nur tolerieren oder mitgestalten? | Fensterverhalten, Pointer |
-| E11 | Hell/Dunkel: Systemfolge, fest oder wählbar? | Farbkonzept |
-| E12 | Nur Deutsch oder mehrsprachig vorbereitet? | String-Struktur |
+| # | Thema | Entscheidung | Folge fürs Konzept |
+|---|---|---|---|
+| E2 | Mitsticken | **Nebenfunktion** | Kein eigener Sticken-Modus, keine Display-Sperre/Fortschrittsspeicherung nötig. Die Stichfolge bleibt eine **Ansichtsfunktion** zum Verstehen des Musters (Wiedergabe) — Screen S4 entfällt als eigener Bereich. |
+| E3 | Entwürfe | **Letzter Stand + Favoriten** | Kein vollständiges Projektarchiv. Es gibt einen Arbeitsstand („Weitermachen“) und eine kleine Favoritenliste. S8 wird zu „Favoriten“ (Teil der Startseite). |
+| E7 | Anleitung | **Nur als PDF** | Keine Bildschirmfassung der Anleitung (S6 entfällt als eigener Screen). Anleitung und Lochmuster sind reine **Ausgabeprodukte** (S7); der Bildschirm zeigt sie in einer PDF-Vorschau. Layoutthema „Anleitung lesbar auf dem Handy“ wird zur PDF-Vorschau-Frage (Zoom, Seitenwahl). |
+| E6 | Zielgruppe | **Gestuft einfach/erweitert, plus geführter Einstieg, plus 10 fertige Muster** | Drei Wege zum Muster: (1) **Geführter Weg** für Einsteiger, (2) **fertige Muster**, (3) **freier Editor** mit Einfach-/Experten-Stufe. |
+| – | Leitgerät | **iPhone und iPad gleichrangig** | Zwei eigenständig gestaltete Layouts, keine „Hochskalierung“ und keine „reduzierte“ Fassung. |
+| E1 | Verteilung | **Noch offen** | Pflichtangaben (Datenschutz, Impressum, Privacy-Manifest) im Konzept vorsehen, aber nicht ausgestalten. |
+| E11 | Hell/Dunkel | **System folgen** | Kein eigener Schalter; Kartonfarbe ist Inhalt. |
+| E6b | Formate | **Standardformate im Normalmodus, Eigenformat nur im Expertenbereich** | Eigenformat nur in der erweiterten Stufe. |
+| E8 | Zuschnitt > A4 | **Eigenformate auf A4-Zuschnitt begrenzen** | Eingabe wird validiert: Zuschnitt (bei Falz doppelte Fläche) muss mit 10 mm Rand auf A4 hoch **oder** quer passen. Folge: **kein Kachel-Druck**, keine Verkleinerungswarnung mehr nötig; größtes sinnvolles gefaltetes Format ist A6 (A5 gefaltet = 296 mm Zuschnittsbreite passt nicht auf A4). Die zulässigen Maximalmaße sind im Konzept sichtbar zu machen. |
+| E9 | iOS-Version | **iOS 17** | `@Observable`, `sensoryFeedback`, verbesserte Scroll-/Sheet-APIs nutzbar. |
+| E12 | Sprache | **Deutsch, für Mehrsprachigkeit vorbereitet** | Texte von Anfang an in String-Katalogen. |
+| – | Rückgängig | **Nur „Auf Ausgangswert zurücksetzen“** (mit Rückfrage) | Kein Verlauf/Undo. Zurücksetzen auf Gruppen- und Gesamtebene. |
+| – | Bild-Export | **Später** | Platz im Ausgabebereich vorsehen, kein Bestandteil des ersten Konzepts. |
+| – | Start | **Startseite** | Zentrale Einstiegsseite: Weitermachen · Geführter Weg · 10 fertige Muster · Favoriten. |
+| – | Geführter Weg | Legt Format/Falz, Grundstil, Aufwand/Komplexität und Farben fest; **einfache Bedienung, keine komplexen Einstellungen, Ergebnis immer „ready-to-use“ und schön** | Der Weg muss intern **immer ein gültiges, hübsches, druckbares Muster** erzeugen (keine „kritisch“-Zustände, innerhalb Stichlimit). Technisch: Zuordnung Aufwand → Parameter-Set (n, Ebenen, Sternschichten), nicht freie Eingabe. |
+| – | Fertige Muster | 10 Stück, Anzeige: **Vorschaubild + Name + Schwierigkeit/Aufwand**, **als Entwurf übernehmbar** | Kuratierter, fester Inhalt (Presets). Keine Kurzbeschreibung. Schwierigkeit lässt sich aus Stichzahl/Fadenlänge ableiten. |
+
+### 7.1 Auswirkungen auf die Screenliste (Abschnitt 3)
+
+| Screen | Status |
+|---|---|
+| S1 Muster / Editor | bleibt, mit **Einfach/Experte**-Stufen |
+| S2 Parametergruppen | bleibt; Einfachstufe zeigt nur wenige Hauptparameter |
+| S3 Prüfung | bleibt; im Geführten Weg und in den fertigen Mustern tritt „kritisch“ nie auf |
+| S4 Sticken | **entfällt als Modus**; Stichfolge als Ansichtsfunktion im Editor |
+| S5 Lochmuster | bleibt als Ausgabeprodukt (PDF) |
+| S6 Anleitung | **entfällt als Screen**; nur PDF |
+| S7 Ausgabe | bleibt; Lochmuster- und Anleitungs-PDF, Teilen, AirPrint |
+| S8 Entwürfe | wird **Favoriten** + „Weitermachen“ |
+| S9 Vorlagen | wird **„10 fertige Muster“** |
+| S10 Hilfe/Glossar | bleibt (wichtig wegen Einsteiger-Zielgruppe) |
+| S11 Einstellungen/Info | bleibt, kleiner (kein Hell/Dunkel-Schalter) |
+| **Neu: Startseite** | zentraler Einstieg |
+| **Neu: Geführter Weg** | mehrstufiger Assistent (Format/Falz → Stil → Aufwand → Farben → Ergebnis) |
+
+### 7.2 Auswirkungen auf die Layout-Probleme (Abschnitt 5)
+
+- Entfallen: Sticken-spezifische Probleme (Daumenbereich, Display-Sperre, Mitstick-Tempo) und die Bildschirmfassung der Anleitung.
+- Neu zu beachten: **Startseite** (Karten/Raster aus Vorschaubildern, iPhone ein- bis zweispaltig, iPad Raster), **Geführter Weg** (Schrittanzeige, große Auswahlkarten, Live-Vorschau des entstehenden Musters neben/über den Fragen), **Muster-Galerie** (10 Vorschaubilder, Schwierigkeit lesbar).
+- Weiterhin entscheidend: Karte und Parameter in direkter Rückkopplung (Editor), Zoom auf kleine Löcher, Breiten-/Höhenabhängigkeit (iPhone quer, iPad-Teilfenster), PDF-Vorschau auf kleinen Displays.
+- Vorschaubilder (Favoriten, Muster) müssen effizient aus dem Kartenmodell erzeugt werden (Cache, kein Neuberechnen pro Zelle).
 
 ---
 
-## 8. Vorgehen danach
+## 8. Noch offen
 
-1. Analyse gemeinsam durchgehen; Annahmen A1–A4 und Entscheidungen E1–E12 klären (zuerst E2, E3, E5).
-2. **Gemeinsames Konzept:** Navigationsmodell, Screen-Karte, Layout-Regeln je Breiten-/Höhenstufe, Komponentenliste.
+| # | Frage | Stand |
+|---|---|---|
+| E5 | Wie prüfen wir Layouts ohne Mac (Simulator-Screenshots in der CI)? | **offen — Voraussetzung für das Design** |
+| O1 | Welche Parameter bilden die **Einfachstufe** des Editors? | Vorschlag im Konzept |
+| O2 | Welche **zehn** Muster werden angeboten (Auswahl/Kuratierung)? | Design-/Inhaltsschritt |
+| O3 | Wie definieren wir **Schwierigkeit/Aufwand** (Stichzahl, Fadenlänge, Schichten)? | Vorschlag im Konzept |
+| O4 | **Favoriten:** Anzahl, Benennung, Löschen, Sortierung? | Konzept |
+| O5 | **Umfang der Hilfe** (Erststart, Glossar, Kontexthilfe)? | Konzept |
+| E1 | Verteilungsweg (App Store oder nicht)? | bewusst offen |
+| E10 | Mac („iPad-App auf Mac“): tolerieren? | Vorschlag: tolerieren, nicht gestalten |
+
+---
+
+## 9. Vorgehen danach
+
+1. E5 klären (wie Layouts ohne Mac sichtbar werden), O1–O5 als Vorschläge im Konzept ausarbeiten.
+2. **Gemeinsames UI-Konzept:** Navigationsmodell (Startseite, Editor, Geführter Weg, Galerie, Favoriten, Ausgabe, Hilfe), Layout-Regeln je Breiten-/Höhenstufe für iPhone und iPad, Komponentenliste.
 3. **Design** (separater Schritt): visuelle Sprache, Komponenten, Prototyp je Gerät.
 4. Umsetzung in `ios/App` mit Screenshot-Matrix in der CI.
