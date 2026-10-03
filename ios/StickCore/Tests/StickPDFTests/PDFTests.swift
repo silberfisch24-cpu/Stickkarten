@@ -118,7 +118,10 @@ final class PDFTests: XCTestCase {
                 if abs(Double(p.x - rc.minX)) < m || abs(Double(p.x - rc.maxX)) < m { if p.y > rc.minY - m && p.y < rc.maxY + m { return false } }
                 if abs(Double(p.y - rc.minY)) < m || abs(Double(p.y - rc.maxY)) < m { if p.x > rc.minX - m && p.x < rc.maxX + m { return false } }
             }
-            if let f = plan.foldLine, abs(Double(p.x - f.from.x)) < m || abs(Double(p.y - f.from.y)) < m && f.from.x != f.to.x { return false }
+            if let f = plan.foldLine {
+                if f.from.x == f.to.x { if abs(Double(p.x - f.from.x)) < m { return false } }
+                else if abs(Double(p.y - f.from.y)) < m { return false }
+            }
             // gestrichelte Nutzfläche (Rand 14/18 mm vom Panel)
             let u = r.margins
             let usable = CGRect(x: plan.panelRect.minX + u.left * ptPerMM, y: plan.panelRect.minY + u.top * ptPerMM,
