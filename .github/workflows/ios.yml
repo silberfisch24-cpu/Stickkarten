@@ -59,6 +59,17 @@ jobs:
             CODE_SIGNING_ALLOWED=NO > build-sim.log 2>&1 \
             || { grep -E "error:" -B1 -A6 build-sim.log | head -200; exit 1; }
           tail -n 5 build-sim.log
+      - name: Screenshots der Hauptbereiche (Simulator, hell und dunkel)
+        continue-on-error: true
+        run: |
+          bash ios/tools/screens.sh ios/build/sim/Build/Products/Debug-iphonesimulator/Stickkarten.app ios/build/screens
+      - name: Screenshots als Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stickkarten-screens
+          path: ios/build/screens
+          if-no-files-found: ignore
       - name: Unsigniertes IPA für Geräte bauen (zum Selbst-Signieren, siehe ios/README.md)
         working-directory: ios
         run: |
