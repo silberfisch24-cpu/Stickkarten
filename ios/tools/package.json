@@ -1,0 +1,12 @@
+{
+  "name": "stickkarten-ios-tools",
+  "private": true,
+  "type": "module",
+  "description": "Erzeugt die Golden-Files für die StickCore-Tests aus src/StickkartenGeneratorV4.jsx",
+  "scripts": {
+    "golden": "node gen-golden.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.21.5"
+  }
+}
