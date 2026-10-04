@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>iPad Muster Detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=Newsreader:wght@600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{text-decoration:none;color:inherit}
+.i{width:24px;height:24px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.glass{background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);box-shadow:0 4px 18px rgba(30,42,51,.14)}
+.sheet{background:rgba(250,248,242,.9);-webkit-backdrop-filter:blur(28px) saturate(1.6);backdrop-filter:blur(28px) saturate(1.6);border:1px solid rgba(255,255,255,.85);box-shadow:0 -6px 30px rgba(30,42,51,.18)}
+.ticks{height:8px;background:repeating-linear-gradient(90deg,#b3ab9b 0 1px,transparent 1px 22.6px)}
+</style>
+</helmet>
+<div style="position: relative; width: 1180px; height: 820px; box-sizing: border-box; background: #e9e4d6; color: #1e2a33; font-family: 'IBM Plex Sans', system-ui, sans-serif; overflow: hidden">
+<svg viewBox="0 0 105 148" style="position: absolute; left: 158px; top: 84px; width: 440px; height: 620px; border-radius: 8px; display: block; box-shadow: 0 14px 36px rgba(30,42,51,.28)"><rect width="105" height="148" fill="#10203a"/><path d="M0.4 0V148" stroke="#000" stroke-opacity=".35" stroke-width=".4" stroke-dasharray="2 1.5"/><g fill="none" stroke-width=".5"><path d="M58 74L58 38M58 74L83.5 48.5M58 74L94 74M58 74L83.5 99.5M58 74L58 110M58 74L32.5 99.5M58 74L22 74M58 74L32.5 48.5" stroke="#d9e2e7"/><path d="M58 38L83.5 99.5M83.5 48.5L58 110M94 74L32.5 99.5M83.5 99.5L22 74M58 110L32.5 48.5M32.5 99.5L58 38M22 74L83.5 48.5M32.5 48.5L94 74" stroke="#ffffff"/></g><g fill="#0c1f17" fill-opacity=".85"><circle cx="58" cy="38" r=".9"/><circle cx="83.5" cy="48.5" r=".9"/><circle cx="94" cy="74" r=".9"/><circle cx="83.5" cy="99.5" r=".9"/><circle cx="58" cy="110" r=".9"/><circle cx="32.5" cy="99.5" r=".9"/><circle cx="22" cy="74" r=".9"/><circle cx="32.5" cy="48.5" r=".9"/><circle cx="58" cy="52.4" r=".9"/><circle cx="73.3" cy="58.7" r=".9"/><circle cx="79.6" cy="74" r=".9"/><circle cx="73.3" cy="89.3" r=".9"/><circle cx="58" cy="95.6" r=".9"/><circle cx="42.7" cy="89.3" r=".9"/><circle cx="36.4" cy="74" r=".9"/><circle cx="42.7" cy="58.7" r=".9"/><circle cx="58" cy="74" r=".9"/></g></svg>
+  <a href="#" aria-label="Als Favorit sichern" class="glass" style="position: absolute; left: 544px; top: 98px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></a>
+  <a href="#" aria-label="Zurück" class="glass" style="position: absolute; left: 16px; top: 16px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a>
+  <aside class="glass" style="position: absolute; right: 12px; top: 12px; bottom: 12px; width: 400px; box-sizing: border-box; padding: 24px 16px 16px; border-radius: 34px; background: rgba(250,248,242,.9); display: flex; flex-direction: column; gap: 14px; overflow: hidden">
+    <h2 style="margin: 0; font-family: Newsreader, Georgia, serif; font-size: 30px; line-height: 36px; font-weight: 600">Winterlicht</h2>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap"><span style="height: 36px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; background: #efeadd; border-radius: 18px; font-size: 14px"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px;"><rect x="7" y="3" width="10" height="18" rx="2"/></svg></span>A6</span><span style="height: 36px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; background: #efeadd; border-radius: 18px; font-size: 14px"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px;"><path d="M4 20h16M6 20v-4h4v-4h4V8h4V4"/></svg></span><span style="display: flex; gap: 4px"><i style="width: 8px; height: 8px; border-radius: 50%; background: #1f5a4b"></i><i style="width: 8px; height: 8px; border-radius: 50%; background: #1f5a4b"></i><i style="width: 8px; height: 8px; border-radius: 50%; background: #cfc8b8"></i></span></span><span style="height: 36px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; background: #efeadd; border-radius: 18px; font-size: 14px"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px;"><path d="M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2s0-2 1.5-2h2a3 3 0 003-3c0-6-4-11-8-11z"/><circle cx="8" cy="11" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16" cy="11" r="1"/></svg></span>2</span></div>
+    <div style="display: flex; gap: 8px; margin-top: auto"><a href="#" style="flex: 1 1 0; height: 52px; display: flex; align-items: center; justify-content: center; gap: 8px; background: #efeadd; border-radius: 26px; font-size: 17px; font-weight: 600">Anpassen<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></a><a href="#" style="flex: 1 1 0; height: 52px; display: flex; align-items: center; justify-content: center; gap: 8px; background: #1f5a4b; color: #ffffff; border-radius: 26px; font-size: 17px; font-weight: 600">Als PDF<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H4V9h16v8h-3M7 14h10v6H7z"/></svg></a></div>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
