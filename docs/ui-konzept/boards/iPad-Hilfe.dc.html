@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>iPad Hilfe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=Newsreader:wght@600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{text-decoration:none;color:inherit}
+.i{width:24px;height:24px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.glass{background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);box-shadow:0 4px 18px rgba(30,42,51,.14)}
+.sheet{background:rgba(250,248,242,.9);-webkit-backdrop-filter:blur(28px) saturate(1.6);backdrop-filter:blur(28px) saturate(1.6);border:1px solid rgba(255,255,255,.85);box-shadow:0 -6px 30px rgba(30,42,51,.18)}
+.ticks{height:8px;background:repeating-linear-gradient(90deg,#b3ab9b 0 1px,transparent 1px 22.6px)}
+</style>
+</helmet>
+<div style="position: relative; width: 1180px; height: 820px; box-sizing: border-box; background: #f4f0e6; color: #1e2a33; font-family: 'IBM Plex Sans', system-ui, sans-serif; overflow: hidden">
+<style>
+body{margin:0}
+a{text-decoration:none;color:inherit}
+.i{width:24px;height:24px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.glass{background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);box-shadow:0 4px 18px rgba(30,42,51,.14)}
+.side a{height:44px;box-sizing:border-box;padding:0 12px;display:flex;align-items:center;gap:12px;border-radius:22px;font-size:17px}
+.side a.sel{background:rgba(30,42,51,.1);font-weight:600}
+.side h3{margin:14px 12px 4px;display:flex;align-items:center;justify-content:space-between;font-size:15px;font-weight:600;color:#6b655a}
+.tile{position:relative;height:120px;box-sizing:border-box;border-radius:22px;overflow:hidden;display:block;color:#ffffff}
+.tile svg.m{position:absolute;left:50%;top:14px;width:60px;height:60px;margin-left:-30px;fill:none;stroke:#e8c987;stroke-width:1.4;stroke-linecap:round}
+.tile b{position:absolute;left:14px;bottom:10px;font-size:17px;line-height:22px}
+.tile span.d{position:absolute;right:12px;top:12px;display:flex;gap:3px}
+.tile span.d i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.95)}
+.tile span.d i.o{background:rgba(255,255,255,.35)}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.sec{display:flex;align-items:center;gap:10px;min-height:44px;font-size:20px;font-weight:600}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}</style>
+<!-- Schwebende Seitenleiste -->
+  <aside class="glass side" style="position: absolute; left: 12px; top: 12px; bottom: 12px; width: 280px; box-sizing: border-box; padding: 14px 12px; border-radius: 34px; display: flex; flex-direction: column; gap: 2px">
+    <div style="height: 48px; padding: 0 4px 0 12px; display: flex; align-items: center; justify-content: space-between">
+      <b style="font-family: 'Newsreader', Georgia, serif; font-size: 22px">Stickkarten</b>
+      <a href="#" aria-label="Seitenleiste ausblenden" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M9 5v14"/></svg></a>
+    </div>
+    <div class="side" style="display: flex; flex-direction: column; gap: 2px">
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/></svg>Start</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Gestalten</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H4V9h16v8h-3M7 14h10v6H7z"/></svg>Ausgabe</a>
+      <h3>Muster<svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px"><path d="M6 9l6 6 6-6"/></svg></h3>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Fertige Muster</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Favoriten</a>
+      <h3>Mehr<svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px"><path d="M6 9l6 6 6-6"/></svg></h3>
+      <a href="#" class="sel"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 115 0c0 1.5-2.5 2-2.5 3.5M12 17v.01"/></svg>Hilfe und Glossar</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>Einstellungen</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>Info und Datenschutz</a>
+      <a href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>Info und Datenschutz</a>
+    </div>
+  </aside>
+
+    <main style="position: absolute; left: 304px; right: 0; top: 0; bottom: 0; box-sizing: border-box; padding: 24px 28px 0; display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+    <h1 style="margin: 0 0 6px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 40px; line-height: 46px; font-weight: 700">Hilfe und Glossar</h1>
+<div style="display: flex; gap: 20px; align-items: flex-start"><div style="width: 300px; flex-shrink: 0; box-sizing: border-box; padding: 8px; display: flex; flex-direction: column; gap: 4px; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 22px; align-self: flex-start"><a href="#" style="height: 52px; box-sizing: border-box; padding: 0 14px; display: flex; align-items: center; gap: 12px; border-radius: 18px; font-size: 17px;  "><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M18 6l-2.5 2.5M8.5 15.5L6 18"/></svg></span>Erste Schritte</a><a href="#" style="height: 52px; box-sizing: border-box; padding: 0 14px; display: flex; align-items: center; gap: 12px; border-radius: 18px; font-size: 17px;  "><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span>Muster gestalten</a><a href="#" style="height: 52px; box-sizing: border-box; padding: 0 14px; display: flex; align-items: center; gap: 12px; border-radius: 18px; font-size: 17px; font-weight: 600; background: #e3eee8; box-shadow: inset 0 0 0 2px #1f5a4b;"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.01"/></svg></span>Warnungen verstehen</a><a href="#" style="height: 52px; box-sizing: border-box; padding: 0 14px; display: flex; align-items: center; gap: 12px; border-radius: 18px; font-size: 17px;  "><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg></span>Sticken nach Stichfolge</a><a href="#" style="height: 52px; box-sizing: border-box; padding: 0 14px; display: flex; align-items: center; gap: 12px; border-radius: 18px; font-size: 17px;  "><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V4h10v5M7 17H4V9h16v8h-3M7 14h10v6H7z"/></svg></span>Drucken und Papier</a><a href="#" style="height: 52px; box-sizing: border-box; padding: 0 14px; display: flex; align-items: center; gap: 12px; border-radius: 18px; font-size: 17px;  "><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h10a3 3 0 013 3v13H8a3 3 0 01-3-3zM5 17a3 3 0 013-3h10"/></svg></span>Glossar</a></div><div style="flex-grow: 1; max-width: 520px; display: flex; flex-direction: column; gap: 12px"><h2 style="margin: 0 0 4px; font-family: Newsreader, Georgia, serif; font-size: 28px; line-height: 34px; font-weight: 600">Warnungen verstehen</h2><div style="margin: 0; box-sizing: border-box; padding: 14px 16px; display: flex; gap: 14px; align-items: center; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 22px"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px"><span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 10px; border-radius: 16px; background: #e0f0e6; color: #14603a; font-size: 14px; line-height: 20px; font-weight: 600"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><circle cx="12" cy="12" r="10" fill="currentColor" stroke="none"/><path d="M7.5 12.5l3 3 6-7" stroke="#ffffff"/></svg>Kein Fehler</span><span style="font-size: 15px; line-height: 21px">Alle Löcher haben genug Abstand.</span></div><svg viewBox="0 0 60 60" style="width: 64px; height: 64px; flex-shrink: 0"><rect width="60" height="60" rx="14" fill="#efeadd"/><circle cx="17" cy="24" r="4.5" fill="#153a2c"/><circle cx="43" cy="24" r="4.5" fill="#153a2c"/><path d="M17 38H43M17 34V42M43 34V42" stroke="#14603a" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></div><div style="margin: 0; box-sizing: border-box; padding: 14px 16px; display: flex; gap: 14px; align-items: center; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 22px"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px"><span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 10px; border-radius: 16px; background: #fcefd9; color: #6b3f00; font-size: 14px; line-height: 20px; font-weight: 600"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.01"/></svg>Knapp</span><span style="font-size: 15px; line-height: 21px">Der Faden liegt eng. Die Karte lässt sich noch sticken.</span></div><svg viewBox="0 0 60 60" style="width: 64px; height: 64px; flex-shrink: 0"><rect width="60" height="60" rx="14" fill="#efeadd"/><circle cx="22" cy="24" r="4.5" fill="#153a2c"/><circle cx="38" cy="24" r="4.5" fill="#153a2c"/><path d="M22 38H38M22 34V42M38 34V42" stroke="#9a5a00" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></div><div style="margin: 0; box-sizing: border-box; padding: 14px 16px; display: flex; gap: 14px; align-items: center; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 22px"><div style="flex-grow: 1; display: flex; flex-direction: column; gap: 6px"><span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 10px; border-radius: 16px; background: #fde7e3; color: #8f1d14; font-size: 14px; line-height: 20px; font-weight: 600"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"/><path d="M9 9l6 6M15 9l-6 6"/></svg>Zu eng</span><span style="font-size: 15px; line-height: 21px">Löcher würden reißen. Drucken ist gesperrt.</span></div><svg viewBox="0 0 60 60" style="width: 64px; height: 64px; flex-shrink: 0"><rect width="60" height="60" rx="14" fill="#efeadd"/><circle cx="26" cy="24" r="4.5" fill="#153a2c"/><circle cx="34" cy="24" r="4.5" fill="#153a2c"/><path d="M26 38H34M26 34V42M34 34V42" stroke="#b3261e" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></div></div></div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

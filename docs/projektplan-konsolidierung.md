@@ -133,15 +133,19 @@ einen **Kontaktbogen** (Raster aus Karten, Rang, Stichzahl, Abstand). Die Auswah
 je Weg trifft der Auftraggeber (auf dem Bogen als PNG, auch am Handy lesbar). Claude kann die Bilder
 ansehen und eine Empfehlung dazu abgeben.
 
-### 3.5 „Jederzeit neu erstellen“
+### 3.5 Wiederfinden desselben Musters (entschieden)
 
-Annahme (bitte bestätigen): Gemeint ist, dass Nutzer **den Geführten Weg jederzeit erneut
-durchlaufen** und dieselben (oder andere) Vorschläge erhalten, nicht dass die App Muster würfelt. Das passt
-zur Konzeptregel „feste Varianten, nie zufällig“. Falls doch **neue** Vorschläge je Durchlauf gewünscht
-sind, gibt es zwei Wege: ein größerer Katalog (z. B. die 50 gerankten Kandidaten statt drei, daraus werden
-je Durchlauf drei gezogen) oder der Generator läuft in der App. Der erste ist einfach und sicher, der
-zweite aufwendig. Empfehlung: **größerer Katalog (ca. 12 je Weg, 3 sichtbar je Durchlauf), kein
-Generator in der App.**
+Nutzer durchlaufen den Geführten Weg mit bestimmten Angaben, sticken das Muster und wollen es später
+auf dem einfachsten Weg wiederholen. Sie gehen erneut durch den Geführten Weg und müssen am Ende bei
+**denselben drei vorbereiteten Mustern** ankommen. Folgen:
+
+- Die Zuordnung *(Format, Stil, Aufwand, Farbwelt) → drei Muster* ist **eindeutig und stabil**: feste
+  Katalogeinträge mit fester ID und Reihenfolge, kein Zufall, keine zeitabhängige Auswahl.
+- Katalogeinträge werden nie umsortiert oder ersetzt. Bei Änderungen kommen neue IDs dazu, alte bleiben
+  erhalten (ein später gesticktes Muster muss wiederfindbar bleiben). Test: Katalog-IDs sind eindeutig, die
+  Zuordnung ist deterministisch.
+- Der größere Katalog (ca. 12 je Weg) dient der **Direktauswahl/Favoriten** (Startseite „Fertige Muster“),
+  nicht dem Geführten Weg. Kein Generator in der App.
 
 ### 3.6 Warum das den Plan verändert
 
@@ -241,13 +245,20 @@ Verteilung, Bundle-ID, Signing über GitHub-Secrets, Privacy-Manifest, Impressum
 
 ---
 
-## 6 Offene Fragen (bitte kurz beantworten)
+## 6 Entscheidungen und Rest
 
-| # | Frage | Empfehlung |
+| # | Thema | Stand |
 |---|---|---|
-| F1 | **Kern übernehmen oder neu schreiben?** | Übernehmen und umbauen (Abschnitt 1) |
-| F2 | **„Jederzeit neu erstellen“** (3.5): Geführten Weg erneut durchlaufen, oder jedes Mal neue Vorschläge? | Erneut durchlaufen, mit größerem Katalog (≈12 je Weg, 3 je Durchlauf sichtbar) |
-| F3 | **Aufwand**: Stichzahlschwellen 50/80/110 beibehalten und um Fadenlänge und engste Stelle ergänzen? | Ja |
-| F4 | **Spielen Format und Farbwelt eine Rolle für die Auswahl?** Format ändert nur den Radius, Farben sind visuell. Soll der Generator je Format (hoch/quer) einzeln arbeiten? | Einmal je Stil × Stufe, dann gegen beide Formate prüfen |
-| F5 | **Wer wählt die 3 Gewinner?** | Auftraggeber auf dem Kontaktbogen, Claude gibt Vorschläge |
-| F6 | **Archiv-Branch jetzt anlegen** und die Branches wie in A6 bereinigen? | Ja, nach Freigabe |
+| F1 | Kern übernehmen oder neu schreiben | Entscheidung des Auftragnehmers: **übernehmen und umbauen** (sauber, wenig Aufwand) |
+| F2 | Wiederholbarkeit | entschieden, siehe 3.5 |
+| F3 | Aufwandsmaß (50/80/110 plus Fadenlänge, engste Stelle) | **später**, bei der Arbeit an den Mustern (Phase C1) |
+| F4 | Format und Farbwelt im Generator | mit F3 klären |
+| F5 | Gewinner wählt der Auftraggeber auf dem Kontaktbogen | ja, **später** (Phase C4) |
+| F6 | Bereinigung | ausgeführt, siehe 7 |
+
+## 7 Stand der Bereinigung
+
+- `archive/ios-port-v1` angelegt (erste Portierung samt `CLAUDE.md` und UI-Konzept-Historie).
+- UI-Konzept und Analyse nach `main` per PR (`docs/`), dann entfällt `claude/ui-grundanalyse`.
+- `claude/friendly-bell-9n9w83` und `ios-ci-previews` gelöscht (Inhalt liegt im Archiv).
+- **Web-App und Pages-Deploy bleiben unverändert** (`src/`, `deploy.yml`, `package.json` werden nicht angefasst).

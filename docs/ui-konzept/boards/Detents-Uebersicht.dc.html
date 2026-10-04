@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Inhalt je Sheet-Stufe</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=Newsreader:wght@600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.i{width:24px;height:24px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</helmet>
+<div style="width: 1100px; height: 760px; box-sizing: border-box; padding: 56px 64px; display: flex; flex-direction: column; gap: 10px; background: #f6f3ec; color: #1e2a33; font-family: 'IBM Plex Sans', system-ui, sans-serif">
+  <h1 style="margin: 0 0 14px; font-family: 'Newsreader', Georgia, serif; font-size: 34px; line-height: 42px; font-weight: 600">Inhalt je Sheet-Stufe</h1>
+  <div style="display: grid; grid-template-columns: 200px 300px 1fr; gap: 16px; padding: 0 20px 4px; font-size: 13px; letter-spacing: 1.2px; color: #5f594e">
+    <span>GRUPPE</span>
+    <span style="display: flex; align-items: center; gap: 8px"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px"><path d="M6 15l6-6 6 6"/></svg>MITTEL: ZWEI ELEMENTE</span>
+    <span style="display: flex; align-items: center; gap: 8px"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px"><path d="M6 9l6-6 6 6M6 15l6-6 6 6" transform="translate(0 3)"/></svg>GROSS: ALLES</span>
+  </div>
+    <div style="display: grid; grid-template-columns: 200px 300px 1fr; gap: 16px; align-items: center; padding: 14px 20px; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 18px">
+      <span style="display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 600"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="4" r="1"/><circle cx="12" cy="20" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="20" cy="12" r="1"/></svg></span>Grundform</span>
+      <span style="display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: #e3eee8; color: #14463a; border-radius: 14px; font-size: 15px; font-weight: 600">Kreispunkte + Ebenen</span>
+      <span style="font-size: 14px; line-height: 20px; color: #4a453c">Hinweis zum Mindestabstand</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 300px 1fr; gap: 16px; align-items: center; padding: 14px 20px; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 18px">
+      <span style="display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 600"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21V9M12 15l-5-4M12 12l5-4M12 9V3"/></svg></span>Äste</span>
+      <span style="display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: #e3eee8; color: #14463a; border-radius: 14px; font-size: 15px; font-weight: 600">Astwinkel + Astlänge</span>
+      <span style="font-size: 14px; line-height: 20px; color: #4a453c">Seitenäste an/aus, Wachstum</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 300px 1fr; gap: 16px; align-items: center; padding: 14px 20px; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 18px">
+      <span style="display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 600"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2l7 12H4zM11 18L4 6h14z" transform="translate(0 1) scale(.9)"/><text x="17" y="22" font-size="10" font-weight="700" fill="currentColor" stroke="none">1</text></svg></span>Stern 1</span>
+      <span style="display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: #e3eee8; color: #14463a; border-radius: 14px; font-size: 15px; font-weight: 600">Schrittweite + Sternebene</span>
+      <span style="font-size: 14px; line-height: 20px; color: #4a453c">Sternstrahlen, Seitenäste auslassen, Schicht an/aus</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 300px 1fr; gap: 16px; align-items: center; padding: 14px 20px; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 18px">
+      <span style="display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 600"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 2l7 12H4zM11 18L4 6h14z" transform="translate(0 1) scale(.9)"/><text x="17" y="22" font-size="10" font-weight="700" fill="currentColor" stroke="none">2</text></svg></span>Stern 2</span>
+      <span style="display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: #e3eee8; color: #14463a; border-radius: 14px; font-size: 15px; font-weight: 600">Schrittweite + Sternebene</span>
+      <span style="font-size: 14px; line-height: 20px; color: #4a453c">Sternstrahlen, Rotationsversatz, Seitenäste auslassen, Schicht an/aus</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 200px 300px 1fr; gap: 16px; align-items: center; padding: 14px 20px; background: #ffffff; border: 1px solid #d9d3c4; border-radius: 18px">
+      <span style="display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 600"><span style="color: #1f5a4b; display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v18" stroke-dasharray="2 2"/></svg></span>Karte</span>
+      <span style="display: flex; align-items: center; gap: 10px; padding: 8px 14px; background: #e3eee8; color: #14463a; border-radius: 14px; font-size: 15px; font-weight: 600">Zoom + Farben</span>
+      <span style="font-size: 14px; line-height: 20px; color: #4a453c">Format, Falz, Farbe je Element (Karton, Äste, Stern 1, Stern 2); Erweitert: Eigenes Format</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; margin-top: 6px; padding: 14px 20px; background: #fcefd9; color: #6b3f00; border-radius: 18px; font-size: 15px"><span style="display: flex"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17.5v.01"/></svg></span><span>Meldungen (gelb: Warnung, rot: kritisch) sind in allen Gruppen und Stufen sichtbar: als Text auf der Karte (Klein, Mittel) bzw. als Textzeile im Sheet (Groß).</span></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1100,"height":760}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
