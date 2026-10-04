@@ -6,8 +6,15 @@ struct StickkartenApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(model)
+            Group {
+                if Startargumente.zeigtKatalog {
+                    NavigationStack { DesignKatalogView() }
+                } else {
+                    RootView()
+                }
+            }
+            .environment(model)
+            .tint(DS.Farbe.akzent)
         }
     }
 }
