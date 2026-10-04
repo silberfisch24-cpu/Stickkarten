@@ -8,6 +8,7 @@ b8 = open('build8.py').read()
 
 s8 = b8[b8.index("lib.ICON['pencil']"):b8.index('# 1 Favoriten gefüllt')]
 exec(s8)
+exec(open('real.py').read())
 
 print([k for k in globals() if k in ('ASIDE','NAV','CAPS','wiz_top','ipad_wiz','topbar2','sheet3','FAV','ptile','start_frame')])
 
@@ -176,10 +177,6 @@ iph('Gefuehrt-iPhone-2c-Stil-Stern.dc.html','Geführter Weg 2 Stil Stern',1, big
 print('B ok')
 
 # ======================= iPad =======================
-MUSTER = [('Wintersterne',0,('stern1',),3,False),('Eiskristall',1,('aeste','stern1'),3,False),('Nordlicht',2,('aeste','stern1','stern2'),3,False),
- ('Schneeflocke',1,('stern1',),2,True),('Tannenzweig',0,('aeste','stern1'),4,True),('Rosenstern',2,('stern1',),4,False),
- ('Polarstern',1,('aeste','stern1','stern2'),3,False),('Kleiner Stern',0,('stern1',),2,False),('Eisblume',2,('aeste','stern1'),2,True),('Sternenreigen',0,('aeste','stern1','stern2'),4,False)]
-def dotsx(e): return dots(len(e[2]))
 # Seitenleiste: Eintrag "Info und Datenschutz" ergänzen
 ASIDE2 = ASIDE.replace('<a href="#"><svg', '<a href="#"><svg')  # unverändert
 _i = ASIDE2.index('Einstellungen</a>')+len('Einstellungen</a>')

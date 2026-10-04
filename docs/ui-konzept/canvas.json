@@ -429,12 +429,370 @@
       "h": 820,
       "title": "iPad · Ausgabe, Kompakt nicht verfügbar"
     },
+    "iPhone-Einstellungen.dc.html": {
+      "x": 0,
+      "y": 16200,
+      "w": 390,
+      "h": 844,
+      "title": "Einstellungen"
+    },
+    "iPhone-Hilfe.dc.html": {
+      "x": 470,
+      "y": 16200,
+      "w": 390,
+      "h": 844,
+      "title": "Hilfe"
+    },
+    "iPhone-Hilfe-Thema.dc.html": {
+      "x": 940,
+      "y": 16200,
+      "w": 390,
+      "h": 844,
+      "title": "Hilfe · Thema Warnungen"
+    },
+    "iPhone-Glossar.dc.html": {
+      "x": 1410,
+      "y": 16200,
+      "w": 390,
+      "h": 844,
+      "title": "Glossar"
+    },
+    "iPhone-Info.dc.html": {
+      "x": 1880,
+      "y": 16200,
+      "w": 390,
+      "h": 844,
+      "title": "Info und Datenschutz"
+    },
+    "iPhone-Zuruecksetzen.dc.html": {
+      "x": 2350,
+      "y": 16200,
+      "w": 390,
+      "h": 844,
+      "title": "Alles zurücksetzen (Abfrage)"
+    },
+    "iPhone-Einfuehrung-1.dc.html": {
+      "x": 0,
+      "y": 17404,
+      "w": 390,
+      "h": 844,
+      "title": "Einführung 1"
+    },
+    "iPhone-Einfuehrung-2.dc.html": {
+      "x": 470,
+      "y": 17404,
+      "w": 390,
+      "h": 844,
+      "title": "Einführung 2"
+    },
+    "iPhone-Einfuehrung-3.dc.html": {
+      "x": 940,
+      "y": 17404,
+      "w": 390,
+      "h": 844,
+      "title": "Einführung 3"
+    },
+    "iPhone-Kontexthilfe.dc.html": {
+      "x": 1410,
+      "y": 17404,
+      "w": 390,
+      "h": 844,
+      "title": "Kontexthilfe im Editor"
+    },
+    "iPhone-Favoriten-Umbenennen.dc.html": {
+      "x": 0,
+      "y": 18608,
+      "w": 390,
+      "h": 844,
+      "title": "Favoriten · Umbenennen"
+    },
+    "iPhone-Favoriten-Loeschen.dc.html": {
+      "x": 470,
+      "y": 18608,
+      "w": 390,
+      "h": 844,
+      "title": "Favoriten · Löschabfrage"
+    },
+    "Gefuehrt-iPhone-2b-Stil-Flocke.dc.html": {
+      "x": 940,
+      "y": 18608,
+      "w": 390,
+      "h": 844,
+      "title": "Geführt 2 · Stil Flocke"
+    },
+    "Gefuehrt-iPhone-2c-Stil-Stern.dc.html": {
+      "x": 1410,
+      "y": 18608,
+      "w": 390,
+      "h": 844,
+      "title": "Geführt 2 · Stil Stern"
+    },
+    "iPhone-Quer-Editor.dc.html": {
+      "x": 0,
+      "y": 22220,
+      "w": 844,
+      "h": 390,
+      "title": "Querformat · Editor"
+    },
+    "iPhone-Quer-Stichfolge.dc.html": {
+      "x": 924,
+      "y": 22220,
+      "w": 844,
+      "h": 390,
+      "title": "Querformat · Stichfolge"
+    },
+    "iPhone-Quer-Gefuehrt-Aufwand.dc.html": {
+      "x": 1848,
+      "y": 22220,
+      "w": 844,
+      "h": 390,
+      "title": "Querformat · Geführt 3 Aufwand"
+    },
+    "iPad-Einstellungen.dc.html": {
+      "x": 0,
+      "y": 24174,
+      "w": 1180,
+      "h": 820,
+      "title": "Einstellungen"
+    },
+    "iPad-Hilfe.dc.html": {
+      "x": 1260,
+      "y": 24174,
+      "w": 1180,
+      "h": 820,
+      "title": "Hilfe und Glossar"
+    },
+    "iPad-Glossar.dc.html": {
+      "x": 2520,
+      "y": 24174,
+      "w": 1180,
+      "h": 820,
+      "title": "Glossar"
+    },
+    "iPad-Info.dc.html": {
+      "x": 3780,
+      "y": 24174,
+      "w": 1180,
+      "h": 820,
+      "title": "Info und Datenschutz"
+    },
+    "iPad-Einfuehrung.dc.html": {
+      "x": 5040,
+      "y": 24174,
+      "w": 1180,
+      "h": 820,
+      "title": "Einführung"
+    },
+    "iPad-Stichfolge-Lochmuster.dc.html": {
+      "x": 0,
+      "y": 25354,
+      "w": 1180,
+      "h": 820,
+      "title": "Stichfolge · Lochmuster"
+    },
+    "iPad-Stichfolge-Aeste.dc.html": {
+      "x": 1260,
+      "y": 25354,
+      "w": 1180,
+      "h": 820,
+      "title": "Stichfolge · Äste"
+    },
+    "iPad-Stichfolge-Gesamtbild.dc.html": {
+      "x": 2520,
+      "y": 25354,
+      "w": 1180,
+      "h": 820,
+      "title": "Stichfolge · Gesamtbild"
+    },
+    "Gefuehrt-iPad-3b-Aufwand-Leicht.dc.html": {
+      "x": 2520,
+      "y": 26534,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 3 · Aufwand Leicht"
+    },
+    "Gefuehrt-iPad-3c-Aufwand-Aufwendig.dc.html": {
+      "x": 3780,
+      "y": 26534,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 3 · Aufwand Aufwendig"
+    },
+    "Gefuehrt-iPad-2b-Stil-Flocke.dc.html": {
+      "x": 0,
+      "y": 26534,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 2 · Stil Flocke"
+    },
+    "Gefuehrt-iPad-2c-Stil-Stern.dc.html": {
+      "x": 1260,
+      "y": 26534,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 2 · Stil Stern"
+    },
+    "iPad-Hochformat-Start.dc.html": {
+      "x": 0,
+      "y": 27714,
+      "w": 820,
+      "h": 1180,
+      "title": "Hochformat · Start"
+    },
+    "iPad-Hochformat-Editor.dc.html": {
+      "x": 900,
+      "y": 27714,
+      "w": 820,
+      "h": 1180,
+      "title": "Hochformat · Editor"
+    },
+    "iPad-Hochformat-Gefuehrt-Aufwand.dc.html": {
+      "x": 1800,
+      "y": 27714,
+      "w": 820,
+      "h": 1180,
+      "title": "Hochformat · Geführt 3 Aufwand"
+    },
+    "iPad-Teilfenster-Start.dc.html": {
+      "x": 0,
+      "y": 29254,
+      "w": 1180,
+      "h": 820,
+      "title": "Teilfenster · Start"
+    },
+    "iPad-Teilfenster-Editor.dc.html": {
+      "x": 1260,
+      "y": 29254,
+      "w": 1180,
+      "h": 820,
+      "title": "Teilfenster · Editor"
+    },
+    "iPhone-Start-Erststart.dc.html": {
+      "x": 1880,
+      "y": 17404,
+      "w": 390,
+      "h": 844,
+      "title": "Start ohne Arbeitsstand"
+    },
+    "iPhone-Meldung-Abhilfe.dc.html": {
+      "x": 0,
+      "y": 19812,
+      "w": 390,
+      "h": 844,
+      "title": "Meldung antippen: Abhilfe"
+    },
+    "iPhone-Editor-Zuruecksetzen-Button.dc.html": {
+      "x": 470,
+      "y": 19812,
+      "w": 390,
+      "h": 844,
+      "title": "Groß mit Zurücksetzen"
+    },
+    "iPhone-Editor-Zuruecksetzen-Abfrage.dc.html": {
+      "x": 940,
+      "y": 19812,
+      "w": 390,
+      "h": 844,
+      "title": "Zurücksetzen · Abfrage"
+    },
+    "iPhone-Eigenformat.dc.html": {
+      "x": 1410,
+      "y": 19812,
+      "w": 390,
+      "h": 844,
+      "title": "Karte · Eigenformat"
+    },
+    "iPhone-Eigenformat-zu-gross.dc.html": {
+      "x": 1880,
+      "y": 19812,
+      "w": 390,
+      "h": 844,
+      "title": "Eigenformat zu groß"
+    },
+    "iPhone-Ausgabe-gesperrt.dc.html": {
+      "x": 0,
+      "y": 21016,
+      "w": 390,
+      "h": 844,
+      "title": "Ausgabe gesperrt (kritisch)"
+    },
+    "iPhone-Ausgabe-Erstellen.dc.html": {
+      "x": 470,
+      "y": 21016,
+      "w": 390,
+      "h": 844,
+      "title": "PDF wird erstellt"
+    },
+    "iPhone-Ausgabe-Fehler.dc.html": {
+      "x": 940,
+      "y": 21016,
+      "w": 390,
+      "h": 844,
+      "title": "PDF-Fehler"
+    },
+    "iPhone-Dunkel-Start.dc.html": {
+      "x": 0,
+      "y": 22970,
+      "w": 390,
+      "h": 844,
+      "title": "Dunkel · Start"
+    },
+    "iPhone-Dunkel-Editor.dc.html": {
+      "x": 470,
+      "y": 22970,
+      "w": 390,
+      "h": 844,
+      "title": "Dunkel · Editor"
+    },
+    "iPhone-Dunkel-Gefuehrt.dc.html": {
+      "x": 940,
+      "y": 22970,
+      "w": 390,
+      "h": 844,
+      "title": "Dunkel · Geführt 3"
+    },
+    "iPhone-GrosseSchrift-Gefuehrt.dc.html": {
+      "x": 1410,
+      "y": 22970,
+      "w": 390,
+      "h": 844,
+      "title": "Größte Schrift · Geführt 3"
+    },
+    "iPhone-GrosseSchrift-Editor.dc.html": {
+      "x": 1880,
+      "y": 22970,
+      "w": 390,
+      "h": 844,
+      "title": "Größte Schrift · Editor"
+    },
+    "iPad-Dunkel-Editor.dc.html": {
+      "x": 2520,
+      "y": 29254,
+      "w": 1180,
+      "h": 820,
+      "title": "Dunkel · Editor"
+    },
+    "Designregeln-2.dc.html": {
+      "x": 7000,
+      "y": 0,
+      "w": 1280,
+      "h": 980,
+      "title": "Designregeln 2 (Dialoge, Dunkel, Breite, Barrierefreiheit)"
+    },
     "F-iPhone-00-Designregeln.dc.html": {
       "x": 0,
       "y": 0,
       "w": 1280,
       "h": 1420,
       "title": "Designregeln",
+      "page": "iphone"
+    },
+    "F-iPhone-00b-Designregeln-2.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 980,
+      "title": "Designregeln 2",
       "page": "iphone"
     },
     "F-iPhone-01-Start.dc.html": {
@@ -445,300 +803,548 @@
       "title": "01 Start",
       "page": "iphone"
     },
-    "F-iPhone-02-Mehr.dc.html": {
+    "F-iPhone-02-Start-Erststart.dc.html": {
       "x": 470,
       "y": 1780,
       "w": 390,
       "h": 844,
-      "title": "02 Mehr",
+      "title": "02 Start ohne Arbeitsstand",
       "page": "iphone"
     },
-    "F-iPhone-03-Ausgabe.dc.html": {
+    "F-iPhone-03-Mehr.dc.html": {
       "x": 940,
       "y": 1780,
       "w": 390,
       "h": 844,
-      "title": "03 Ausgabe",
+      "title": "03 Mehr",
       "page": "iphone"
     },
-    "F-iPhone-04-Ausgabe-Kompakt-aus.dc.html": {
+    "F-iPhone-04-Ausgabe.dc.html": {
       "x": 1410,
       "y": 1780,
       "w": 390,
       "h": 844,
-      "title": "04 Ausgabe, Kompakt nicht verfügbar",
+      "title": "04 Ausgabe",
       "page": "iphone"
     },
-    "F-iPhone-05-Gefuehrt-1-Format.dc.html": {
+    "F-iPhone-05-Ausgabe-Kompakt-aus.dc.html": {
+      "x": 1880,
+      "y": 1780,
+      "w": 390,
+      "h": 844,
+      "title": "05 Ausgabe, Kompakt nicht verfügbar",
+      "page": "iphone"
+    },
+    "F-iPhone-06-Ausgabe-gesperrt.dc.html": {
+      "x": 2350,
+      "y": 1780,
+      "w": 390,
+      "h": 844,
+      "title": "06 Ausgabe gesperrt (kritisch)",
+      "page": "iphone"
+    },
+    "F-iPhone-07-Ausgabe-Erstellen.dc.html": {
+      "x": 2820,
+      "y": 1780,
+      "w": 390,
+      "h": 844,
+      "title": "07 PDF wird erstellt",
+      "page": "iphone"
+    },
+    "F-iPhone-08-Ausgabe-Fehler.dc.html": {
+      "x": 3290,
+      "y": 1780,
+      "w": 390,
+      "h": 844,
+      "title": "08 PDF-Fehler",
+      "page": "iphone"
+    },
+    "F-iPhone-09-Einstellungen.dc.html": {
       "x": 0,
       "y": 2984,
       "w": 390,
       "h": 844,
-      "title": "05 Geführt 1 Format",
+      "title": "09 Einstellungen",
       "page": "iphone"
     },
-    "F-iPhone-06-Gefuehrt-2-Stil.dc.html": {
+    "F-iPhone-10-Hilfe.dc.html": {
       "x": 470,
       "y": 2984,
       "w": 390,
       "h": 844,
-      "title": "06 Geführt 2 Stil",
+      "title": "10 Hilfe",
       "page": "iphone"
     },
-    "F-iPhone-07-Gefuehrt-3-Aufwand.dc.html": {
+    "F-iPhone-11-Hilfe-Thema.dc.html": {
       "x": 940,
       "y": 2984,
       "w": 390,
       "h": 844,
-      "title": "07 Geführt 3 Aufwand",
+      "title": "11 Thema Warnungen",
       "page": "iphone"
     },
-    "F-iPhone-08-Gefuehrt-4-Farben.dc.html": {
+    "F-iPhone-12-Glossar.dc.html": {
       "x": 1410,
       "y": 2984,
       "w": 390,
       "h": 844,
-      "title": "08 Geführt 4 Farben",
+      "title": "12 Glossar",
       "page": "iphone"
     },
-    "F-iPhone-09-Gefuehrt-4-Farben-einfarbig.dc.html": {
+    "F-iPhone-13-Info.dc.html": {
       "x": 1880,
       "y": 2984,
       "w": 390,
       "h": 844,
-      "title": "09 Geführt 4 Farben einfarbig",
+      "title": "13 Info und Datenschutz",
       "page": "iphone"
     },
-    "F-iPhone-10-Gefuehrt-5-Auswahl.dc.html": {
+    "F-iPhone-14-Zuruecksetzen.dc.html": {
       "x": 2350,
       "y": 2984,
       "w": 390,
       "h": 844,
-      "title": "10 Geführt 5 Auswahl",
+      "title": "14 Alles zurücksetzen (Abfrage)",
       "page": "iphone"
     },
-    "F-iPhone-11-Gefuehrt-6-Ergebnis.dc.html": {
+    "F-iPhone-15-Einfuehrung-1.dc.html": {
       "x": 2820,
       "y": 2984,
       "w": 390,
       "h": 844,
-      "title": "11 Geführt 6 Ergebnis",
+      "title": "15 Einführung 1",
       "page": "iphone"
     },
-    "F-iPhone-12-Gefuehrt-3-Leicht.dc.html": {
+    "F-iPhone-16-Einfuehrung-2.dc.html": {
+      "x": 3290,
+      "y": 2984,
+      "w": 390,
+      "h": 844,
+      "title": "16 Einführung 2",
+      "page": "iphone"
+    },
+    "F-iPhone-17-Einfuehrung-3.dc.html": {
+      "x": 3760,
+      "y": 2984,
+      "w": 390,
+      "h": 844,
+      "title": "17 Einführung 3",
+      "page": "iphone"
+    },
+    "F-iPhone-18-Kontexthilfe.dc.html": {
+      "x": 4230,
+      "y": 2984,
+      "w": 390,
+      "h": 844,
+      "title": "18 Kontexthilfe im Editor",
+      "page": "iphone"
+    },
+    "F-iPhone-19-Gefuehrt-1-Format.dc.html": {
       "x": 0,
       "y": 4188,
       "w": 390,
       "h": 844,
-      "title": "12 Geführt 3 Aufwand Leicht",
+      "title": "19 Geführt 1 Format",
       "page": "iphone"
     },
-    "F-iPhone-13-Gefuehrt-3-Aufwendig.dc.html": {
+    "F-iPhone-20-Gefuehrt-2-Stil.dc.html": {
       "x": 470,
       "y": 4188,
       "w": 390,
       "h": 844,
-      "title": "13 Geführt 3 Aufwand Aufwendig",
+      "title": "20 Geführt 2 Stil",
       "page": "iphone"
     },
-    "F-iPhone-14-Gefuehrt-4-Farben-Leicht.dc.html": {
+    "F-iPhone-21-Gefuehrt-3-Aufwand.dc.html": {
       "x": 940,
       "y": 4188,
       "w": 390,
       "h": 844,
-      "title": "14 Geführt 4 Farben Leicht",
+      "title": "21 Geführt 3 Aufwand",
       "page": "iphone"
     },
-    "F-iPhone-15-Gefuehrt-4-Farben-Aufwendig.dc.html": {
+    "F-iPhone-22-Gefuehrt-4-Farben.dc.html": {
       "x": 1410,
       "y": 4188,
       "w": 390,
       "h": 844,
-      "title": "15 Geführt 4 Farben Aufwendig",
+      "title": "22 Geführt 4 Farben",
       "page": "iphone"
     },
-    "F-iPhone-16-Gefuehrt-5-Variante2.dc.html": {
+    "F-iPhone-23-Gefuehrt-4-Farben-einfarbig.dc.html": {
       "x": 1880,
       "y": 4188,
       "w": 390,
       "h": 844,
-      "title": "16 Geführt 5 Auswahl Variante 2",
+      "title": "23 Geführt 4 Farben einfarbig",
       "page": "iphone"
     },
-    "F-iPhone-17-Gefuehrt-Abbruch.dc.html": {
+    "F-iPhone-24-Gefuehrt-5-Auswahl.dc.html": {
       "x": 2350,
       "y": 4188,
       "w": 390,
       "h": 844,
-      "title": "17 Geführt Abbruch",
+      "title": "24 Geführt 5 Auswahl",
       "page": "iphone"
     },
-    "F-iPhone-18-Favoriten.dc.html": {
+    "F-iPhone-25-Gefuehrt-6-Ergebnis.dc.html": {
+      "x": 2820,
+      "y": 4188,
+      "w": 390,
+      "h": 844,
+      "title": "25 Geführt 6 Ergebnis",
+      "page": "iphone"
+    },
+    "F-iPhone-26-Gefuehrt-2-Stil-Flocke.dc.html": {
       "x": 0,
       "y": 5392,
       "w": 390,
       "h": 844,
-      "title": "18 Favoriten",
+      "title": "26 Stil Flocke",
       "page": "iphone"
     },
-    "F-iPhone-19-Favoriten-leer.dc.html": {
+    "F-iPhone-27-Gefuehrt-2-Stil-Stern.dc.html": {
       "x": 470,
       "y": 5392,
       "w": 390,
       "h": 844,
-      "title": "19 Favoriten leer",
+      "title": "27 Stil Stern",
       "page": "iphone"
     },
-    "F-iPhone-20-Favoriten-Menue.dc.html": {
+    "F-iPhone-28-Gefuehrt-3-Leicht.dc.html": {
       "x": 940,
       "y": 5392,
       "w": 390,
       "h": 844,
-      "title": "20 Favoriten Menü",
+      "title": "28 Geführt 3 Aufwand Leicht",
       "page": "iphone"
     },
-    "F-iPhone-21-Muster-Detail.dc.html": {
+    "F-iPhone-29-Gefuehrt-3-Aufwendig.dc.html": {
       "x": 1410,
       "y": 5392,
       "w": 390,
       "h": 844,
-      "title": "21 Fertiges Muster",
+      "title": "29 Geführt 3 Aufwand Aufwendig",
       "page": "iphone"
     },
-    "F-iPhone-22-Editor-klein.dc.html": {
-      "x": 0,
-      "y": 6596,
-      "w": 390,
-      "h": 844,
-      "title": "22 Sheet klein",
-      "page": "iphone"
-    },
-    "F-iPhone-23-Editor-mittel-Aeste.dc.html": {
-      "x": 470,
-      "y": 6596,
-      "w": 390,
-      "h": 844,
-      "title": "23 Äste (Warnung, Basis)",
-      "page": "iphone"
-    },
-    "F-iPhone-24-Editor-gross-Aeste.dc.html": {
-      "x": 940,
-      "y": 6596,
-      "w": 390,
-      "h": 844,
-      "title": "24 Äste",
-      "page": "iphone"
-    },
-    "F-iPhone-25-Editor-mittel-Grundform.dc.html": {
-      "x": 1410,
-      "y": 6596,
-      "w": 390,
-      "h": 844,
-      "title": "25 Grundform",
-      "page": "iphone"
-    },
-    "F-iPhone-26-Editor-mittel-Stern1.dc.html": {
+    "F-iPhone-30-Gefuehrt-4-Farben-Leicht.dc.html": {
       "x": 1880,
-      "y": 6596,
+      "y": 5392,
       "w": 390,
       "h": 844,
-      "title": "26 Stern 1",
+      "title": "30 Geführt 4 Farben Leicht",
       "page": "iphone"
     },
-    "F-iPhone-27-Editor-mittel-Karte.dc.html": {
-      "x": 0,
-      "y": 7800,
-      "w": 390,
-      "h": 844,
-      "title": "27 Karte",
-      "page": "iphone"
-    },
-    "F-iPhone-28-Editor-gross-Karte.dc.html": {
-      "x": 470,
-      "y": 7800,
-      "w": 390,
-      "h": 844,
-      "title": "28 Karte mit Farben",
-      "page": "iphone"
-    },
-    "F-iPhone-29-Editor-kein-Fehler.dc.html": {
-      "x": 940,
-      "y": 7800,
-      "w": 390,
-      "h": 844,
-      "title": "29 kein Fehler",
-      "page": "iphone"
-    },
-    "F-iPhone-30-Editor-kritisch.dc.html": {
-      "x": 1410,
-      "y": 7800,
-      "w": 390,
-      "h": 844,
-      "title": "30 kritisch",
-      "page": "iphone"
-    },
-    "F-iPhone-31-Editor-Stern2-aus.dc.html": {
-      "x": 1880,
-      "y": 7800,
-      "w": 390,
-      "h": 844,
-      "title": "31 mittel",
-      "page": "iphone"
-    },
-    "F-iPhone-32-Editor-gross-Stern2-aus.dc.html": {
+    "F-iPhone-31-Gefuehrt-4-Farben-Aufwendig.dc.html": {
       "x": 2350,
+      "y": 5392,
+      "w": 390,
+      "h": 844,
+      "title": "31 Geführt 4 Farben Aufwendig",
+      "page": "iphone"
+    },
+    "F-iPhone-32-Gefuehrt-5-Variante2.dc.html": {
+      "x": 2820,
+      "y": 5392,
+      "w": 390,
+      "h": 844,
+      "title": "32 Geführt 5 Auswahl Variante 2",
+      "page": "iphone"
+    },
+    "F-iPhone-33-Gefuehrt-Abbruch.dc.html": {
+      "x": 3290,
+      "y": 5392,
+      "w": 390,
+      "h": 844,
+      "title": "33 Geführt Abbruch",
+      "page": "iphone"
+    },
+    "F-iPhone-34-Favoriten.dc.html": {
+      "x": 0,
+      "y": 6596,
+      "w": 390,
+      "h": 844,
+      "title": "34 Favoriten",
+      "page": "iphone"
+    },
+    "F-iPhone-35-Favoriten-leer.dc.html": {
+      "x": 470,
+      "y": 6596,
+      "w": 390,
+      "h": 844,
+      "title": "35 Favoriten leer",
+      "page": "iphone"
+    },
+    "F-iPhone-36-Favoriten-Menue.dc.html": {
+      "x": 940,
+      "y": 6596,
+      "w": 390,
+      "h": 844,
+      "title": "36 Favoriten Menü",
+      "page": "iphone"
+    },
+    "F-iPhone-37-Favoriten-Umbenennen.dc.html": {
+      "x": 1410,
+      "y": 6596,
+      "w": 390,
+      "h": 844,
+      "title": "37 Umbenennen",
+      "page": "iphone"
+    },
+    "F-iPhone-38-Favoriten-Loeschen.dc.html": {
+      "x": 1880,
+      "y": 6596,
+      "w": 390,
+      "h": 844,
+      "title": "38 Löschabfrage",
+      "page": "iphone"
+    },
+    "F-iPhone-39-Muster-Detail.dc.html": {
+      "x": 2350,
+      "y": 6596,
+      "w": 390,
+      "h": 844,
+      "title": "39 Fertiges Muster",
+      "page": "iphone"
+    },
+    "F-iPhone-40-Editor-klein.dc.html": {
+      "x": 0,
       "y": 7800,
       "w": 390,
       "h": 844,
-      "title": "32 groß",
+      "title": "40 Sheet klein",
       "page": "iphone"
     },
-    "F-iPhone-33-Stichfolge-Lochmuster.dc.html": {
+    "F-iPhone-41-Editor-mittel-Aeste.dc.html": {
+      "x": 470,
+      "y": 7800,
+      "w": 390,
+      "h": 844,
+      "title": "41 Äste (Warnung, Basis)",
+      "page": "iphone"
+    },
+    "F-iPhone-42-Editor-gross-Aeste.dc.html": {
+      "x": 940,
+      "y": 7800,
+      "w": 390,
+      "h": 844,
+      "title": "42 Äste",
+      "page": "iphone"
+    },
+    "F-iPhone-43-Editor-mittel-Grundform.dc.html": {
+      "x": 1410,
+      "y": 7800,
+      "w": 390,
+      "h": 844,
+      "title": "43 Grundform",
+      "page": "iphone"
+    },
+    "F-iPhone-44-Editor-mittel-Stern1.dc.html": {
+      "x": 1880,
+      "y": 7800,
+      "w": 390,
+      "h": 844,
+      "title": "44 Stern 1",
+      "page": "iphone"
+    },
+    "F-iPhone-45-Editor-mittel-Karte.dc.html": {
       "x": 0,
       "y": 9004,
       "w": 390,
       "h": 844,
-      "title": "33 Stichfolge Lochmuster",
+      "title": "45 Karte",
       "page": "iphone"
     },
-    "F-iPhone-34-Stichfolge-Aeste.dc.html": {
+    "F-iPhone-46-Editor-gross-Karte.dc.html": {
       "x": 470,
       "y": 9004,
       "w": 390,
       "h": 844,
-      "title": "34 Stichfolge Äste",
+      "title": "46 Karte mit Farben",
       "page": "iphone"
     },
-    "F-iPhone-35-Stichfolge-Stern1.dc.html": {
+    "F-iPhone-47-Editor-kein-Fehler.dc.html": {
       "x": 940,
       "y": 9004,
       "w": 390,
       "h": 844,
-      "title": "35 Stichfolge Stern 1",
+      "title": "47 kein Fehler",
       "page": "iphone"
     },
-    "F-iPhone-36-Stichfolge-Stern2.dc.html": {
+    "F-iPhone-48-Editor-kritisch.dc.html": {
       "x": 1410,
       "y": 9004,
       "w": 390,
       "h": 844,
-      "title": "36 Stichfolge Stern 2",
+      "title": "48 kritisch",
       "page": "iphone"
     },
-    "F-iPhone-37-Stichfolge-Gesamtbild.dc.html": {
+    "F-iPhone-49-Editor-Stern2-aus.dc.html": {
       "x": 1880,
       "y": 9004,
       "w": 390,
       "h": 844,
-      "title": "37 Stichfolge Gesamtbild",
+      "title": "49 mittel",
       "page": "iphone"
     },
-    "F-iPhone-38-Stichfolge-Stern2-aus.dc.html": {
+    "F-iPhone-50-Editor-gross-Stern2-aus.dc.html": {
       "x": 2350,
       "y": 9004,
       "w": 390,
       "h": 844,
-      "title": "38 Stichfolge, Stern 2 aus",
+      "title": "50 groß",
+      "page": "iphone"
+    },
+    "F-iPhone-51-Meldung-Abhilfe.dc.html": {
+      "x": 0,
+      "y": 10208,
+      "w": 390,
+      "h": 844,
+      "title": "51 Meldung antippen: Abhilfe",
+      "page": "iphone"
+    },
+    "F-iPhone-52-Zuruecksetzen-Button.dc.html": {
+      "x": 470,
+      "y": 10208,
+      "w": 390,
+      "h": 844,
+      "title": "52 Groß mit Zurücksetzen",
+      "page": "iphone"
+    },
+    "F-iPhone-53-Zuruecksetzen-Abfrage.dc.html": {
+      "x": 940,
+      "y": 10208,
+      "w": 390,
+      "h": 844,
+      "title": "53 Abfrage",
+      "page": "iphone"
+    },
+    "F-iPhone-54-Eigenformat.dc.html": {
+      "x": 1410,
+      "y": 10208,
+      "w": 390,
+      "h": 844,
+      "title": "54 Eigenformat",
+      "page": "iphone"
+    },
+    "F-iPhone-55-Eigenformat-zu-gross.dc.html": {
+      "x": 1880,
+      "y": 10208,
+      "w": 390,
+      "h": 844,
+      "title": "55 Eigenformat zu groß",
+      "page": "iphone"
+    },
+    "F-iPhone-56-Stichfolge-Lochmuster.dc.html": {
+      "x": 0,
+      "y": 11412,
+      "w": 390,
+      "h": 844,
+      "title": "56 Stichfolge Lochmuster",
+      "page": "iphone"
+    },
+    "F-iPhone-57-Stichfolge-Aeste.dc.html": {
+      "x": 470,
+      "y": 11412,
+      "w": 390,
+      "h": 844,
+      "title": "57 Stichfolge Äste",
+      "page": "iphone"
+    },
+    "F-iPhone-58-Stichfolge-Stern1.dc.html": {
+      "x": 940,
+      "y": 11412,
+      "w": 390,
+      "h": 844,
+      "title": "58 Stichfolge Stern 1",
+      "page": "iphone"
+    },
+    "F-iPhone-59-Stichfolge-Stern2.dc.html": {
+      "x": 1410,
+      "y": 11412,
+      "w": 390,
+      "h": 844,
+      "title": "59 Stichfolge Stern 2",
+      "page": "iphone"
+    },
+    "F-iPhone-60-Stichfolge-Gesamtbild.dc.html": {
+      "x": 1880,
+      "y": 11412,
+      "w": 390,
+      "h": 844,
+      "title": "60 Stichfolge Gesamtbild",
+      "page": "iphone"
+    },
+    "F-iPhone-61-Stichfolge-Stern2-aus.dc.html": {
+      "x": 2350,
+      "y": 11412,
+      "w": 390,
+      "h": 844,
+      "title": "61 Stichfolge, Stern 2 aus",
+      "page": "iphone"
+    },
+    "F-iPhone-62-Quer-Editor.dc.html": {
+      "x": 0,
+      "y": 12616,
+      "w": 844,
+      "h": 390,
+      "title": "62 Editor",
+      "page": "iphone"
+    },
+    "F-iPhone-63-Quer-Stichfolge.dc.html": {
+      "x": 924,
+      "y": 12616,
+      "w": 844,
+      "h": 390,
+      "title": "63 Stichfolge",
+      "page": "iphone"
+    },
+    "F-iPhone-64-Quer-Gefuehrt-Aufwand.dc.html": {
+      "x": 1848,
+      "y": 12616,
+      "w": 844,
+      "h": 390,
+      "title": "64 Geführt 3 Aufwand",
+      "page": "iphone"
+    },
+    "F-iPhone-65-Dunkel-Start.dc.html": {
+      "x": 0,
+      "y": 13366,
+      "w": 390,
+      "h": 844,
+      "title": "65 Start",
+      "page": "iphone"
+    },
+    "F-iPhone-66-Dunkel-Editor.dc.html": {
+      "x": 470,
+      "y": 13366,
+      "w": 390,
+      "h": 844,
+      "title": "66 Editor",
+      "page": "iphone"
+    },
+    "F-iPhone-67-Dunkel-Gefuehrt.dc.html": {
+      "x": 940,
+      "y": 13366,
+      "w": 390,
+      "h": 844,
+      "title": "67 Geführt 3",
+      "page": "iphone"
+    },
+    "F-iPhone-68-GrosseSchrift-Gefuehrt.dc.html": {
+      "x": 1410,
+      "y": 13366,
+      "w": 390,
+      "h": 844,
+      "title": "68 Geführt 3",
+      "page": "iphone"
+    },
+    "F-iPhone-69-GrosseSchrift-Editor.dc.html": {
+      "x": 1880,
+      "y": 13366,
+      "w": 390,
+      "h": 844,
+      "title": "69 Editor",
       "page": "iphone"
     },
     "F-iPad-00-Designregeln.dc.html": {
@@ -747,6 +1353,14 @@
       "w": 1280,
       "h": 1420,
       "title": "Designregeln",
+      "page": "ipad"
+    },
+    "F-iPad-00b-Designregeln-2.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 980,
+      "title": "Designregeln 2",
       "page": "ipad"
     },
     "F-iPad-01-Start.dc.html": {
@@ -781,365 +1395,237 @@
       "title": "04 Ausgabe, Kompakt nicht verfügbar",
       "page": "ipad"
     },
-    "F-iPad-05-1-Format.dc.html": {
+    "F-iPad-05-Einstellungen.dc.html": {
       "x": 0,
       "y": 2960,
       "w": 1180,
       "h": 820,
-      "title": "05 Geführt 1 Format",
+      "title": "05 Einstellungen",
       "page": "ipad"
     },
-    "F-iPad-06-2-Stil.dc.html": {
+    "F-iPad-06-Hilfe.dc.html": {
       "x": 1260,
       "y": 2960,
       "w": 1180,
       "h": 820,
-      "title": "06 Geführt 2 Stil",
+      "title": "06 Hilfe und Glossar",
       "page": "ipad"
     },
-    "F-iPad-07-3-Aufwand.dc.html": {
+    "F-iPad-07-Glossar.dc.html": {
       "x": 2520,
       "y": 2960,
       "w": 1180,
       "h": 820,
-      "title": "07 Geführt 3 Aufwand",
+      "title": "07 Glossar",
       "page": "ipad"
     },
-    "F-iPad-08-4-Farben.dc.html": {
+    "F-iPad-08-Info.dc.html": {
       "x": 3780,
       "y": 2960,
       "w": 1180,
       "h": 820,
-      "title": "08 Geführt 4 Farben",
+      "title": "08 Info und Datenschutz",
       "page": "ipad"
     },
-    "F-iPad-09-5-Auswahl.dc.html": {
+    "F-iPad-09-Einfuehrung.dc.html": {
       "x": 5040,
       "y": 2960,
       "w": 1180,
       "h": 820,
-      "title": "09 Geführt 5 Auswahl",
+      "title": "09 Einführung",
       "page": "ipad"
     },
-    "F-iPad-10-6-Ergebnis.dc.html": {
+    "F-iPad-10-Stichfolge-Lochmuster.dc.html": {
+      "x": 0,
+      "y": 4140,
+      "w": 1180,
+      "h": 820,
+      "title": "10 Lochmuster",
+      "page": "ipad"
+    },
+    "F-iPad-11-Stichfolge-Aeste.dc.html": {
+      "x": 1260,
+      "y": 4140,
+      "w": 1180,
+      "h": 820,
+      "title": "11 Äste",
+      "page": "ipad"
+    },
+    "F-iPad-12-Stichfolge-Gesamtbild.dc.html": {
+      "x": 2520,
+      "y": 4140,
+      "w": 1180,
+      "h": 820,
+      "title": "12 Gesamtbild",
+      "page": "ipad"
+    },
+    "F-iPad-13-1-Format.dc.html": {
+      "x": 0,
+      "y": 5320,
+      "w": 1180,
+      "h": 820,
+      "title": "13 Geführt 1 Format",
+      "page": "ipad"
+    },
+    "F-iPad-14-2-Stil.dc.html": {
+      "x": 1260,
+      "y": 5320,
+      "w": 1180,
+      "h": 820,
+      "title": "14 Geführt 2 Stil",
+      "page": "ipad"
+    },
+    "F-iPad-15-3-Aufwand.dc.html": {
+      "x": 2520,
+      "y": 5320,
+      "w": 1180,
+      "h": 820,
+      "title": "15 Geführt 3 Aufwand",
+      "page": "ipad"
+    },
+    "F-iPad-16-4-Farben.dc.html": {
+      "x": 3780,
+      "y": 5320,
+      "w": 1180,
+      "h": 820,
+      "title": "16 Geführt 4 Farben",
+      "page": "ipad"
+    },
+    "F-iPad-17-5-Auswahl.dc.html": {
+      "x": 5040,
+      "y": 5320,
+      "w": 1180,
+      "h": 820,
+      "title": "17 Geführt 5 Auswahl",
+      "page": "ipad"
+    },
+    "F-iPad-18-6-Ergebnis.dc.html": {
       "x": 6300,
-      "y": 2960,
-      "w": 1180,
-      "h": 820,
-      "title": "10 Geführt 6 Ergebnis",
-      "page": "ipad"
-    },
-    "F-iPad-11-4-Farben-Leicht.dc.html": {
-      "x": 0,
-      "y": 4140,
-      "w": 1180,
-      "h": 820,
-      "title": "11 Geführt 4 Farben Leicht",
-      "page": "ipad"
-    },
-    "F-iPad-12-4-Farben-Aufwendig.dc.html": {
-      "x": 1260,
-      "y": 4140,
-      "w": 1180,
-      "h": 820,
-      "title": "12 Geführt 4 Farben Aufwendig",
-      "page": "ipad"
-    },
-    "F-iPad-13-Abbruch.dc.html": {
-      "x": 2520,
-      "y": 4140,
-      "w": 1180,
-      "h": 820,
-      "title": "13 Geführt Abbruch",
-      "page": "ipad"
-    },
-    "F-iPad-14-Favoriten.dc.html": {
-      "x": 0,
       "y": 5320,
       "w": 1180,
       "h": 820,
-      "title": "14 Favoriten",
+      "title": "18 Geführt 6 Ergebnis",
       "page": "ipad"
     },
-    "F-iPad-15-Muster-Detail.dc.html": {
-      "x": 1260,
-      "y": 5320,
+    "F-iPad-19-2-Stil-Flocke.dc.html": {
+      "x": 0,
+      "y": 6500,
       "w": 1180,
       "h": 820,
-      "title": "15 Fertiges Muster",
+      "title": "19 Stil Flocke",
       "page": "ipad"
     },
-    "iPhone-Einstellungen.dc.html": {
-      "x": 0,
-      "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "Einstellungen",
-      "page": "luecken"
-    },
-    "iPhone-Hilfe.dc.html": {
-      "x": 470,
-      "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "Hilfe",
-      "page": "luecken"
-    },
-    "iPhone-Hilfe-Thema.dc.html": {
-      "x": 940,
-      "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "Hilfe · Thema Warnungen",
-      "page": "luecken"
-    },
-    "iPhone-Glossar.dc.html": {
-      "x": 1410,
-      "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "Glossar",
-      "page": "luecken"
-    },
-    "iPhone-Info.dc.html": {
-      "x": 1880,
-      "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "Info und Datenschutz",
-      "page": "luecken"
-    },
-    "iPhone-Zuruecksetzen.dc.html": {
-      "x": 2350,
-      "y": 0,
-      "w": 390,
-      "h": 844,
-      "title": "Alles zurücksetzen (Abfrage)",
-      "page": "luecken"
-    },
-    "iPhone-Einfuehrung-1.dc.html": {
-      "x": 0,
-      "y": 1204,
-      "w": 390,
-      "h": 844,
-      "title": "Einführung 1",
-      "page": "luecken"
-    },
-    "iPhone-Einfuehrung-2.dc.html": {
-      "x": 470,
-      "y": 1204,
-      "w": 390,
-      "h": 844,
-      "title": "Einführung 2",
-      "page": "luecken"
-    },
-    "iPhone-Einfuehrung-3.dc.html": {
-      "x": 940,
-      "y": 1204,
-      "w": 390,
-      "h": 844,
-      "title": "Einführung 3",
-      "page": "luecken"
-    },
-    "iPhone-Kontexthilfe.dc.html": {
-      "x": 1410,
-      "y": 1204,
-      "w": 390,
-      "h": 844,
-      "title": "Kontexthilfe im Editor",
-      "page": "luecken"
-    },
-    "iPhone-Favoriten-Umbenennen.dc.html": {
-      "x": 0,
-      "y": 2408,
-      "w": 390,
-      "h": 844,
-      "title": "Favoriten · Umbenennen",
-      "page": "luecken"
-    },
-    "iPhone-Favoriten-Loeschen.dc.html": {
-      "x": 470,
-      "y": 2408,
-      "w": 390,
-      "h": 844,
-      "title": "Favoriten · Löschabfrage",
-      "page": "luecken"
-    },
-    "Gefuehrt-iPhone-2b-Stil-Flocke.dc.html": {
-      "x": 940,
-      "y": 2408,
-      "w": 390,
-      "h": 844,
-      "title": "Geführt 2 · Stil Flocke",
-      "page": "luecken"
-    },
-    "Gefuehrt-iPhone-2c-Stil-Stern.dc.html": {
-      "x": 1410,
-      "y": 2408,
-      "w": 390,
-      "h": 844,
-      "title": "Geführt 2 · Stil Stern",
-      "page": "luecken"
-    },
-    "iPhone-Quer-Editor.dc.html": {
-      "x": 0,
-      "y": 3612,
-      "w": 844,
-      "h": 390,
-      "title": "Querformat · Editor",
-      "page": "luecken"
-    },
-    "iPhone-Quer-Stichfolge.dc.html": {
-      "x": 924,
-      "y": 3612,
-      "w": 844,
-      "h": 390,
-      "title": "Querformat · Stichfolge",
-      "page": "luecken"
-    },
-    "iPhone-Quer-Gefuehrt-Aufwand.dc.html": {
-      "x": 1848,
-      "y": 3612,
-      "w": 844,
-      "h": 390,
-      "title": "Querformat · Geführt 3 Aufwand",
-      "page": "luecken"
-    },
-    "iPad-Einstellungen.dc.html": {
-      "x": 0,
-      "y": 4362,
-      "w": 1180,
-      "h": 820,
-      "title": "Einstellungen",
-      "page": "luecken"
-    },
-    "iPad-Hilfe.dc.html": {
+    "F-iPad-20-2-Stil-Stern.dc.html": {
       "x": 1260,
-      "y": 4362,
+      "y": 6500,
       "w": 1180,
       "h": 820,
-      "title": "Hilfe und Glossar",
-      "page": "luecken"
+      "title": "20 Stil Stern",
+      "page": "ipad"
     },
-    "iPad-Glossar.dc.html": {
+    "F-iPad-21-3-Aufwand-Leicht.dc.html": {
       "x": 2520,
-      "y": 4362,
+      "y": 6500,
       "w": 1180,
       "h": 820,
-      "title": "Glossar",
-      "page": "luecken"
+      "title": "21 Aufwand Leicht",
+      "page": "ipad"
     },
-    "iPad-Info.dc.html": {
+    "F-iPad-22-3-Aufwand-Aufwendig.dc.html": {
       "x": 3780,
-      "y": 4362,
+      "y": 6500,
       "w": 1180,
       "h": 820,
-      "title": "Info und Datenschutz",
-      "page": "luecken"
+      "title": "22 Aufwand Aufwendig",
+      "page": "ipad"
     },
-    "iPad-Einfuehrung.dc.html": {
+    "F-iPad-23-4-Farben-Leicht.dc.html": {
       "x": 5040,
-      "y": 4362,
+      "y": 6500,
       "w": 1180,
       "h": 820,
-      "title": "Einführung",
-      "page": "luecken"
+      "title": "23 Geführt 4 Farben Leicht",
+      "page": "ipad"
     },
-    "iPad-Stichfolge-Lochmuster.dc.html": {
+    "F-iPad-24-4-Farben-Aufwendig.dc.html": {
+      "x": 6300,
+      "y": 6500,
+      "w": 1180,
+      "h": 820,
+      "title": "24 Geführt 4 Farben Aufwendig",
+      "page": "ipad"
+    },
+    "F-iPad-25-Abbruch.dc.html": {
+      "x": 7560,
+      "y": 6500,
+      "w": 1180,
+      "h": 820,
+      "title": "25 Geführt Abbruch",
+      "page": "ipad"
+    },
+    "F-iPad-26-Favoriten.dc.html": {
       "x": 0,
-      "y": 5542,
+      "y": 7680,
       "w": 1180,
       "h": 820,
-      "title": "Stichfolge · Lochmuster",
-      "page": "luecken"
+      "title": "26 Favoriten",
+      "page": "ipad"
     },
-    "iPad-Stichfolge-Aeste.dc.html": {
+    "F-iPad-27-Muster-Detail.dc.html": {
       "x": 1260,
-      "y": 5542,
+      "y": 7680,
       "w": 1180,
       "h": 820,
-      "title": "Stichfolge · Äste",
-      "page": "luecken"
+      "title": "27 Fertiges Muster",
+      "page": "ipad"
     },
-    "iPad-Stichfolge-Gesamtbild.dc.html": {
-      "x": 2520,
-      "y": 5542,
-      "w": 1180,
-      "h": 820,
-      "title": "Stichfolge · Gesamtbild",
-      "page": "luecken"
-    },
-    "Gefuehrt-iPad-3b-Aufwand-Leicht.dc.html": {
+    "F-iPad-28-Hochformat-Start.dc.html": {
       "x": 0,
-      "y": 6722,
-      "w": 1180,
-      "h": 820,
-      "title": "Geführt 3 · Aufwand Leicht",
-      "page": "luecken"
-    },
-    "Gefuehrt-iPad-3c-Aufwand-Aufwendig.dc.html": {
-      "x": 1260,
-      "y": 6722,
-      "w": 1180,
-      "h": 820,
-      "title": "Geführt 3 · Aufwand Aufwendig",
-      "page": "luecken"
-    },
-    "Gefuehrt-iPad-2b-Stil-Flocke.dc.html": {
-      "x": 2520,
-      "y": 6722,
-      "w": 1180,
-      "h": 820,
-      "title": "Geführt 2 · Stil Flocke",
-      "page": "luecken"
-    },
-    "Gefuehrt-iPad-2c-Stil-Stern.dc.html": {
-      "x": 3780,
-      "y": 6722,
-      "w": 1180,
-      "h": 820,
-      "title": "Geführt 2 · Stil Stern",
-      "page": "luecken"
-    },
-    "iPad-Hochformat-Start.dc.html": {
-      "x": 0,
-      "y": 7902,
+      "y": 8860,
       "w": 820,
       "h": 1180,
-      "title": "Hochformat · Start",
-      "page": "luecken"
+      "title": "28 Start",
+      "page": "ipad"
     },
-    "iPad-Hochformat-Editor.dc.html": {
+    "F-iPad-29-Hochformat-Editor.dc.html": {
       "x": 900,
-      "y": 7902,
+      "y": 8860,
       "w": 820,
       "h": 1180,
-      "title": "Hochformat · Editor",
-      "page": "luecken"
+      "title": "29 Editor",
+      "page": "ipad"
     },
-    "iPad-Hochformat-Gefuehrt-Aufwand.dc.html": {
+    "F-iPad-30-Hochformat-Gefuehrt-Aufwand.dc.html": {
       "x": 1800,
-      "y": 7902,
+      "y": 8860,
       "w": 820,
       "h": 1180,
-      "title": "Hochformat · Geführt 3 Aufwand",
-      "page": "luecken"
+      "title": "30 Geführt 3 Aufwand",
+      "page": "ipad"
     },
-    "iPad-Teilfenster-Start.dc.html": {
+    "F-iPad-31-Teilfenster-Start.dc.html": {
       "x": 0,
-      "y": 9442,
+      "y": 10400,
       "w": 1180,
       "h": 820,
-      "title": "Teilfenster · Start",
-      "page": "luecken"
+      "title": "31 Start",
+      "page": "ipad"
     },
-    "iPad-Teilfenster-Editor.dc.html": {
+    "F-iPad-32-Teilfenster-Editor.dc.html": {
       "x": 1260,
-      "y": 9442,
+      "y": 10400,
       "w": 1180,
       "h": 820,
-      "title": "Teilfenster · Editor",
-      "page": "luecken"
+      "title": "32 Editor",
+      "page": "ipad"
+    },
+    "F-iPad-33-Dunkel-Editor.dc.html": {
+      "x": 2520,
+      "y": 10400,
+      "w": 1180,
+      "h": 820,
+      "title": "33 Editor",
+      "page": "ipad"
     }
   },
   "createdOnFiles": {
@@ -1156,7 +1642,7 @@
       "y": -240,
       "text": "Konzept und Regeln",
       "kind": "title1",
-      "maxW": 6800,
+      "maxW": 8300,
       "page": "arbeit",
       "w": 240
     },
@@ -1268,6 +1754,124 @@
       "page": "arbeit",
       "w": 240
     },
+    "a20": {
+      "x": 0,
+      "y": 15960,
+      "text": "iPhone · Mehr-Bereich",
+      "kind": "title1",
+      "maxW": 2820,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a21": {
+      "x": 0,
+      "y": 17164,
+      "text": "iPhone · Einführung und Kontexthilfe",
+      "kind": "title1",
+      "maxW": 2350,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a22": {
+      "x": 0,
+      "y": 18368,
+      "text": "iPhone · Favoriten-Aktionen und Geführter Weg: Stil",
+      "kind": "title1",
+      "maxW": 1880,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a23": {
+      "x": 0,
+      "y": 19572,
+      "text": "iPhone · Editor: Abhilfe, Zurücksetzen, Eigenformat",
+      "kind": "title1",
+      "maxW": 2350,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a24": {
+      "x": 0,
+      "y": 20776,
+      "text": "iPhone · Ausgabe: Zustände",
+      "kind": "title1",
+      "maxW": 1410,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a25": {
+      "x": 0,
+      "y": 21980,
+      "text": "iPhone · Querformat",
+      "kind": "title1",
+      "maxW": 2772,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a26": {
+      "x": 0,
+      "y": 22730,
+      "text": "iPhone · Dunkel und größte Schrift",
+      "kind": "title1",
+      "maxW": 2350,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a27": {
+      "x": 0,
+      "y": 23934,
+      "text": "iPad · Mehr und Einführung",
+      "kind": "title1",
+      "maxW": 6300,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a28": {
+      "x": 0,
+      "y": 25114,
+      "text": "iPad · Stichfolge",
+      "kind": "title1",
+      "maxW": 3780,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a29": {
+      "x": 0,
+      "y": 26294,
+      "text": "iPad · Geführter Weg: Stil und Aufwand",
+      "kind": "title1",
+      "maxW": 5040,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a30": {
+      "x": 0,
+      "y": 27474,
+      "text": "iPad · Hochformat",
+      "kind": "title1",
+      "maxW": 2700,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a31": {
+      "x": 0,
+      "y": 29014,
+      "text": "iPad · Teilfenster (Slide Over) und Dunkel",
+      "kind": "title1",
+      "maxW": 3780,
+      "page": "arbeit",
+      "w": 240
+    },
+    "a_dec": {
+      "x": 3000,
+      "y": 16200,
+      "w": 560,
+      "maxH": 1200,
+      "fill": "orange",
+      "size": 24,
+      "page": "arbeit",
+      "text": "Neue Entscheidungen (zum Prüfen)\n\n• Einstellungen minimal: Standardformat, Falz, Haptik, „Weitermachen“ anzeigen.\n• Hilfe: Themenseiten + Glossar. Kontexthilfe: Info-Symbol im Sheet-Kopf je Gruppe.\n• Einführung: 3 Seiten, überspringbar, unter Mehr wieder aufrufbar.\n• Meldung antippen: Abhilfe mit Sprung zum Regler.\n• Zurücksetzen: je Gruppe oder ganzes Muster, mit Abfrage.\n• Eigenformat nur unter „Erweitert“, Höchstmaß sichtbar, ungültig = rote Meldung.\n• Ausgabe: gesperrt bei kritisch (mit Erklärung), Erstellen, Fehler.\n• Unter ca. 420 pt Breite gilt das iPhone-Layout.\n• Dunkel: Flächen warm dunkel, Karten unverändert."
+    },
     "iphone_r0": {
       "x": 0,
       "y": -240,
@@ -1291,70 +1895,106 @@
       "y": 1540,
       "text": "Navigation und Ausgabe",
       "kind": "title1",
-      "maxW": 1880,
+      "maxW": 3760,
       "page": "iphone",
       "w": 240
     },
     "iphone_r2": {
       "x": 0,
       "y": 2744,
-      "text": "Geführter Weg",
+      "text": "Mehr-Bereich, Einführung, Hilfe",
       "kind": "title1",
-      "maxW": 3290,
+      "maxW": 4700,
       "page": "iphone",
       "w": 240
     },
     "iphone_r3": {
       "x": 0,
       "y": 3948,
-      "text": "Geführter Weg: weitere Zustände",
+      "text": "Geführter Weg",
       "kind": "title1",
-      "maxW": 2820,
+      "maxW": 3290,
       "page": "iphone",
       "w": 240
     },
     "iphone_r4": {
       "x": 0,
       "y": 5152,
-      "text": "Muster und Favoriten",
+      "text": "Geführter Weg: weitere Zustände",
       "kind": "title1",
-      "maxW": 1880,
+      "maxW": 3760,
       "page": "iphone",
       "w": 240
     },
     "iphone_r5": {
       "x": 0,
       "y": 6356,
-      "text": "Editor: Sheet-Stufen und Gruppen",
+      "text": "Muster und Favoriten",
       "kind": "title1",
-      "maxW": 2350,
+      "maxW": 2820,
       "page": "iphone",
       "w": 240
     },
     "iphone_r6": {
       "x": 0,
       "y": 7560,
-      "text": "Editor: Karte und Meldungen",
+      "text": "Editor: Sheet-Stufen und Gruppen",
       "kind": "title1",
-      "maxW": 2820,
+      "maxW": 2350,
       "page": "iphone",
       "w": 240
     },
     "iphone_r7": {
       "x": 0,
       "y": 8764,
+      "text": "Editor: Karte und Meldungen",
+      "kind": "title1",
+      "maxW": 2820,
+      "page": "iphone",
+      "w": 240
+    },
+    "iphone_r8": {
+      "x": 0,
+      "y": 9968,
+      "text": "Editor: Abhilfe, Zurücksetzen, Eigenformat",
+      "kind": "title1",
+      "maxW": 2350,
+      "page": "iphone",
+      "w": 240
+    },
+    "iphone_r9": {
+      "x": 0,
+      "y": 11172,
       "text": "Stichfolge (5 Abschnitte)",
       "kind": "title1",
       "maxW": 2820,
       "page": "iphone",
       "w": 240
     },
+    "iphone_r10": {
+      "x": 0,
+      "y": 12376,
+      "text": "Querformat",
+      "kind": "title1",
+      "maxW": 1410,
+      "page": "iphone",
+      "w": 240
+    },
+    "iphone_r11": {
+      "x": 0,
+      "y": 13126,
+      "text": "Dunkel und größte Schrift",
+      "kind": "title1",
+      "maxW": 2350,
+      "page": "iphone",
+      "w": 240
+    },
     "iphone_open": {
-      "x": 1410,
-      "y": 1780,
+      "x": 2720,
+      "y": 0,
       "w": 520,
       "maxH": 900,
-      "text": "Noch offen (iPhone)\n\n• Einführung und Hilfe\n• Querformat",
+      "text": "Hinweise (iPhone)\n\n• Texte in Einführung, Hilfe, Glossar sind Platzhalter\n• Impressum und Verteilung (E1) offen\n• Nichts davon ist auf einem Gerät geprüft",
       "fill": "orange",
       "size": 24,
       "page": "iphone"
@@ -1389,16 +2029,16 @@
     "ipad_r2": {
       "x": 0,
       "y": 2720,
-      "text": "Geführter Weg",
+      "text": "Mehr, Hilfe, Einführung",
       "kind": "title1",
-      "maxW": 7560,
+      "maxW": 6300,
       "page": "ipad",
       "w": 240
     },
     "ipad_r3": {
       "x": 0,
       "y": 3900,
-      "text": "Geführter Weg: weitere Zustände",
+      "text": "Stichfolge",
       "kind": "title1",
       "maxW": 3780,
       "page": "ipad",
@@ -1407,111 +2047,57 @@
     "ipad_r4": {
       "x": 0,
       "y": 5080,
+      "text": "Geführter Weg",
+      "kind": "title1",
+      "maxW": 7560,
+      "page": "ipad",
+      "w": 240
+    },
+    "ipad_r5": {
+      "x": 0,
+      "y": 6260,
+      "text": "Geführter Weg: weitere Zustände",
+      "kind": "title1",
+      "maxW": 8820,
+      "page": "ipad",
+      "w": 240
+    },
+    "ipad_r6": {
+      "x": 0,
+      "y": 7440,
       "text": "Muster und Favoriten",
       "kind": "title1",
       "maxW": 2520,
       "page": "ipad",
       "w": 240
     },
+    "ipad_r7": {
+      "x": 0,
+      "y": 8620,
+      "text": "Hochformat",
+      "kind": "title1",
+      "maxW": 3780,
+      "page": "ipad",
+      "w": 240
+    },
+    "ipad_r8": {
+      "x": 0,
+      "y": 10160,
+      "text": "Teilfenster und Dunkel",
+      "kind": "title1",
+      "maxW": 3780,
+      "page": "ipad",
+      "w": 240
+    },
     "ipad_open": {
-      "x": 3780,
-      "y": 1780,
+      "x": 2720,
+      "y": 0,
       "w": 520,
       "maxH": 900,
-      "text": "Noch offen (iPad)\n\n• Stichfolge\n• Mehr, Hilfe, Einstellungen\n• Hochformat und Teilfenster",
+      "text": "Hinweise (iPad)\n\n• Split View (mittlere Breite) nicht gezeichnet\n• Impressum und Verteilung (E1) offen\n• Nichts davon ist auf einem Gerät geprüft",
       "fill": "orange",
       "size": 24,
       "page": "ipad"
-    },
-    "lu_r0": {
-      "x": 0,
-      "y": -240,
-      "text": "iPhone · Mehr-Bereich",
-      "kind": "title1",
-      "maxW": 2820,
-      "page": "luecken"
-    },
-    "lu_r1": {
-      "x": 0,
-      "y": 964,
-      "text": "iPhone · Einführung und Kontexthilfe",
-      "kind": "title1",
-      "maxW": 1880,
-      "page": "luecken"
-    },
-    "lu_r2": {
-      "x": 0,
-      "y": 2168,
-      "text": "iPhone · Favoriten-Aktionen und Geführter Weg: Stil",
-      "kind": "title1",
-      "maxW": 1880,
-      "page": "luecken"
-    },
-    "lu_r3": {
-      "x": 0,
-      "y": 3372,
-      "text": "iPhone · Querformat",
-      "kind": "title1",
-      "maxW": 2772,
-      "page": "luecken"
-    },
-    "lu_r4": {
-      "x": 0,
-      "y": 4122,
-      "text": "iPad · Mehr und Einführung",
-      "kind": "title1",
-      "maxW": 6300,
-      "page": "luecken"
-    },
-    "lu_r5": {
-      "x": 0,
-      "y": 5302,
-      "text": "iPad · Stichfolge",
-      "kind": "title1",
-      "maxW": 3780,
-      "page": "luecken"
-    },
-    "lu_r6": {
-      "x": 0,
-      "y": 6482,
-      "text": "iPad · Geführter Weg: weitere Zustände",
-      "kind": "title1",
-      "maxW": 5040,
-      "page": "luecken"
-    },
-    "lu_r7": {
-      "x": 0,
-      "y": 7662,
-      "text": "iPad · Hochformat",
-      "kind": "title1",
-      "maxW": 2700,
-      "page": "luecken"
-    },
-    "lu_r8": {
-      "x": 0,
-      "y": 9202,
-      "text": "iPad · Teilfenster (Slide Over, iPhone-Layout)",
-      "kind": "title1",
-      "maxW": 2520,
-      "page": "luecken"
-    },
-    "lu_t": {
-      "x": 0,
-      "y": -560,
-      "text": "Lücken schließen – zum Review",
-      "kind": "title1",
-      "maxW": 3000,
-      "page": "luecken"
-    },
-    "lu_dec": {
-      "x": 2900,
-      "y": 0,
-      "w": 560,
-      "maxH": 900,
-      "fill": "orange",
-      "size": "m",
-      "page": "luecken",
-      "text": "Entscheidungen (zum Prüfen)\n\n• Einstellungen minimal: Standardformat, Falz, Haptik, „Weitermachen“ anzeigen. Erscheinungsbild folgt dem System.\n• Hilfe: Themenseiten + Glossar, kein eigener Hilfetext im Editor. Kontexthilfe: Info-Symbol im Sheet-Kopf je Gruppe.\n• Einführung: 3 Seiten, überspringbar, später unter Mehr wieder aufrufbar.\n• Datenschutz: ein Satz, keine Berechtigungen.\n• Löschen und Zurücksetzen: Aktionsblatt (iPhone) bzw. Dialog (iPad).\n• Querformat iPhone und Hochformat iPad: gleiches Gerüst wie iPad, Panel rechts (340 / 360 pt).\n• Teilfenster: unter ca. 420 pt Breite gilt das iPhone-Layout.\n• Seitenleiste iPad: neuer Eintrag „Info und Datenschutz“ (auch in iPad Start und Favoriten ergänzt)."
     }
   },
   "order": [
@@ -1576,61 +2162,6 @@
     "iPhone-Editor-Sheet-Stern2-aus.dc.html",
     "iPhone-Editor-Sheet-Gross-Stern2-aus.dc.html",
     "iPad-Ausgabe-Kompakt-aus.dc.html",
-    "F-iPhone-00-Designregeln.dc.html",
-    "F-iPhone-01-Start.dc.html",
-    "F-iPhone-02-Mehr.dc.html",
-    "F-iPhone-03-Ausgabe.dc.html",
-    "F-iPhone-04-Ausgabe-Kompakt-aus.dc.html",
-    "F-iPhone-05-Gefuehrt-1-Format.dc.html",
-    "F-iPhone-06-Gefuehrt-2-Stil.dc.html",
-    "F-iPhone-07-Gefuehrt-3-Aufwand.dc.html",
-    "F-iPhone-08-Gefuehrt-4-Farben.dc.html",
-    "F-iPhone-09-Gefuehrt-4-Farben-einfarbig.dc.html",
-    "F-iPhone-10-Gefuehrt-5-Auswahl.dc.html",
-    "F-iPhone-11-Gefuehrt-6-Ergebnis.dc.html",
-    "F-iPhone-12-Gefuehrt-3-Leicht.dc.html",
-    "F-iPhone-13-Gefuehrt-3-Aufwendig.dc.html",
-    "F-iPhone-14-Gefuehrt-4-Farben-Leicht.dc.html",
-    "F-iPhone-15-Gefuehrt-4-Farben-Aufwendig.dc.html",
-    "F-iPhone-16-Gefuehrt-5-Variante2.dc.html",
-    "F-iPhone-17-Gefuehrt-Abbruch.dc.html",
-    "F-iPhone-18-Favoriten.dc.html",
-    "F-iPhone-19-Favoriten-leer.dc.html",
-    "F-iPhone-20-Favoriten-Menue.dc.html",
-    "F-iPhone-21-Muster-Detail.dc.html",
-    "F-iPhone-22-Editor-klein.dc.html",
-    "F-iPhone-23-Editor-mittel-Aeste.dc.html",
-    "F-iPhone-24-Editor-gross-Aeste.dc.html",
-    "F-iPhone-25-Editor-mittel-Grundform.dc.html",
-    "F-iPhone-26-Editor-mittel-Stern1.dc.html",
-    "F-iPhone-27-Editor-mittel-Karte.dc.html",
-    "F-iPhone-28-Editor-gross-Karte.dc.html",
-    "F-iPhone-29-Editor-kein-Fehler.dc.html",
-    "F-iPhone-30-Editor-kritisch.dc.html",
-    "F-iPhone-31-Editor-Stern2-aus.dc.html",
-    "F-iPhone-32-Editor-gross-Stern2-aus.dc.html",
-    "F-iPhone-33-Stichfolge-Lochmuster.dc.html",
-    "F-iPhone-34-Stichfolge-Aeste.dc.html",
-    "F-iPhone-35-Stichfolge-Stern1.dc.html",
-    "F-iPhone-36-Stichfolge-Stern2.dc.html",
-    "F-iPhone-37-Stichfolge-Gesamtbild.dc.html",
-    "F-iPhone-38-Stichfolge-Stern2-aus.dc.html",
-    "F-iPad-00-Designregeln.dc.html",
-    "F-iPad-01-Start.dc.html",
-    "F-iPad-02-Editor.dc.html",
-    "F-iPad-03-Ausgabe.dc.html",
-    "F-iPad-04-Ausgabe-Kompakt-aus.dc.html",
-    "F-iPad-05-1-Format.dc.html",
-    "F-iPad-06-2-Stil.dc.html",
-    "F-iPad-07-3-Aufwand.dc.html",
-    "F-iPad-08-4-Farben.dc.html",
-    "F-iPad-09-5-Auswahl.dc.html",
-    "F-iPad-10-6-Ergebnis.dc.html",
-    "F-iPad-11-4-Farben-Leicht.dc.html",
-    "F-iPad-12-4-Farben-Aufwendig.dc.html",
-    "F-iPad-13-Abbruch.dc.html",
-    "F-iPad-14-Favoriten.dc.html",
-    "F-iPad-15-Muster-Detail.dc.html",
     "iPhone-Einstellungen.dc.html",
     "iPhone-Hilfe.dc.html",
     "iPhone-Hilfe-Thema.dc.html",
@@ -1664,7 +2195,129 @@
     "iPad-Hochformat-Editor.dc.html",
     "iPad-Hochformat-Gefuehrt-Aufwand.dc.html",
     "iPad-Teilfenster-Start.dc.html",
-    "iPad-Teilfenster-Editor.dc.html"
+    "iPad-Teilfenster-Editor.dc.html",
+    "iPhone-Start-Erststart.dc.html",
+    "iPhone-Meldung-Abhilfe.dc.html",
+    "iPhone-Editor-Zuruecksetzen-Button.dc.html",
+    "iPhone-Editor-Zuruecksetzen-Abfrage.dc.html",
+    "iPhone-Eigenformat.dc.html",
+    "iPhone-Eigenformat-zu-gross.dc.html",
+    "iPhone-Ausgabe-gesperrt.dc.html",
+    "iPhone-Ausgabe-Erstellen.dc.html",
+    "iPhone-Ausgabe-Fehler.dc.html",
+    "iPhone-Dunkel-Start.dc.html",
+    "iPhone-Dunkel-Editor.dc.html",
+    "iPhone-Dunkel-Gefuehrt.dc.html",
+    "iPhone-GrosseSchrift-Gefuehrt.dc.html",
+    "iPhone-GrosseSchrift-Editor.dc.html",
+    "iPad-Dunkel-Editor.dc.html",
+    "Designregeln-2.dc.html",
+    "F-iPhone-00-Designregeln.dc.html",
+    "F-iPhone-00b-Designregeln-2.dc.html",
+    "F-iPhone-01-Start.dc.html",
+    "F-iPhone-02-Start-Erststart.dc.html",
+    "F-iPhone-03-Mehr.dc.html",
+    "F-iPhone-04-Ausgabe.dc.html",
+    "F-iPhone-05-Ausgabe-Kompakt-aus.dc.html",
+    "F-iPhone-06-Ausgabe-gesperrt.dc.html",
+    "F-iPhone-07-Ausgabe-Erstellen.dc.html",
+    "F-iPhone-08-Ausgabe-Fehler.dc.html",
+    "F-iPhone-09-Einstellungen.dc.html",
+    "F-iPhone-10-Hilfe.dc.html",
+    "F-iPhone-11-Hilfe-Thema.dc.html",
+    "F-iPhone-12-Glossar.dc.html",
+    "F-iPhone-13-Info.dc.html",
+    "F-iPhone-14-Zuruecksetzen.dc.html",
+    "F-iPhone-15-Einfuehrung-1.dc.html",
+    "F-iPhone-16-Einfuehrung-2.dc.html",
+    "F-iPhone-17-Einfuehrung-3.dc.html",
+    "F-iPhone-18-Kontexthilfe.dc.html",
+    "F-iPhone-19-Gefuehrt-1-Format.dc.html",
+    "F-iPhone-20-Gefuehrt-2-Stil.dc.html",
+    "F-iPhone-21-Gefuehrt-3-Aufwand.dc.html",
+    "F-iPhone-22-Gefuehrt-4-Farben.dc.html",
+    "F-iPhone-23-Gefuehrt-4-Farben-einfarbig.dc.html",
+    "F-iPhone-24-Gefuehrt-5-Auswahl.dc.html",
+    "F-iPhone-25-Gefuehrt-6-Ergebnis.dc.html",
+    "F-iPhone-26-Gefuehrt-2-Stil-Flocke.dc.html",
+    "F-iPhone-27-Gefuehrt-2-Stil-Stern.dc.html",
+    "F-iPhone-28-Gefuehrt-3-Leicht.dc.html",
+    "F-iPhone-29-Gefuehrt-3-Aufwendig.dc.html",
+    "F-iPhone-30-Gefuehrt-4-Farben-Leicht.dc.html",
+    "F-iPhone-31-Gefuehrt-4-Farben-Aufwendig.dc.html",
+    "F-iPhone-32-Gefuehrt-5-Variante2.dc.html",
+    "F-iPhone-33-Gefuehrt-Abbruch.dc.html",
+    "F-iPhone-34-Favoriten.dc.html",
+    "F-iPhone-35-Favoriten-leer.dc.html",
+    "F-iPhone-36-Favoriten-Menue.dc.html",
+    "F-iPhone-37-Favoriten-Umbenennen.dc.html",
+    "F-iPhone-38-Favoriten-Loeschen.dc.html",
+    "F-iPhone-39-Muster-Detail.dc.html",
+    "F-iPhone-40-Editor-klein.dc.html",
+    "F-iPhone-41-Editor-mittel-Aeste.dc.html",
+    "F-iPhone-42-Editor-gross-Aeste.dc.html",
+    "F-iPhone-43-Editor-mittel-Grundform.dc.html",
+    "F-iPhone-44-Editor-mittel-Stern1.dc.html",
+    "F-iPhone-45-Editor-mittel-Karte.dc.html",
+    "F-iPhone-46-Editor-gross-Karte.dc.html",
+    "F-iPhone-47-Editor-kein-Fehler.dc.html",
+    "F-iPhone-48-Editor-kritisch.dc.html",
+    "F-iPhone-49-Editor-Stern2-aus.dc.html",
+    "F-iPhone-50-Editor-gross-Stern2-aus.dc.html",
+    "F-iPhone-51-Meldung-Abhilfe.dc.html",
+    "F-iPhone-52-Zuruecksetzen-Button.dc.html",
+    "F-iPhone-53-Zuruecksetzen-Abfrage.dc.html",
+    "F-iPhone-54-Eigenformat.dc.html",
+    "F-iPhone-55-Eigenformat-zu-gross.dc.html",
+    "F-iPhone-56-Stichfolge-Lochmuster.dc.html",
+    "F-iPhone-57-Stichfolge-Aeste.dc.html",
+    "F-iPhone-58-Stichfolge-Stern1.dc.html",
+    "F-iPhone-59-Stichfolge-Stern2.dc.html",
+    "F-iPhone-60-Stichfolge-Gesamtbild.dc.html",
+    "F-iPhone-61-Stichfolge-Stern2-aus.dc.html",
+    "F-iPhone-62-Quer-Editor.dc.html",
+    "F-iPhone-63-Quer-Stichfolge.dc.html",
+    "F-iPhone-64-Quer-Gefuehrt-Aufwand.dc.html",
+    "F-iPhone-65-Dunkel-Start.dc.html",
+    "F-iPhone-66-Dunkel-Editor.dc.html",
+    "F-iPhone-67-Dunkel-Gefuehrt.dc.html",
+    "F-iPhone-68-GrosseSchrift-Gefuehrt.dc.html",
+    "F-iPhone-69-GrosseSchrift-Editor.dc.html",
+    "F-iPad-00-Designregeln.dc.html",
+    "F-iPad-00b-Designregeln-2.dc.html",
+    "F-iPad-01-Start.dc.html",
+    "F-iPad-02-Editor.dc.html",
+    "F-iPad-03-Ausgabe.dc.html",
+    "F-iPad-04-Ausgabe-Kompakt-aus.dc.html",
+    "F-iPad-05-Einstellungen.dc.html",
+    "F-iPad-06-Hilfe.dc.html",
+    "F-iPad-07-Glossar.dc.html",
+    "F-iPad-08-Info.dc.html",
+    "F-iPad-09-Einfuehrung.dc.html",
+    "F-iPad-10-Stichfolge-Lochmuster.dc.html",
+    "F-iPad-11-Stichfolge-Aeste.dc.html",
+    "F-iPad-12-Stichfolge-Gesamtbild.dc.html",
+    "F-iPad-13-1-Format.dc.html",
+    "F-iPad-14-2-Stil.dc.html",
+    "F-iPad-15-3-Aufwand.dc.html",
+    "F-iPad-16-4-Farben.dc.html",
+    "F-iPad-17-5-Auswahl.dc.html",
+    "F-iPad-18-6-Ergebnis.dc.html",
+    "F-iPad-19-2-Stil-Flocke.dc.html",
+    "F-iPad-20-2-Stil-Stern.dc.html",
+    "F-iPad-21-3-Aufwand-Leicht.dc.html",
+    "F-iPad-22-3-Aufwand-Aufwendig.dc.html",
+    "F-iPad-23-4-Farben-Leicht.dc.html",
+    "F-iPad-24-4-Farben-Aufwendig.dc.html",
+    "F-iPad-25-Abbruch.dc.html",
+    "F-iPad-26-Favoriten.dc.html",
+    "F-iPad-27-Muster-Detail.dc.html",
+    "F-iPad-28-Hochformat-Start.dc.html",
+    "F-iPad-29-Hochformat-Editor.dc.html",
+    "F-iPad-30-Hochformat-Gefuehrt-Aufwand.dc.html",
+    "F-iPad-31-Teilfenster-Start.dc.html",
+    "F-iPad-32-Teilfenster-Editor.dc.html",
+    "F-iPad-33-Dunkel-Editor.dc.html"
   ],
   "pages": [
     {
@@ -1678,10 +2331,6 @@
     {
       "id": "ipad",
       "name": "iPad – erste finale Entwürfe"
-    },
-    {
-      "id": "luecken",
-      "name": "Lücken schließen – Review"
     }
   ],
   "title": "Stickkarten – Navigation & Screen-Karte"

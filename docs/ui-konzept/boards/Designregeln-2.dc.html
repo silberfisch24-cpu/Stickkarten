@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Designregeln 2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&amp;family=Newsreader:wght@600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.i{width:24px;height:24px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.glass{background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);border:1px solid rgba(255,255,255,.8);box-shadow:0 4px 18px rgba(30,42,51,.14)}
+.card{background:#ffffff;border:1px solid #d9d3c4;border-radius:22px;box-sizing:border-box;padding:20px;display:flex;flex-direction:column;gap:14px}
+.h{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:600}
+.h .i{color:#1f5a4b}
+.s{font-size:13px;line-height:18px;color:#5f594e}
+.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+</style>
+</helmet>
+<div style="width: 1280px; box-sizing: border-box; padding: 56px 64px 64px; display: flex; flex-direction: column; gap: 24px; background: #f4f0e6; color: #1e2a33; font-family: 'IBM Plex Sans', system-ui, sans-serif">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <h1 style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 40px; line-height: 46px; font-weight: 700">Designregeln 2</h1>
+    <span class="s" style="font-size: 15px; line-height: 21px">Ergänzungen: Dialoge, Dunkel, Breite und Fenster, Lesbarkeit und Barrierefreiheit.</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+    <div class="card">
+      <span class="h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.01"/></svg>Dialoge und Abfragen</span>
+      <div class="row"><span class="glass" style="width: 150px; box-sizing: border-box; padding: 10px 12px; border-radius: 26px; text-align: center; font-size: 13px; color: #5f594e">Frage in 13<br><b style="font-size: 17px; color: #b3261e">Löschen</b></span><span class="glass" style="width: 150px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600">Abbrechen</span></div>
+      <span class="s">iPhone: Aktionsblatt unten, Radius 26. Eine Frage in 13 pt, darunter die Aktion (destruktiv: roter Text, Symbol), „Abbrechen“ als eigene Kapsel. Systemblur dahinter.</span>
+      <div class="row"><span class="glass" style="width: 230px; box-sizing: border-box; padding: 14px; border-radius: 30px; display: flex; flex-direction: column; gap: 8px; align-items: center"><b style="font-family: Newsreader, Georgia, serif; font-size: 20px">Muster verwerfen?</b><span style="width: 100%; height: 40px; border-radius: 20px; background: #1f5a4b; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600">Weitermachen</span></span></div>
+      <span class="s">iPad und Eingaben: mittiger Dialog, Radius 30–34, Titel in Newsreader, Hauptaktion grün, sonst Füllung. Erfolg ohne Bestätigung. Hilfe zu einer Gruppe: Glas-Popover mit Pfeil, Radius 26, Info-Symbol im Sheet-Kopf.</span>
+    </div>
+    <div class="card">
+      <span class="h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14a8 8 0 11-10-10 6 6 0 0010 10z"/></svg>Dunkel (folgt dem System)</span>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px"><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #181611; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Inhaltsgrund</b> #181611</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #12100c; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Arbeitsfläche</b> #12100c</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #2b2823; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Fläche</b> #2b2823</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #403d35; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Rand</b> #403d35</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #37342d; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Füllung (Segmente, Chips)</b> #37342d</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #efeadd; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Text</b> #efeadd</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #8fe0c4; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Akzent als Text</b> #8fe0c4</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #1f5a4b; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Akzent als Fläche (unverändert)</b> #1f5a4b</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #4a3511; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Warnung, Text #f3cf8b</b> #4a3511</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #4a1d18; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">Kritisch, Text #ffb4a8</b> #4a1d18</span></div><div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: #1d3a2c; border: 1px solid rgba(128,128,128,.4); flex-shrink: 0"></span><span class="s" style="font-size: 13px"><b style="color: #1e2a33">In Ordnung, Text #8fd7ab</b> #1d3a2c</span></div></div>
+      <span class="s">Karten (Karton, Fäden, Löcher) bleiben unverändert. Glas wird dunkel (Fläche rgba 44,41,35 bei 72 %). Gleiche Regeln wie hell: Farbe nie allein, Texte nie unter 13 pt. Kontrast ist nach der Umsetzung mit dem Prüfwerkzeug zu messen, hier nur Richtwerte.</span>
+    </div>
+    <div class="card">
+      <span class="h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 6v12"/></svg>Breite und Fenster</span>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <div class="row"><b style="width: 160px; font-size: 15px">unter ca. 420 pt</b><span class="s" style="flex: 1">iPhone-Layout (Tab-Leiste, Sheet), auch im iPad-Teilfenster (Slide Over)</span></div>
+        <div class="row"><b style="width: 160px; font-size: 15px">iPhone quer</b><span class="s" style="flex: 1">Karte links, Panel rechts 340 pt, Ränder 47 pt (Sicherheitsbereich)</span></div>
+        <div class="row"><b style="width: 160px; font-size: 15px">iPad hoch</b><span class="s" style="flex: 1">Seitenleiste ausgeblendet (Knopf oben links), Panel rechts 360 pt</span></div>
+        <div class="row"><b style="width: 160px; font-size: 15px">iPad quer</b><span class="s" style="flex: 1">Seitenleiste 280 pt, Panel rechts 400 pt</span></div>
+        <div class="row"><b style="width: 160px; font-size: 15px">Split View halb</b><span class="s" style="flex: 1">nicht gezeichnet: Seitenleiste ausgeblendet, Panel unten als Sheet</span></div>
+      </div>
+      <span class="s">Die Entscheidung folgt der Fensterbreite, nicht dem Gerät. Das Layout muss kontinuierlich reagieren.</span>
+    </div>
+    <div class="card">
+      <span class="h"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Lesbarkeit und Barrierefreiheit</span>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span class="s" style="font-size: 14px; line-height: 20px"><b>Größte Schrift:</b> Kacheln wachsen mit (140 → 176 pt), Kapseln 52 → 68 pt, Sheets starten höher, Texte werden nie abgeschnitten, sondern umbrochen oder scrollen.</span>
+        <span class="s" style="font-size: 14px; line-height: 20px"><b>Karte für VoiceOver:</b> eine Beschreibung, z. B. „Muster mit 8 Strahlen, 5 Ebenen, 104 Stichen. Lochabstand knapp bei 16 Löchern.“ Meldungen werden angesagt.</span>
+        <span class="s" style="font-size: 14px; line-height: 20px"><b>Regler und Zähler:</b> einstellbar per Wischen, Schritt 1, Wert und Einheit im Label („Astlänge, 70 Prozent“).</span>
+        <span class="s" style="font-size: 14px; line-height: 20px"><b>Bewegung:</b> Wiedergabe der Stichfolge nur auf Tippen, „Bewegung reduzieren“ schaltet Übergänge ab.</span>
+        <span class="s" style="font-size: 14px; line-height: 20px"><b>Zustand:</b> letzter Stand bleibt bei Drehen, Fensterwechsel und Neustart erhalten.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":980}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

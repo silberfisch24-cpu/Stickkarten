@@ -9,6 +9,7 @@ Konzept und den Designentwurf. Der Code in `ios/` wurde dabei **nicht** verände
 | Pfad | Inhalt |
 |---|---|
 | `konzept.md` | Das Konzept als Text: Screens, Designregeln, Editor, Geführter Weg, Aufwand-Stufen, Stichfolge, Ausgabe, Kernänderungen, offene Punkte, Umsetzungsplan |
+| `gesamtreview.md` | Abschließende Prüfung: Konsolidierung, Soll-/Kann-Matrix, Gesamtreview, was „nicht gerechnet und nicht gerendert“ bedeutet |
 | `abwaertskompatibilitaet.md` | Recherche zu Mindest-iOS-Version und Verbreitung, Folgen für das Design |
 | `bilder/` | Alle Boards als PNG (Stand der Sicherung). Die Schrift ist die Ersatzschrift des Rechners, nicht die Designschrift (Newsreader und IBM Plex Sans) |
 | `boards/` | Dieselben Boards als HTML (Quelle der PNGs) |
@@ -17,7 +18,7 @@ Konzept und den Designentwurf. Der Code in `ios/` wurde dabei **nicht** verände
 
 ## Das Artifact
 
-Das Design lag als Design-Artifact bei Claude vor (privat, Version 42):
+Das Design lag als Design-Artifact bei Claude vor (privat, Version 47):
 <https://claude.ai/artifact/Wdgor4wDnKDuDFM3iv1X31>
 
 Eine neue Claude-Sitzung kann es über das Artifact-Werkzeug lesen (`action: "read"`, Pfad
@@ -37,7 +38,10 @@ Sicherung ist die Quelle der Inhalte, falls das Artifact nicht mehr erreichbar i
 - `pat.py`: rechnet echte Muster nach dem Vorbild von `ios/StickCore/.../Graph.swift`
   (Stichzahl, Lochabstand). Enthält die Parametersätze der Aufwand-Stufen (`PRE`).
 - `build*.py`: erzeugen die Boards (`build6`/`build7`/`build11`: Geführter Weg,
-  `build13`: Stichfolge, `build14`: Schicht aus und Ausgabe).
+  `build13`: Stichfolge, `build14`: Schicht aus und Ausgabe, `build15*`: Mehr, Einführung,
+  iPad, Querformat; `build16*`: Konsolidierung auf echte Muster; `build17`: Zustände;
+  `build18`: Dunkel und große Schrift; `real.py`: fertige Muster und Favoriten;
+  `render.js`: Boards als PNG).
 - `calc_stiche.py`: Vorrechnung der Stichzahlen und Abstände.
 - **Die Skripte enthalten feste Pfade der Entwurfs-Sitzung** (`/tmp/claude-0/...`). Vor einer
   Wiederverwendung anpassen. Sie sind keine Produktivwerkzeuge.

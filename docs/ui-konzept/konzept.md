@@ -176,25 +176,54 @@ Die Tabelle ist mit einem Nachbau gerechnet und vor der Umsetzung gegen den Kern
 3. Kompakt-PDF in `StickPDF` (Seite, Figuren nach Strichart, Einstellungsband, QR-Platzhalter).
 4. Optional: Fadenlänge als zweites Aufwandsmaß (`fadenCm` ist vorhanden).
 
-## 9 Lücken: Stand
+## 9 Weitere Bereiche und Zustände
 
-Auf der Page „Lücken schließen – zum Review“ des Design-Artifacts (Version 43, 34 Boards) sind jetzt gezeichnet:
+- **Mehr (iPhone, auf dem iPad in der Seitenleiste):** Einstellungen (Standardformat, Falz,
+  Haptik, „Weitermachen“ anzeigen), Hilfe (fünf Themen, Themenseite „Warnungen verstehen“),
+  Glossar mit Suche, Info und Datenschutz (ein Satz: alles bleibt auf dem Gerät, keine
+  Berechtigungen), Einführung wiederholen, Alles zurücksetzen (Favoriten und Einstellungen,
+  mit Abfrage).
+- **Einführung (Erststart):** drei überspringbare Seiten, danach Start ohne „Weitermachen“.
+  **Kontexthilfe:** Info-Symbol im Kopf des Sheets, je Gruppe eine Glas-Karte mit Link zum
+  Glossar.
+- **Favoriten:** Umbenennen (Dialog mit Tastatur), Löschen (Aktionsblatt). Vorschlag: höchstens
+  24, neueste zuerst, Name beim Sichern „Muster n“.
+- **Editor:** Meldung antippen öffnet Abhilfe mit Sprung zum Regler. Zurücksetzen je Gruppe oder
+  für das ganze Muster mit Abfrage. Eigenformat nur unter „Erweitert“, mit Höchstmaß
+  (Vorderseite 190 × 277 mm) und roter Meldung, wenn zu groß.
+- **Ausgabe:** gesperrt bei kritischem Zustand (mit Erklärung und „Zum Muster“), „PDF wird
+  erstellt“, Fehler mit „Erneut versuchen“.
+- **Layout-Varianten:** iPhone quer (Panel rechts 340 pt), iPad hoch (Seitenleiste
+  ausgeblendet, Panel 360 pt), Teilfenster (Slide Over, unter etwa 420 pt iPhone-Layout), Dunkel
+  (Beispiele), größte Schrift (Beispiele). Regeln in `Designregeln 2`.
+- **Zehn fertige Muster** (Platzhalter, aus den Aufwand-Stufen, nachgerechnet):
 
-- Mehr-Bereich iPhone: Einstellungen (Standardformat, Falz, Haptik, „Weitermachen“ anzeigen), Hilfe mit Themenseite, Glossar, Info und Datenschutz, Zurücksetzen-Abfrage.
-- Einführung (3 Seiten, überspringbar) und Kontexthilfe (Info-Symbol im Sheet-Kopf je Gruppe).
-- Favoriten: Umbenennen und Löschabfrage. Geführter Weg: Stil Flocke und Stern allein.
-- iPhone Querformat: Editor, Stichfolge, Geführter Weg (Panel rechts, 340 pt).
-- iPad: Einstellungen, Hilfe und Glossar, Info, Einführung, Stichfolge (3 Boards), Geführter Weg (Aufwand Leicht/Aufwendig, Stil Flocke/Stern), Hochformat (Panel 360 pt), Teilfenster (Slide Over, iPhone-Layout unter ca. 420 pt).
-- Seitenleiste iPad: Eintrag „Info und Datenschutz“.
+| Name | Stil | Stufe | Farbwelt | Format | Stiche | Löcher | kleinster Abstand |
+|---|---|---|---|---|---|---|---|
+| Flocke | Flocke | Leicht | Tannengrün | hoch | 48 | 49 | 6,2 mm |
+| Eisblume | Flocke | Mittel | Mitternachtsblau | hoch | 80 | 81 | 5,4 mm |
+| Raureif | Flocke | Aufwendig | Weinrot | quer | 70 | 71 | 5,2 mm |
+| Aster | Stern | Leicht | Mitternachtsblau | hoch | 6 | 6 | 35,0 mm |
+| Zwilling | Stern | Mittel | Tannengrün | quer | 20 | 20 | 10,8 mm |
+| Polaris | Stern | Aufwendig | Weinrot | hoch | 28 | 28 | 7,8 mm |
+| Funkel | Beides | Leicht | Tannengrün | hoch | 54 | 49 | 6,2 mm |
+| Kristall | Beides | Mittel | Mitternachtsblau | hoch | 72 | 65 | 6,2 mm |
+| Nordlicht | Beides | Aufwendig | Weinrot | hoch | 104 | 89 | 5,0 mm |
+| Eisrose | Beides | Mittel | Weinrot | quer | 72 | 65 | 6,2 mm |
 
-Noch offen:
+- **Beispielmuster „Mein Muster“** (Editor, Stichfolge, PDF): wie Nordlicht (Beides, Aufwendig:
+  8 Strahlen, 5 Ebenen, Winkel 45°, Länge 60 %, Stern 1 Schrittweite 3 auf Ebene 2, Stern 2
+  Schrittweite 1 auf Ebene 5). Mit Winkel 55° und Länge 70 % entsteht 3,9 mm (Warnung), mit
+  80 % 2,9 mm (kritisch).
 
-- Start, Favoriten und Muster-Detail zeigen noch frühere Beispielmuster (vom Nutzer zurückgestellt).
-- Eigenformat (Karte groß, Erweitert) prüfen.
-- Verteilung (App Store oder eigenes Gerät), Layout-Prüfung ohne Mac, Punkte O1 bis O5, E1, E10 der Grundanalyse.
-- Texte der Einführung, Hilfe und Glossar sind Platzhalter.
+## 10 Offene Punkte
 
-## 10 Umsetzungsplan (Vorschlag)
+Vollständige Soll-/Kann-Prüfung, Gesamtreview und die Erklärung, was „nicht gerechnet und nicht
+gerendert“ bedeutet: `gesamtreview.md`. Kurzfassung der Lücken: Begrenzungen der Regler
+(Zustände), Anleitung (vier PDF-Seiten), Prüfung ohne Mac, kleine Geräte und Split View,
+Impressum und Verteilung, Bild-Export-Platz, Texte und Musterkatalog.
+
+## 11 Umsetzungsplan (Vorschlag)
 
 1. Kernänderung (Ebenen, Fraktal) mit Tests.
 2. Designsystem im Code: Farben, Maße, Glas-Kapsel, Kachel, Panel, Umschalter, mit Rückfall für
