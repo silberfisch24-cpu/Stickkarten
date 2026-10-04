@@ -176,16 +176,23 @@ Die Tabelle ist mit einem Nachbau gerechnet und vor der Umsetzung gegen den Kern
 3. Kompakt-PDF in `StickPDF` (Seite, Figuren nach Strichart, Einstellungsband, QR-Platzhalter).
 4. Optional: Fadenlänge als zweites Aufwandsmaß (`fadenCm` ist vorhanden).
 
-## 9 Offen
+## 9 Lücken: Stand
 
-- Einführung (Erststart) und Hilfe, Glossar, Kontexthilfe, Einstellungen, Info.
-- iPad: Stichfolge, Mehr, Hochformat und Teilfenster. iPhone: Querformat.
-- Geführter Weg: Zustände Stil Flocke und Stern allein als Bildschirm, Zustände bei Leicht und
-  Aufwendig auf dem iPad vollständig.
-- Favoriten: Umbenennen (Eingabe), Löschabfrage.
-- Start, Favoriten und Muster-Detail zeigen noch frühere Beispielmuster.
-- Verteilung (App Store oder eigenes Gerät), Layout-Prüfung ohne Mac, Punkte O1 bis O5, E1,
-  E10 der Grundanalyse.
+Auf der Page „Lücken schließen – zum Review“ des Design-Artifacts (Version 43, 34 Boards) sind jetzt gezeichnet:
+
+- Mehr-Bereich iPhone: Einstellungen (Standardformat, Falz, Haptik, „Weitermachen“ anzeigen), Hilfe mit Themenseite, Glossar, Info und Datenschutz, Zurücksetzen-Abfrage.
+- Einführung (3 Seiten, überspringbar) und Kontexthilfe (Info-Symbol im Sheet-Kopf je Gruppe).
+- Favoriten: Umbenennen und Löschabfrage. Geführter Weg: Stil Flocke und Stern allein.
+- iPhone Querformat: Editor, Stichfolge, Geführter Weg (Panel rechts, 340 pt).
+- iPad: Einstellungen, Hilfe und Glossar, Info, Einführung, Stichfolge (3 Boards), Geführter Weg (Aufwand Leicht/Aufwendig, Stil Flocke/Stern), Hochformat (Panel 360 pt), Teilfenster (Slide Over, iPhone-Layout unter ca. 420 pt).
+- Seitenleiste iPad: Eintrag „Info und Datenschutz“.
+
+Noch offen:
+
+- Start, Favoriten und Muster-Detail zeigen noch frühere Beispielmuster (vom Nutzer zurückgestellt).
+- Eigenformat (Karte groß, Erweitert) prüfen.
+- Verteilung (App Store oder eigenes Gerät), Layout-Prüfung ohne Mac, Punkte O1 bis O5, E1, E10 der Grundanalyse.
+- Texte der Einführung, Hilfe und Glossar sind Platzhalter.
 
 ## 10 Umsetzungsplan (Vorschlag)
 

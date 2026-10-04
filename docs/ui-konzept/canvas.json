@@ -868,6 +868,278 @@
       "h": 820,
       "title": "15 Fertiges Muster",
       "page": "ipad"
+    },
+    "iPhone-Einstellungen.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Einstellungen",
+      "page": "luecken"
+    },
+    "iPhone-Hilfe.dc.html": {
+      "x": 470,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Hilfe",
+      "page": "luecken"
+    },
+    "iPhone-Hilfe-Thema.dc.html": {
+      "x": 940,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Hilfe · Thema Warnungen",
+      "page": "luecken"
+    },
+    "iPhone-Glossar.dc.html": {
+      "x": 1410,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Glossar",
+      "page": "luecken"
+    },
+    "iPhone-Info.dc.html": {
+      "x": 1880,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Info und Datenschutz",
+      "page": "luecken"
+    },
+    "iPhone-Zuruecksetzen.dc.html": {
+      "x": 2350,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "title": "Alles zurücksetzen (Abfrage)",
+      "page": "luecken"
+    },
+    "iPhone-Einfuehrung-1.dc.html": {
+      "x": 0,
+      "y": 1204,
+      "w": 390,
+      "h": 844,
+      "title": "Einführung 1",
+      "page": "luecken"
+    },
+    "iPhone-Einfuehrung-2.dc.html": {
+      "x": 470,
+      "y": 1204,
+      "w": 390,
+      "h": 844,
+      "title": "Einführung 2",
+      "page": "luecken"
+    },
+    "iPhone-Einfuehrung-3.dc.html": {
+      "x": 940,
+      "y": 1204,
+      "w": 390,
+      "h": 844,
+      "title": "Einführung 3",
+      "page": "luecken"
+    },
+    "iPhone-Kontexthilfe.dc.html": {
+      "x": 1410,
+      "y": 1204,
+      "w": 390,
+      "h": 844,
+      "title": "Kontexthilfe im Editor",
+      "page": "luecken"
+    },
+    "iPhone-Favoriten-Umbenennen.dc.html": {
+      "x": 0,
+      "y": 2408,
+      "w": 390,
+      "h": 844,
+      "title": "Favoriten · Umbenennen",
+      "page": "luecken"
+    },
+    "iPhone-Favoriten-Loeschen.dc.html": {
+      "x": 470,
+      "y": 2408,
+      "w": 390,
+      "h": 844,
+      "title": "Favoriten · Löschabfrage",
+      "page": "luecken"
+    },
+    "Gefuehrt-iPhone-2b-Stil-Flocke.dc.html": {
+      "x": 940,
+      "y": 2408,
+      "w": 390,
+      "h": 844,
+      "title": "Geführt 2 · Stil Flocke",
+      "page": "luecken"
+    },
+    "Gefuehrt-iPhone-2c-Stil-Stern.dc.html": {
+      "x": 1410,
+      "y": 2408,
+      "w": 390,
+      "h": 844,
+      "title": "Geführt 2 · Stil Stern",
+      "page": "luecken"
+    },
+    "iPhone-Quer-Editor.dc.html": {
+      "x": 0,
+      "y": 3612,
+      "w": 844,
+      "h": 390,
+      "title": "Querformat · Editor",
+      "page": "luecken"
+    },
+    "iPhone-Quer-Stichfolge.dc.html": {
+      "x": 924,
+      "y": 3612,
+      "w": 844,
+      "h": 390,
+      "title": "Querformat · Stichfolge",
+      "page": "luecken"
+    },
+    "iPhone-Quer-Gefuehrt-Aufwand.dc.html": {
+      "x": 1848,
+      "y": 3612,
+      "w": 844,
+      "h": 390,
+      "title": "Querformat · Geführt 3 Aufwand",
+      "page": "luecken"
+    },
+    "iPad-Einstellungen.dc.html": {
+      "x": 0,
+      "y": 4362,
+      "w": 1180,
+      "h": 820,
+      "title": "Einstellungen",
+      "page": "luecken"
+    },
+    "iPad-Hilfe.dc.html": {
+      "x": 1260,
+      "y": 4362,
+      "w": 1180,
+      "h": 820,
+      "title": "Hilfe und Glossar",
+      "page": "luecken"
+    },
+    "iPad-Glossar.dc.html": {
+      "x": 2520,
+      "y": 4362,
+      "w": 1180,
+      "h": 820,
+      "title": "Glossar",
+      "page": "luecken"
+    },
+    "iPad-Info.dc.html": {
+      "x": 3780,
+      "y": 4362,
+      "w": 1180,
+      "h": 820,
+      "title": "Info und Datenschutz",
+      "page": "luecken"
+    },
+    "iPad-Einfuehrung.dc.html": {
+      "x": 5040,
+      "y": 4362,
+      "w": 1180,
+      "h": 820,
+      "title": "Einführung",
+      "page": "luecken"
+    },
+    "iPad-Stichfolge-Lochmuster.dc.html": {
+      "x": 0,
+      "y": 5542,
+      "w": 1180,
+      "h": 820,
+      "title": "Stichfolge · Lochmuster",
+      "page": "luecken"
+    },
+    "iPad-Stichfolge-Aeste.dc.html": {
+      "x": 1260,
+      "y": 5542,
+      "w": 1180,
+      "h": 820,
+      "title": "Stichfolge · Äste",
+      "page": "luecken"
+    },
+    "iPad-Stichfolge-Gesamtbild.dc.html": {
+      "x": 2520,
+      "y": 5542,
+      "w": 1180,
+      "h": 820,
+      "title": "Stichfolge · Gesamtbild",
+      "page": "luecken"
+    },
+    "Gefuehrt-iPad-3b-Aufwand-Leicht.dc.html": {
+      "x": 0,
+      "y": 6722,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 3 · Aufwand Leicht",
+      "page": "luecken"
+    },
+    "Gefuehrt-iPad-3c-Aufwand-Aufwendig.dc.html": {
+      "x": 1260,
+      "y": 6722,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 3 · Aufwand Aufwendig",
+      "page": "luecken"
+    },
+    "Gefuehrt-iPad-2b-Stil-Flocke.dc.html": {
+      "x": 2520,
+      "y": 6722,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 2 · Stil Flocke",
+      "page": "luecken"
+    },
+    "Gefuehrt-iPad-2c-Stil-Stern.dc.html": {
+      "x": 3780,
+      "y": 6722,
+      "w": 1180,
+      "h": 820,
+      "title": "Geführt 2 · Stil Stern",
+      "page": "luecken"
+    },
+    "iPad-Hochformat-Start.dc.html": {
+      "x": 0,
+      "y": 7902,
+      "w": 820,
+      "h": 1180,
+      "title": "Hochformat · Start",
+      "page": "luecken"
+    },
+    "iPad-Hochformat-Editor.dc.html": {
+      "x": 900,
+      "y": 7902,
+      "w": 820,
+      "h": 1180,
+      "title": "Hochformat · Editor",
+      "page": "luecken"
+    },
+    "iPad-Hochformat-Gefuehrt-Aufwand.dc.html": {
+      "x": 1800,
+      "y": 7902,
+      "w": 820,
+      "h": 1180,
+      "title": "Hochformat · Geführt 3 Aufwand",
+      "page": "luecken"
+    },
+    "iPad-Teilfenster-Start.dc.html": {
+      "x": 0,
+      "y": 9442,
+      "w": 1180,
+      "h": 820,
+      "title": "Teilfenster · Start",
+      "page": "luecken"
+    },
+    "iPad-Teilfenster-Editor.dc.html": {
+      "x": 1260,
+      "y": 9442,
+      "w": 1180,
+      "h": 820,
+      "title": "Teilfenster · Editor",
+      "page": "luecken"
     }
   },
   "createdOnFiles": {
@@ -1150,6 +1422,96 @@
       "fill": "orange",
       "size": 24,
       "page": "ipad"
+    },
+    "lu_r0": {
+      "x": 0,
+      "y": -240,
+      "text": "iPhone · Mehr-Bereich",
+      "kind": "title1",
+      "maxW": 2820,
+      "page": "luecken"
+    },
+    "lu_r1": {
+      "x": 0,
+      "y": 964,
+      "text": "iPhone · Einführung und Kontexthilfe",
+      "kind": "title1",
+      "maxW": 1880,
+      "page": "luecken"
+    },
+    "lu_r2": {
+      "x": 0,
+      "y": 2168,
+      "text": "iPhone · Favoriten-Aktionen und Geführter Weg: Stil",
+      "kind": "title1",
+      "maxW": 1880,
+      "page": "luecken"
+    },
+    "lu_r3": {
+      "x": 0,
+      "y": 3372,
+      "text": "iPhone · Querformat",
+      "kind": "title1",
+      "maxW": 2772,
+      "page": "luecken"
+    },
+    "lu_r4": {
+      "x": 0,
+      "y": 4122,
+      "text": "iPad · Mehr und Einführung",
+      "kind": "title1",
+      "maxW": 6300,
+      "page": "luecken"
+    },
+    "lu_r5": {
+      "x": 0,
+      "y": 5302,
+      "text": "iPad · Stichfolge",
+      "kind": "title1",
+      "maxW": 3780,
+      "page": "luecken"
+    },
+    "lu_r6": {
+      "x": 0,
+      "y": 6482,
+      "text": "iPad · Geführter Weg: weitere Zustände",
+      "kind": "title1",
+      "maxW": 5040,
+      "page": "luecken"
+    },
+    "lu_r7": {
+      "x": 0,
+      "y": 7662,
+      "text": "iPad · Hochformat",
+      "kind": "title1",
+      "maxW": 2700,
+      "page": "luecken"
+    },
+    "lu_r8": {
+      "x": 0,
+      "y": 9202,
+      "text": "iPad · Teilfenster (Slide Over, iPhone-Layout)",
+      "kind": "title1",
+      "maxW": 2520,
+      "page": "luecken"
+    },
+    "lu_t": {
+      "x": 0,
+      "y": -560,
+      "text": "Lücken schließen – zum Review",
+      "kind": "title1",
+      "maxW": 3000,
+      "page": "luecken"
+    },
+    "lu_dec": {
+      "x": 2900,
+      "y": 0,
+      "w": 560,
+      "maxH": 900,
+      "fill": "orange",
+      "size": "m",
+      "page": "luecken",
+      "text": "Entscheidungen (zum Prüfen)\n\n• Einstellungen minimal: Standardformat, Falz, Haptik, „Weitermachen“ anzeigen. Erscheinungsbild folgt dem System.\n• Hilfe: Themenseiten + Glossar, kein eigener Hilfetext im Editor. Kontexthilfe: Info-Symbol im Sheet-Kopf je Gruppe.\n• Einführung: 3 Seiten, überspringbar, später unter Mehr wieder aufrufbar.\n• Datenschutz: ein Satz, keine Berechtigungen.\n• Löschen und Zurücksetzen: Aktionsblatt (iPhone) bzw. Dialog (iPad).\n• Querformat iPhone und Hochformat iPad: gleiches Gerüst wie iPad, Panel rechts (340 / 360 pt).\n• Teilfenster: unter ca. 420 pt Breite gilt das iPhone-Layout.\n• Seitenleiste iPad: neuer Eintrag „Info und Datenschutz“ (auch in iPad Start und Favoriten ergänzt)."
     }
   },
   "order": [
@@ -1268,7 +1630,41 @@
     "F-iPad-12-4-Farben-Aufwendig.dc.html",
     "F-iPad-13-Abbruch.dc.html",
     "F-iPad-14-Favoriten.dc.html",
-    "F-iPad-15-Muster-Detail.dc.html"
+    "F-iPad-15-Muster-Detail.dc.html",
+    "iPhone-Einstellungen.dc.html",
+    "iPhone-Hilfe.dc.html",
+    "iPhone-Hilfe-Thema.dc.html",
+    "iPhone-Glossar.dc.html",
+    "iPhone-Info.dc.html",
+    "iPhone-Zuruecksetzen.dc.html",
+    "iPhone-Einfuehrung-1.dc.html",
+    "iPhone-Einfuehrung-2.dc.html",
+    "iPhone-Einfuehrung-3.dc.html",
+    "iPhone-Kontexthilfe.dc.html",
+    "iPhone-Favoriten-Umbenennen.dc.html",
+    "iPhone-Favoriten-Loeschen.dc.html",
+    "Gefuehrt-iPhone-2b-Stil-Flocke.dc.html",
+    "Gefuehrt-iPhone-2c-Stil-Stern.dc.html",
+    "iPhone-Quer-Editor.dc.html",
+    "iPhone-Quer-Stichfolge.dc.html",
+    "iPhone-Quer-Gefuehrt-Aufwand.dc.html",
+    "iPad-Einstellungen.dc.html",
+    "iPad-Hilfe.dc.html",
+    "iPad-Glossar.dc.html",
+    "iPad-Info.dc.html",
+    "iPad-Einfuehrung.dc.html",
+    "iPad-Stichfolge-Lochmuster.dc.html",
+    "iPad-Stichfolge-Aeste.dc.html",
+    "iPad-Stichfolge-Gesamtbild.dc.html",
+    "Gefuehrt-iPad-3b-Aufwand-Leicht.dc.html",
+    "Gefuehrt-iPad-3c-Aufwand-Aufwendig.dc.html",
+    "Gefuehrt-iPad-2b-Stil-Flocke.dc.html",
+    "Gefuehrt-iPad-2c-Stil-Stern.dc.html",
+    "iPad-Hochformat-Start.dc.html",
+    "iPad-Hochformat-Editor.dc.html",
+    "iPad-Hochformat-Gefuehrt-Aufwand.dc.html",
+    "iPad-Teilfenster-Start.dc.html",
+    "iPad-Teilfenster-Editor.dc.html"
   ],
   "pages": [
     {
@@ -1282,6 +1678,10 @@
     {
       "id": "ipad",
       "name": "iPad – erste finale Entwürfe"
+    },
+    {
+      "id": "luecken",
+      "name": "Lücken schließen – Review"
     }
   ],
   "title": "Stickkarten – Navigation & Screen-Karte"
